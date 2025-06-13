@@ -57,17 +57,13 @@ public class ItemsInCartDAO extends BaseDAO{
         String sql = "select items_in_cart.user_id,items_in_cart.item_id,items_in_cart.amount,items_in_cart.booked_date,\n"
         		+ "items.name,items.manufacturer,items.category_id,items.color,items.price,items.stock,items.recommended\n"
         		+ "from items_in_cart inner join items on items_in_cart.item_id= items.item_id where user_id=?";
-        List<ItemsInCartDTO> cartlist = null;
+        List<ItemsInCartDTO> cartlist =new ArrayList<>();
         try(PreparedStatement ps = conn.prepareStatement(sql)){
         	ps.setString(1, userid);
         	ResultSet rs = ps.executeQuery();
-        	int i=0;
 
             while(rs.next()){
-            	if(i==0) {
-                	cartlist= new ArrayList<>();
-                	i++;
-            	}
+
             	
             	ItemsInCartDTO dto = new ItemsInCartDTO();
             	ItemsDTO item=new ItemsDTO();
