@@ -1,7 +1,6 @@
-package jp.co.ecsite.controller;
+package jp.co.brmy.controller;
 
 import java.io.IOException;
-import java.sql.SQLException;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -9,8 +8,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import jp.co.ecsite.dto.UsersDTO;
-import jp.co.ecsite.service.AuthenticatinService;
+//import jp.co.ecsite.dto.UsersDTO;
+//import jp.co.ecsite.service.AuthenticatinService;
 
 /**
  * Servlet implementation class LoginController
@@ -51,15 +50,15 @@ public class LoginController extends HttpServlet {
 		String id = request.getParameter("userid");
 		String password = request.getParameter("password");
 
-		AuthenticatinService service = new AuthenticatinService();
-		try {
-			UsersDTO dto = service.execute(id, password);
-			request.getRequestDispatcher("/WEB-INF/result.jsp").forward(request, response);
-
-		} catch (SQLException e) {
-			// TODO 自動生成された catch ブロック
-			e.printStackTrace();
-		}
+//		AuthenticatinService service = new AuthenticatinService();
+//		try {
+//			UsersDTO dto = service.execute(id, password);
+//			request.getRequestDispatcher("/WEB-INF/result.jsp").forward(request, response);
+//
+//		} catch (SQLException e) {
+//			// TODO 自動生成された catch ブロック
+//			e.printStackTrace();
+//		}
 
 	}
 
