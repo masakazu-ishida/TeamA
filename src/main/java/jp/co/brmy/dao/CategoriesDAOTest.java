@@ -29,7 +29,7 @@ try(Connection conn = ConnectionUtil.getConnectionForJUnit() ){
 	list = dao.findAll();
 	
 	for(CategoriesDTO dto : list) {
-		assertEquals(0,dto.getCategory());
+		assertEquals(0,dto.getCategoryId());
 		assertEquals("すべて",dto.getName());
 		
 		break;
@@ -57,13 +57,13 @@ CategoriesDAO dao = new CategoriesDAO(conn);
 CategoriesDTO categoriesDTO  = new CategoriesDTO();
 categoriesDTO = dao.findById(1);
 
-	assertEquals(1,categoriesDTO.getCategory());
+	assertEquals(1,categoriesDTO.getCategoryId());
 	assertEquals("帽子",categoriesDTO.getName());
 	
 	
 categoriesDTO = dao.findById(2);
 
-	assertEquals(2,categoriesDTO.getCategory());
+	assertEquals(2,categoriesDTO.getCategoryId());
 	assertEquals("鞄",categoriesDTO.getName());
 	
 	

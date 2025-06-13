@@ -35,7 +35,7 @@ public class CategoriesDAO extends BaseDAO{
 			
 			while (rs.next()) {
 		CategoriesDTO categories = new CategoriesDTO();
-		categories.setCategory(rs.getInt("category_id"));
+		categories.setCategoryId(rs.getInt("category_id"));
 		categories.setName(rs.getString("name"));
 		categoriesList.add(categories);
 				
@@ -64,7 +64,7 @@ public class CategoriesDAO extends BaseDAO{
 		ResultSet rs = ps.executeQuery();
 		if (rs.next()) {
 			categoriesDto = new CategoriesDTO();
-			categoriesDto.setCategory(rs.getInt("category_id"));
+			categoriesDto.setCategoryId(rs.getInt("category_id"));
 			categoriesDto.setName(rs.getString("name"));
 			
 			
