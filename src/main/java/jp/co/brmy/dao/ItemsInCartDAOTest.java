@@ -91,8 +91,7 @@ class ItemsInCartDAOTest {
 				break;
 				
 			}
-			list=dao.findByUserId("");
-			 assertNull(list);
+
 
 	
 		}catch (Exception e){
@@ -102,11 +101,34 @@ class ItemsInCartDAOTest {
 		}
 	}
 	@Test
+	void testFindByUserIdNull() {	
+		try (Connection conn = ConnectionUtil.getConnectionForJUnit()) {
+			ItemsInCartDAO dao=new ItemsInCartDAO(conn);
+			List<ItemsInCartDTO> list=new ArrayList<>();
+			list=dao.findByUserId("");
+			for (ItemsInCartDTO dto : list) {
+				fail();
+			}
+		}catch (Exception e){
+			e.printStackTrace();
+			fail("まだ実装されていません");
+			
+		}
+	}
+	
+	@Test
 	void testDeleteItemsInCart() {	
 		try (Connection conn = ConnectionUtil.getConnectionForJUnit()) {
 			ItemsInCartDAO dao=new ItemsInCartDAO(conn);			
 			int a=dao.deleteItemsInCart("user");
 			assertEquals(1, a);
+			
+			List<ItemsInCartDTO> list=new ArrayList<>();
+			list=dao.findByUserId("user");
+			for (ItemsInCartDTO dto : list) {
+				fail();
+			}
+			
 
 	
 		}catch (Exception e){
@@ -121,12 +143,36 @@ class ItemsInCartDAOTest {
 		try (Connection conn = ConnectionUtil.getConnectionForJUnit()) {
 			ItemsInCartDAO dao=new ItemsInCartDAO(conn);
 			ItemsInCartDTO dto=new ItemsInCartDTO();
+			
+			dao.deleteItemsInCart("user");
+			
 			dto.setItemId(2);
 			dto.setUserId("user");
 			dto.setAmount(4);
 			
 			int a=dao.insertItemsInCart(dto);
 			assertEquals(1, a);
+			
+			
+			List<ItemsInCartDTO> list=dao.findByUserId("user");
+			for (ItemsInCartDTO dto2 : list) {
+				assertEquals("user", dto2.getUserId());
+				assertEquals(2, dto2.getItemId());
+				assertEquals(4, dto2.getAmount());
+				//assertEquals((Date"2020-10-20", dto2.getBookedDate());
+				assertEquals("ストローハット", dto2.getItemsDTO().getName());
+				assertEquals("(株)ストローハットジャパン", dto2.getItemsDTO().getManufacturer());
+				assertEquals(1, dto2.getItemsDTO().getCategoryId());
+				assertEquals("茶色", dto2.getItemsDTO().getColor());
+				assertEquals(3480, dto2.getItemsDTO().getPrice());
+				assertEquals(15, dto2.getItemsDTO().getStock());
+				assertEquals(true, dto2.getItemsDTO().isRecommended());
+
+
+				break;
+				
+			}
+	
 
 	
 		}catch (Exception e){
