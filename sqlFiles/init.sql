@@ -67,4 +67,5 @@ insert into items_in_cart values('user',3,3,'2020/10/20');
 
 insert into  purchases values(1,'user','2020/10/23','鳥取');
 
-insert into  purchase_details values(1,1,3,2)
+insert into  purchase_details  (purchase_id,item_id,amount) values(1,3,2)
+
