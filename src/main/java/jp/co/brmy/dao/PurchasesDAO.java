@@ -46,14 +46,14 @@ public class PurchasesDAO extends BaseDAO {
 }
 		
 		
-		public int update(PurchasesDTO purchasesDto) throws SQLException {
-			String sql2 = "UPDATE purchases SET cansel = ? WHERE purchase_id = ?";
-			int result = 0;
+	public int update(PurchasesDTO purchasesDto) throws SQLException {
+		String sql2 = "UPDATE purchases SET cansel = ? WHERE purchase_id = ?";
+		int result = 0;
 			
-			try (PreparedStatement ps = conn.prepareStatement(sql2)) {
-				ps.setBoolean(1, purchasesDto.getCansel());
-				ps.setInt(2,purchasesDto.getPurchaseId());				
-				result = ps.executeUpdate();
+		try (PreparedStatement ps = conn.prepareStatement(sql2)) {
+			ps.setBoolean(1, purchasesDto.getCansel());
+			ps.setInt(2,purchasesDto.getPurchaseId());				
+			result = ps.executeUpdate();
 				
 				
 			
@@ -81,12 +81,12 @@ public class PurchasesDAO extends BaseDAO {
 			ResultSet rs = ps.executeQuery();
 			
 			if (rs.next()) {
-		purchases = new PurchasesDTO();
-		purchases.setPurchaseId(rs.getInt("purchase_id"));
-		purchases.setPurchaseUser(rs.getString("purchased_user"));
-		purchases.setPurchaseDate(rs.getDate("purchased_date"));
-		purchases.setDestination(rs.getString("destination"));
-		purchases.setCansel(rs.getBoolean("cancel"));
+				purchases = new PurchasesDTO();
+				purchases.setPurchaseId(rs.getInt("purchase_id"));
+				purchases.setPurchaseUser(rs.getString("purchased_user"));
+				purchases.setPurchaseDate(rs.getDate("purchased_date"));
+				purchases.setDestination(rs.getString("destination"));
+				purchases.setCansel(rs.getBoolean("cancel"));
 		
 		
 		
