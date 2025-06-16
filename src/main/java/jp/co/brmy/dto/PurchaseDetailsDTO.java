@@ -5,31 +5,46 @@ public class PurchaseDetailsDTO {
 	private int purchaseId;
 	private int itemId;
 	private int amount;
+	private ItemsDTO itemsDTO;
+
 	public int getPurchaseDetailId() {
 		return purchaseDetailId;
 	}
+
 	public void setPurchaseDetailId(int purchaseDetailId) {
 		this.purchaseDetailId = purchaseDetailId;
 	}
+
 	public int getPurchaseId() {
 		return purchaseId;
 	}
+
 	public void setPurchaseId(int purchaseId) {
 		this.purchaseId = purchaseId;
 	}
+
 	public int getItemId() {
 		return itemId;
 	}
+
 	public void setItemId(int itemId) {
 		this.itemId = itemId;
 	}
+
 	public int getAmount() {
 		return amount;
 	}
+
 	public void setAmount(int amount) {
 		this.amount = amount;
 	}
-	
-	
-	
+
+	public ItemsDTO getItemsDTO() {
+		return itemsDTO;
+	}
+
+	public void setItemsDTO(ItemsDTO itemsDTO) {
+		this.itemsDTO = itemsDTO;
+	}
+
 }

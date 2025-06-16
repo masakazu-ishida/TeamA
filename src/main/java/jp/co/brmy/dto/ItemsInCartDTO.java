@@ -1,13 +1,11 @@
 package jp.co.brmy.dto;
 
-import java.sql.Date;
-
 public class ItemsInCartDTO {
 
 	private String userId;
 	private int itemId;
 	private int amount;
-	private Date bookedDate;
+	private java.util.Date bookedDate;
 	
 	private ItemsDTO itemsDTO;
 
@@ -35,11 +33,13 @@ public class ItemsInCartDTO {
 		this.amount = amount;
 	}
 
-	public Date getBookedDate() {
+
+
+	public java.util.Date getBookedDate() {
 		return bookedDate;
 	}
 
-	public void setBookedDate(Date bookedDate) {
+	public void setBookedDate(java.util.Date bookedDate) {
 		this.bookedDate = bookedDate;
 	}
 

@@ -3,6 +3,7 @@ package jp.co.brmy.dao;
 import static org.junit.jupiter.api.Assertions.*;
 
 import java.sql.Connection;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -20,9 +21,7 @@ class ItemsInCartDAOTest {
 			conn.setAutoCommit(false);
 			ItemsInCartDAO dao = new ItemsInCartDAO(conn);
 			try {
-				dao.insertBatch("sqlFiles/ItemInCartTest.sql");
-		
-
+				dao.insertBatch("sqlFiles/init.sql");
 
 				conn.commit();
 			} catch (Exception e) {
@@ -34,19 +33,21 @@ class ItemsInCartDAOTest {
 		}
 
 	}
-	
-	
+
 	@Test
-	void testFindAll() {	
+	void testFindAll() {
 		try (Connection conn = ConnectionUtil.getConnectionForJUnit()) {
-			ItemsInCartDAO dao=new ItemsInCartDAO(conn);
-			List<ItemsInCartDTO> list=new ArrayList<>();
-			list=dao.findAll();
+			ItemsInCartDAO dao = new ItemsInCartDAO(conn);
+			List<ItemsInCartDTO> list = new ArrayList<>();
+			list = dao.findAll();
 			for (ItemsInCartDTO dto : list) {
 				assertEquals("user", dto.getUserId());
 				assertEquals(1, dto.getItemId());
 				assertEquals(2, dto.getAmount());
-				//assertEquals((Date"2020-10-20", dto.getBookedDate());
+				String strDate = "2020-10-20";
+				java.text.SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+				java.util.Date expected = dateFormat.parse(strDate);
+				assertEquals(expected, dto.getBookedDate());
 				assertEquals("麦わら帽子", dto.getItemsDTO().getName());
 				assertEquals("日本帽子製造", dto.getItemsDTO().getManufacturer());
 				assertEquals(1, dto.getItemsDTO().getCategoryId());
@@ -55,32 +56,32 @@ class ItemsInCartDAOTest {
 				assertEquals(12, dto.getItemsDTO().getStock());
 				assertEquals(false, dto.getItemsDTO().isRecommended());
 
-
 				break;
-				
-			}
-			
 
-	
-		}catch (Exception e){
+			}
+
+		} catch (Exception e) {
 			e.printStackTrace();
 			fail("まだ実装されていません");
-			
+
 		}
 	}
-	
+
 	@Test
-	void testFindByUserId() {	
+	void testFindByUserId() {
 		try (Connection conn = ConnectionUtil.getConnectionForJUnit()) {
-			ItemsInCartDAO dao=new ItemsInCartDAO(conn);
-			List<ItemsInCartDTO> list=new ArrayList<>();
-			list=dao.findByUserId("user");
+			ItemsInCartDAO dao = new ItemsInCartDAO(conn);
+			List<ItemsInCartDTO> list = new ArrayList<>();
+			list = dao.findByUserId("user");
 			for (ItemsInCartDTO dto : list) {
 				assertEquals("user", dto.getUserId());
 				assertEquals(1, dto.getItemId());
 				assertEquals(2, dto.getAmount());
-				//assertEquals((Date"2020-10-20", dto.getBookedDate());
-				
+				String strDate = "2020-10-20";
+				java.text.SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+				java.util.Date expected = dateFormat.parse(strDate);
+				assertEquals(expected, dto.getBookedDate());
+
 				assertEquals("麦わら帽子", dto.getItemsDTO().getName());
 				assertEquals("日本帽子製造", dto.getItemsDTO().getManufacturer());
 				assertEquals(1, dto.getItemsDTO().getCategoryId());
@@ -89,72 +90,66 @@ class ItemsInCartDAOTest {
 				assertEquals(12, dto.getItemsDTO().getStock());
 				assertEquals(false, dto.getItemsDTO().isRecommended());
 				break;
-				
+
 			}
 
-
-	
-		}catch (Exception e){
+		} catch (Exception e) {
 			e.printStackTrace();
 			fail("まだ実装されていません");
-			
+
 		}
 	}
+
 	@Test
-	void testFindByUserIdNull() {	
+	void testFindByUserIdNull() {
 		try (Connection conn = ConnectionUtil.getConnectionForJUnit()) {
-			ItemsInCartDAO dao=new ItemsInCartDAO(conn);
-			List<ItemsInCartDTO> list=new ArrayList<>();
-			list=dao.findByUserId("");
+			ItemsInCartDAO dao = new ItemsInCartDAO(conn);
+			List<ItemsInCartDTO> list = new ArrayList<>();
+			list = dao.findByUserId("aaaaa");
 			for (ItemsInCartDTO dto : list) {
 				fail();
 			}
-		}catch (Exception e){
+		} catch (Exception e) {
 			e.printStackTrace();
 			fail("まだ実装されていません");
-			
-		}
-	}
-	
-	@Test
-	void testDeleteItemsInCart() {	
-		try (Connection conn = ConnectionUtil.getConnectionForJUnit()) {
-			ItemsInCartDAO dao=new ItemsInCartDAO(conn);			
-			int a=dao.deleteItemsInCart("user");
-			assertEquals(1, a);
-			
-			List<ItemsInCartDTO> list=new ArrayList<>();
-			list=dao.findByUserId("user");
-			for (ItemsInCartDTO dto : list) {
-				fail();
-			}
-			
 
-	
-		}catch (Exception e){
-			e.printStackTrace();
-			fail("まだ実装されていません");
-			
 		}
 	}
 
 	@Test
-	void testInsertItemsInCart() {	
+	void testDeleteItemsInCart() {
 		try (Connection conn = ConnectionUtil.getConnectionForJUnit()) {
-			ItemsInCartDAO dao=new ItemsInCartDAO(conn);
-			ItemsInCartDTO dto=new ItemsInCartDTO();
-			
+			ItemsInCartDAO dao = new ItemsInCartDAO(conn);
 			dao.deleteItemsInCart("user");
-			
+			List<ItemsInCartDTO> list = new ArrayList<>();
+			list = dao.findByUserId("user");
+			for (ItemsInCartDTO dto : list) {
+				fail();
+			}
+
+		} catch (Exception e) {
+			e.printStackTrace();
+			fail("まだ実装されていません");
+
+		}
+	}
+
+	@Test
+	void testInsertItemsInCart() {
+		try (Connection conn = ConnectionUtil.getConnectionForJUnit()) {
+			ItemsInCartDAO dao = new ItemsInCartDAO(conn);
+			ItemsInCartDTO dto = new ItemsInCartDTO();
+
+			dao.deleteItemsInCart("user");
+
 			dto.setItemId(2);
 			dto.setUserId("user");
 			dto.setAmount(4);
-			
-			int a=dao.insertItemsInCart(dto);
+
+			int a = dao.insertItemsInCart(dto);
 			assertEquals(1, a);
-			
-			
-			List<ItemsInCartDTO> list=dao.findByUserId("user");
+
+			List<ItemsInCartDTO> list = dao.findByUserId("user");
 			for (ItemsInCartDTO dto2 : list) {
 				assertEquals("user", dto2.getUserId());
 				assertEquals(2, dto2.getItemId());
@@ -168,19 +163,15 @@ class ItemsInCartDAOTest {
 				assertEquals(15, dto2.getItemsDTO().getStock());
 				assertEquals(true, dto2.getItemsDTO().isRecommended());
 
-
 				break;
-				
-			}
-	
 
-	
-		}catch (Exception e){
+			}
+
+		} catch (Exception e) {
 			e.printStackTrace();
 			fail("まだ実装されていません");
-			
+
 		}
 	}
-
 
 }
