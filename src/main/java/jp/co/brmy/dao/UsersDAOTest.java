@@ -22,6 +22,7 @@ class UsersDAOTest {
 			UsersDAO dao = new UsersDAO(conn);
 			
 			UsersDTO dto = dao.findById("user");
+			assertNotNull(dto);
             assertEquals("user", dto.getUserId());
             assertEquals("userpass", dto.getPassword());
             assertEquals("鳥取太郎", dto.getName());
@@ -29,6 +30,7 @@ class UsersDAOTest {
             
             dto = dao.findById("aaaa");
             assertNull(dto);
+            
             
 		} catch (Exception e) {
 			// TODO: handle exception
@@ -56,12 +58,14 @@ class UsersDAOTest {
 			
 			List<UsersDTO> list = new ArrayList<>();
 			list = dao.findAll();
+			assertEquals(1, list.size());
 			for (UsersDTO dto : list) {
 
 	            assertEquals("user", dto.getUserId());
 	            assertEquals("userpass", dto.getPassword());
 	            assertEquals("鳥取太郎", dto.getName());
 	            assertEquals("東京都港区赤坂3-3-3", dto.getAddress());
+	            break;
 	            
 			}
 		} catch (Exception e) {
