@@ -71,29 +71,24 @@ public class PurchasesDAO extends BaseDAO {
 				purchases.setCansel(rs.getBoolean("cancel"));
 				List<PurchaseDetailsDTO> detaillist = new ArrayList<>();
 
-				while (rs.next()) {
-					if (purchases.getPurchaseId() == rs.getInt("purchase_id")) {
+				do {
 
-						ItemsDTO item = new ItemsDTO();
-						PurchaseDetailsDTO details = new PurchaseDetailsDTO();
-						item.setColor(rs.getString("color"));
-						item.setManufacturer(rs.getString("manufacturer"));
-						item.setName(rs.getString("name"));
-						item.setPrice(rs.getInt("price"));
-						item.setStock(rs.getInt("stock"));
+					ItemsDTO item = new ItemsDTO();
+					PurchaseDetailsDTO details = new PurchaseDetailsDTO();
+					item.setColor(rs.getString("color"));
+					item.setManufacturer(rs.getString("manufacturer"));
+					item.setName(rs.getString("name"));
+					item.setPrice(rs.getInt("price"));
+					item.setStock(rs.getInt("stock"));
 
-						details.setItemsDTO(item);
+					details.setItemsDTO(item);
 
-						details.setAmount(rs.getInt("amount"));
-						detaillist.add(details);
+					details.setAmount(rs.getInt("amount"));
 
-						rs.next();//超えた先を参照している
+					detaillist.add(details);
 
-					} else {
-						break;
-					}
-
-				}
+				} while (rs.next());
+				purchases.setPurchaseDetailsDTO(detaillist);
 			}
 
 			return purchases;
@@ -111,36 +106,45 @@ public class PurchasesDAO extends BaseDAO {
 			List<PurchasesDTO> list = new ArrayList<PurchasesDTO>();
 			ResultSet rs = ps.executeQuery();
 
-			while (rs.next()) {
-				PurchasesDTO purchases = new PurchasesDTO();
+			PurchasesDTO purchases = new PurchasesDTO();
+			List<PurchaseDetailsDTO> detaillist = new ArrayList<>();
+			if (rs.next()) {
 				purchases.setPurchaseId(rs.getInt("purchase_id"));
 				purchases.setPurchaseUser(rs.getString("purchased_user"));
 				purchases.setPurchaseDate(rs.getDate("purchased_date"));
 				purchases.setDestination(rs.getString("destination"));
 				purchases.setCansel(rs.getBoolean("cancel"));
-				List<PurchaseDetailsDTO> detaillist = new ArrayList<>();
-				do {
-
-					ItemsDTO item = new ItemsDTO();
-					PurchaseDetailsDTO details = new PurchaseDetailsDTO();
-					item.setColor(rs.getString("color"));
-					item.setManufacturer(rs.getString("manufacturer"));
-					item.setName(rs.getString("name"));
-					item.setPrice(rs.getInt("price"));
-					item.setStock(rs.getInt("stock"));
-
-					details.setItemsDTO(item);
-
-					details.setAmount(rs.getInt("amount"));
-					detaillist.add(details);
-
-					rs.next();
-
-				} while (purchases.getPurchaseId() == rs.getInt("purchase_id"));
-				purchases.setPrchaseDetailsDTO(detaillist);
-				list.add(purchases);
-
 			}
+
+			do {
+
+				if (purchases.getPurchaseId() != rs.getInt("purchase_id")) {
+					purchases.setPurchaseDetailsDTO(detaillist);
+					list.add(purchases);
+					purchases = new PurchasesDTO();
+					detaillist = new ArrayList<>();
+					purchases.setPurchaseId(rs.getInt("purchase_id"));
+					purchases.setPurchaseUser(rs.getString("purchased_user"));
+					purchases.setPurchaseDate(rs.getDate("purchased_date"));
+					purchases.setDestination(rs.getString("destination"));
+					purchases.setCansel(rs.getBoolean("cancel"));
+				}
+				ItemsDTO item = new ItemsDTO();
+				PurchaseDetailsDTO details = new PurchaseDetailsDTO();
+				item.setColor(rs.getString("color"));
+				item.setManufacturer(rs.getString("manufacturer"));
+				item.setName(rs.getString("name"));
+				item.setPrice(rs.getInt("price"));
+				item.setStock(rs.getInt("stock"));
+
+				details.setItemsDTO(item);
+
+				details.setAmount(rs.getInt("amount"));
+				detaillist.add(details);
+
+			} while (rs.next());
+			purchases.setPurchaseDetailsDTO(detaillist);
+			list.add(purchases);
 
 			return list;
 

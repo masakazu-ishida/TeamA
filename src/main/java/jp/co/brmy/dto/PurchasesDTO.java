@@ -9,14 +9,14 @@ public class PurchasesDTO {
 	private java.util.Date purchaseDate;
 	private String destination;
 	private boolean cansel;
-	private List<PurchaseDetailsDTO> prchaseDetailsDTO;
+	private List<PurchaseDetailsDTO> purchaseDetailsDTO;
 
-	public List<PurchaseDetailsDTO> getPrchaseDetailsDTO() {
-		return prchaseDetailsDTO;
+	public List<PurchaseDetailsDTO> getPurchaseDetailsDTO() {
+		return purchaseDetailsDTO;
 	}
 
-	public void setPrchaseDetailsDTO(List<PurchaseDetailsDTO> prchaseDetailsDTO) {
-		this.prchaseDetailsDTO = prchaseDetailsDTO;
+	public void setPurchaseDetailsDTO(List<PurchaseDetailsDTO> purchaseDetailsDTO) {
+		this.purchaseDetailsDTO = purchaseDetailsDTO;
 	}
 
 	public int getPurchaseId() {
