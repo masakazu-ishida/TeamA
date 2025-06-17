@@ -38,7 +38,7 @@ public class LoginController extends HttpServlet {
 
 		//request.getRequestDispatcher("/WEB-INF/login.jsp").forward(request, responseex);
 		request.getRequestDispatcher("/WEB-INF/login.jsp").forward(request, response);
-				
+
 	}
 
 	/**
@@ -50,15 +50,30 @@ public class LoginController extends HttpServlet {
 		String id = request.getParameter("userid");
 		String password = request.getParameter("password");
 
-//		AuthenticatinService service = new AuthenticatinService();
-//		try {
-//			UsersDTO dto = service.execute(id, password);
-//			request.getRequestDispatcher("/WEB-INF/result.jsp").forward(request, response);
-//
-//		} catch (SQLException e) {
-//			// TODO 自動生成された catch ブロック
-//			e.printStackTrace();
-//		}
+		//遷移元を判断
+		String source = request.getParameter("source");
+		if (source.equals("1")) {
+			//遷移元：カート一覧だった時の処理	
+			//response.
+
+		} else if (source.equals("2")) {
+			//遷移元：カート追加だった時の処理	
+			//response.
+
+		} else {
+			//遷移元：ログインだった時の処理
+			//response.
+		}
+
+		//		AuthenticatinService service = new AuthenticatinService();
+		//		try {
+		//			UsersDTO dto = service.execute(id, password);
+		//			request.getRequestDispatcher("/WEB-INF/result.jsp").forward(request, response);
+		//
+		//		} catch (SQLException e) {
+		//			// TODO 自動生成された catch ブロック
+		//			e.printStackTrace();
+		//		}
 
 	}
 
