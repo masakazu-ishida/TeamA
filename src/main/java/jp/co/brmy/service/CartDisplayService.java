@@ -1,4 +1,4 @@
-package jp.co.brmy;
+package jp.co.brmy.service;
 
 import java.sql.Connection;
 import java.util.List;
