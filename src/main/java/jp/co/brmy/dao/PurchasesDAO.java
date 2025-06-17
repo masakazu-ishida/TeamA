@@ -54,7 +54,7 @@ public class PurchasesDAO extends BaseDAO {
 
 	public PurchasesDTO findById(int purchaseId) throws SQLException {
 
-		String sql = "select purchases.purchase_id,purchases.purchased_user, purchases.purchased_date,purchases.destination,purchases.cancel , purchase_details.purchase_detail_id,purchase_details.item_id,purchase_details.amount, items.name,items.color,items.manufacturer,items.price,items.stock from  purchases inner join purchase_details on  purchases.purchase_id = purchase_details.purchase_id inner join items on purchase_details.item_id =items.item_id where purchases.purchase_id=?";
+		String sql = "select purchases.purchase_id,purchases.purchased_user, purchases.purchased_date,purchases.destination,purchases.cancel ,purchase_details.purchase_detail_id,purchase_details.item_id,purchase_details.amount, purchase_details.purchase_id,items.name,items.color,items.manufacturer,items.price,items.stock,items.item_id,items.recommended,items.category_id from  purchases inner join purchase_details on  purchases.purchase_id = purchase_details.purchase_id inner join items on purchase_details.item_id =items.item_id where purchases.purchase_id=? order by purchase_details.purchase_detail_id";
 
 		try (PreparedStatement ps = conn.prepareStatement(sql)) {
 			System.out.println(ps);
@@ -80,10 +80,14 @@ public class PurchasesDAO extends BaseDAO {
 					item.setName(rs.getString("name"));
 					item.setPrice(rs.getInt("price"));
 					item.setStock(rs.getInt("stock"));
+					item.setCategoryId(rs.getInt("category_id"));
+					item.setItemId(rs.getInt("item_id"));
 
 					details.setItemsDTO(item);
-
+					details.setItemId(rs.getInt("item_id"));
+					details.setPurchaseDetailId(rs.getInt("purchase_detail_id"));
 					details.setAmount(rs.getInt("amount"));
+					details.setPurchaseId(rs.getInt("purchase_id"));
 
 					detaillist.add(details);
 
@@ -99,7 +103,7 @@ public class PurchasesDAO extends BaseDAO {
 
 	public List<PurchasesDTO> findAll() throws SQLException {
 
-		String sql = "select purchases.purchase_id,purchases.purchased_user, purchases.purchased_date,purchases.destination,purchases.cancel , purchase_details.purchase_detail_id,purchase_details.item_id,purchase_details.amount, items.name,items.color,items.manufacturer,items.price,items.stock from  purchases inner join purchase_details on  purchases.purchase_id = purchase_details.purchase_id inner join items on purchase_details.item_id =items.item_id";
+		String sql = "select purchases.purchase_id,purchases.purchased_user, purchases.purchased_date,purchases.destination,purchases.cancel ,purchase_details.purchase_detail_id,purchase_details.item_id,purchase_details.amount, purchase_details.purchase_id,items.name,items.color,items.manufacturer,items.price,items.stock,items.item_id,items.recommended,items.category_id from  purchases inner join purchase_details on  purchases.purchase_id = purchase_details.purchase_id inner join items on purchase_details.item_id =items.item_id  order by purchase_details.purchase_detail_id";
 
 		try (PreparedStatement ps = conn.prepareStatement(sql)) {
 			System.out.println(ps);
@@ -136,10 +140,15 @@ public class PurchasesDAO extends BaseDAO {
 				item.setName(rs.getString("name"));
 				item.setPrice(rs.getInt("price"));
 				item.setStock(rs.getInt("stock"));
+				item.setCategoryId(rs.getInt("category_id"));
+				item.setItemId(rs.getInt("item_id"));
 
 				details.setItemsDTO(item);
-
+				details.setItemId(rs.getInt("item_id"));
+				details.setPurchaseDetailId(rs.getInt("purchase_detail_id"));
 				details.setAmount(rs.getInt("amount"));
+				details.setPurchaseId(rs.getInt("purchase_id"));
+
 				detaillist.add(details);
 
 			} while (rs.next());
