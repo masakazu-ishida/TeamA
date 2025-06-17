@@ -44,7 +44,10 @@ public class PurchaseDetailsDAO extends BaseDAO {
 			
 			if(rs.next()) {
 				detailsDto = new PurchaseDetailsDTO();
-				detailsDto.setPurchaseDetailId(purchaseDetailId);
+				detailsDto.setPurchaseDetailId(rs.getInt("purchase_detail_id"));
+				detailsDto.setPurchaseId(rs.getInt("purchase_id"));
+				detailsDto.setItemId(rs.getInt("item_id"));
+				detailsDto.setAmount(rs.getInt("amount"));
 			}	
 		}return detailsDto;
 	}
