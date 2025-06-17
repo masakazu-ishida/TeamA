@@ -78,6 +78,7 @@ public class ItemsDAO extends BaseDAO {
 		try (PreparedStatement ps = conn.prepareStatement(sql)) {
 			name = "%" + name + "%";
 			ps.setString(1, name);
+			System.out.println(ps);
 			ResultSet rs = ps.executeQuery();
 
 			while (rs.next()) {
@@ -109,6 +110,7 @@ public class ItemsDAO extends BaseDAO {
 		try (PreparedStatement ps = conn.prepareStatement(sql)) {
 
 			ps.setInt(1, id);
+			System.out.println(ps);
 			ResultSet rs = ps.executeQuery();
 
 			while (rs.next()) {
@@ -141,6 +143,7 @@ public class ItemsDAO extends BaseDAO {
 			name = "%" + name + "%";
 			ps.setString(1, name);
 			ps.setInt(2, id);
+			System.out.println(ps);
 			ResultSet rs = ps.executeQuery();
 
 			while (rs.next()) {
@@ -170,6 +173,7 @@ public class ItemsDAO extends BaseDAO {
 		try (PreparedStatement ps = conn.prepareStatement(sql)) {
 			ps.setInt(1, stock);
 			ps.setInt(2, id);
+			System.out.println(ps);
 			int a = ps.executeUpdate();
 			return a;
 
