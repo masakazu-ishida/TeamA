@@ -30,7 +30,7 @@ public class AdminLoginScreen extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		String path = "/WEB-INF/adminlogin.jsp";
+		String path = "/WEB-INF/jsp/adminlogin.jsp";
 		RequestDispatcher rd = request.getRequestDispatcher(path);
 		rd.forward(request, response);
 	}

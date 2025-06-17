@@ -42,8 +42,8 @@ public class AdminLoginController extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		String path1 = "/WEB-INF/adminmain.jsp";
-		String path2 = "/WEB-INF/adminlogin.jsp";
+		String path1 = "/WEB-INF/jsp/adminmain.jsp";
+		String path2 = "/WEB-INF/jsp/adminlogin.jsp";
 		String id = request.getParameter("userid");
 		String password = request.getParameter("password");
 
