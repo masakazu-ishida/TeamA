@@ -15,7 +15,7 @@ public class AdministratorsLoginDAO extends BaseDAO {
 	}
 
 	public AdministratorsDTO findById(String adminId) throws SQLException {
-		String sql = "SELECT admin_id,password, name from administrators where admin_id = ? and password = ?";
+		String sql = "SELECT admin_id,password, name from administrators where admin_id = ? ";
 		AdministratorsDTO adminDto = null;
 
 		try (PreparedStatement ps = conn.prepareStatement(sql)) {
