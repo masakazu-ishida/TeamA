@@ -36,12 +36,12 @@
 
 合計${sum }円
 
-<form action="/brmy//PurchaseConfirmController" method="post">
+<form action="/brmy/PurchaseConfirmController" method="post">
 <input type="submit" value="購入する">
 </form>
 
 <br>
-<a href="main">商品検索 </a>
+<a href="/brmy/main">商品検索 </a>
 へ
 </body>
 </html>
