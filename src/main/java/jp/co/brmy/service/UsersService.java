@@ -20,10 +20,14 @@ public class UsersService {
 
 			dto = dao.findById(usersId);
 
-			if (dto != null && dto.getPassword().equals(password)) {
-				return dto;
-			} else {
-				dto = null;
+			if (dto != null) {
+				if (dto.getPassword().equals(password)) {
+
+					return dto;
+				} else {
+					dto = null;
+				}
+
 			}
 			return dto;
 		}

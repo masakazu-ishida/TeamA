@@ -25,11 +25,11 @@
 					<td colspan='2'><input type='submit' value='ログイン' /></td>
 				</tr>
 			</table>
-		<%--
+
 		<input type="hidden" name="source" value="${source}">
 		<input type="hidden" name="itemId" value="${itemId}">
 		<input type="hidden" name="amount" value="${amount}">
- 		--%>
+
 			
 		</form>
 
