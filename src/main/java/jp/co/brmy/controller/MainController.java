@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import jp.co.brmy.dto.CategoriesDTO;
 import jp.co.brmy.dto.ItemsDTO;
 import jp.co.brmy.service.ItemsService;
 
@@ -78,13 +79,15 @@ public class MainController extends HttpServlet {
 
 		}
 
+		CategoriesDTO dto = new CategoriesDTO();
+		String categoryName = dto.getName();
+
 		//jspにforward
 		request.setAttribute("keyword", keyword);
 		request.setAttribute("categoryId", categoryId);
-
-		//request.setAttribute("categoryName", categoryName);
-
+		request.setAttribute("categoryName", categoryName);
 		request.setAttribute("itemsDto", itemsDto);
+
 		RequestDispatcher rd = request.getRequestDispatcher(path1);
 		rd.forward(request, response);
 
