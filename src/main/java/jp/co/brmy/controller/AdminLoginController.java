@@ -3,6 +3,7 @@ package jp.co.brmy.controller;
 import java.io.IOException;
 import java.sql.SQLException;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -53,9 +54,11 @@ public class AdminLoginController extends HttpServlet {
 			dto = ALS.findById(id, password);
 
 			if (dto != null) {
-				request.getRequestDispatcher(path1).forward(request, response);
+				RequestDispatcher rd1 = request.getRequestDispatcher(path1);
+				rd1.forward(request, response);
 			} else {
-				request.getRequestDispatcher(path2).forward(request, response);
+				RequestDispatcher rd2 = request.getRequestDispatcher(path2);
+				rd2.forward(request, response);
 			}
 
 		} catch (SQLException | ServletException e) {
