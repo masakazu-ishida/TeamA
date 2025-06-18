@@ -10,54 +10,78 @@ public class ItemsDTO {
 	private int price;
 	private int stock;
 	private boolean recommended;
+	private CategoriesDTO categoriesDTO;
+
 	public int getItemId() {
 		return itemId;
 	}
+
 	public void setItemId(int itemId) {
 		this.itemId = itemId;
 	}
+
 	public String getName() {
 		return name;
 	}
+
 	public void setName(String name) {
 		this.name = name;
 	}
+
 	public String getManufacturer() {
 		return manufacturer;
 	}
+
 	public void setManufacturer(String manufacturer) {
 		this.manufacturer = manufacturer;
 	}
+
 	public int getCategoryId() {
 		return categoryId;
 	}
+
 	public void setCategoryId(int categoryId) {
 		this.categoryId = categoryId;
 	}
+
 	public String getColor() {
 		return color;
 	}
+
 	public void setColor(String color) {
 		this.color = color;
 	}
+
 	public int getPrice() {
 		return price;
 	}
+
 	public void setPrice(int price) {
 		this.price = price;
 	}
+
 	public int getStock() {
 		return stock;
 	}
+
 	public void setStock(int stock) {
 		this.stock = stock;
 	}
+
 	public boolean isRecommended() {
 		return recommended;
 	}
+
 	public void setRecommended(boolean recommended) {
 		this.recommended = recommended;
 	}
-	
-	
+
+	public CategoriesDTO getCategoriesDTO() {
+		return categoriesDTO;
+	}
+
+	public void setCategoriesDTO(CategoriesDTO categoriesDTO) {
+		this.categoriesDTO = categoriesDTO;
+	}
+
 }

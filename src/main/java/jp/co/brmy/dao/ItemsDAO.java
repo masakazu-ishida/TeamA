@@ -7,6 +7,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import jp.co.brmy.dto.CategoriesDTO;
 import jp.co.brmy.dto.ItemsDTO;
 
 public class ItemsDAO extends BaseDAO {
@@ -17,8 +18,8 @@ public class ItemsDAO extends BaseDAO {
 	}
 
 	public List<ItemsDTO> findAll() throws SQLException {
-		String sql = "select item_id,name,manufacturer,category_id,color,price,stock,recommended\n"
-				+ "from items   order by item_id";
+		String sql = "select item_id,items.name,manufacturer,items.category_id,color,price,stock,recommended,categories.name as category_name\n"
+				+ "from items inner join categories on items.category_id=categories.category_id   order by item_id";
 		List<ItemsDTO> itemlist = new ArrayList<>();
 		try (PreparedStatement ps = conn.prepareStatement(sql)) {
 
@@ -36,6 +37,12 @@ public class ItemsDAO extends BaseDAO {
 				item.setRecommended(rs.getBoolean("recommended"));
 				item.setStock(rs.getInt("stock"));
 
+				CategoriesDTO cat = new CategoriesDTO();
+				cat.setCategoryId(rs.getInt("category_id"));
+				cat.setName(rs.getString("category_name"));
+
+				item.setCategoriesDTO(cat);
+
 				itemlist.add(item);
 
 			}
@@ -46,8 +53,7 @@ public class ItemsDAO extends BaseDAO {
 	}
 
 	public ItemsDTO findById(int id) throws SQLException {
-		String sql = "select item_id,name,manufacturer,category_id,color,price,stock,recommended\n"
-				+ "from items where item_id=?  order by item_id";
+		String sql = "select item_id,items.name,manufacturer,items.category_id,color,price,stock,recommended,categories.name as category_name from items inner join categories on items.category_id=categories.category_id where item_id=?  order by item_id";
 		try (PreparedStatement ps = conn.prepareStatement(sql)) {
 			ps.setInt(1, id);
 
@@ -64,6 +70,12 @@ public class ItemsDAO extends BaseDAO {
 				item.setPrice(rs.getInt("price"));
 				item.setRecommended(rs.getBoolean("recommended"));
 				item.setStock(rs.getInt("stock"));
+
+				CategoriesDTO cat = new CategoriesDTO();
+				cat.setCategoryId(rs.getInt("category_id"));
+				cat.setName(rs.getString("category_name"));
+
+				item.setCategoriesDTO(cat);
 			}
 			return item;
 
@@ -72,8 +84,7 @@ public class ItemsDAO extends BaseDAO {
 	}
 
 	public List<ItemsDTO> findNameSearch(String name) throws SQLException {
-		String sql = "select item_id,name,manufacturer,category_id,color,price,stock,recommended\n"
-				+ "from items where name like ?  order by item_id";
+		String sql = "select item_id,items.name,manufacturer,items.category_id,color,price,stock,recommended,categories.name as category_name from items inner join categories on items.category_id=categories.category_id where items.name like ?  order by item_id";
 		List<ItemsDTO> itemlist = new ArrayList<>();
 		try (PreparedStatement ps = conn.prepareStatement(sql)) {
 			name = "%" + name + "%";
@@ -93,6 +104,12 @@ public class ItemsDAO extends BaseDAO {
 				item.setRecommended(rs.getBoolean("recommended"));
 				item.setStock(rs.getInt("stock"));
 
+				CategoriesDTO cat = new CategoriesDTO();
+				cat.setCategoryId(rs.getInt("category_id"));
+				cat.setName(rs.getString("category_name"));
+
+				item.setCategoriesDTO(cat);
+
 				itemlist.add(item);
 
 			}
@@ -103,8 +120,7 @@ public class ItemsDAO extends BaseDAO {
 	}
 
 	public List<ItemsDTO> findNameSearch(int id) throws SQLException {
-		String sql = "select item_id,name,manufacturer,category_id,color,price,stock,recommended\n"
-				+ "from items where category_id= ?  order by item_id";
+		String sql = "select item_id,items.name,manufacturer,items.category_id,color,price,stock,recommended,categories.name as category_name from items inner join categories on items.category_id=categories.category_id where items.category_id= ?  order by item_id";
 		List<ItemsDTO> itemlist = new ArrayList<>();
 		try (PreparedStatement ps = conn.prepareStatement(sql)) {
 
@@ -124,6 +140,12 @@ public class ItemsDAO extends BaseDAO {
 				item.setRecommended(rs.getBoolean("recommended"));
 				item.setStock(rs.getInt("stock"));
 
+				CategoriesDTO cat = new CategoriesDTO();
+				cat.setCategoryId(rs.getInt("category_id"));
+				cat.setName(rs.getString("category_name"));
+
+				item.setCategoriesDTO(cat);
+
 				itemlist.add(item);
 
 			}
@@ -134,8 +156,7 @@ public class ItemsDAO extends BaseDAO {
 	}
 
 	public List<ItemsDTO> findNameSearch(String name, int id) throws SQLException {
-		String sql = "select item_id,name,manufacturer,category_id,color,price,stock,recommended\n"
-				+ "from items where name like ?  and category_id=? order by item_id";
+		String sql = "select item_id,items.name,manufacturer,items.category_id,color,price,stock,recommended,categories.name as category_name from items inner join categories on items.category_id=categories.category_id where items.name like ?  and items.category_id=? order by item_id";
 		List<ItemsDTO> itemlist = new ArrayList<>();
 		try (PreparedStatement ps = conn.prepareStatement(sql)) {
 			name = "%" + name + "%";
@@ -155,6 +176,10 @@ public class ItemsDAO extends BaseDAO {
 				item.setPrice(rs.getInt("price"));
 				item.setRecommended(rs.getBoolean("recommended"));
 				item.setStock(rs.getInt("stock"));
+
+				CategoriesDTO cat = new CategoriesDTO();
+				cat.setCategoryId(rs.getInt("category_id"));
+				cat.setName(rs.getString("category_name"));
 
 				itemlist.add(item);
 

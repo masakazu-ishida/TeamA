@@ -51,7 +51,6 @@ public class CartDisplayController extends HttpServlet {
 			// TODO 自動生成された catch ブロック
 			e.printStackTrace();
 		}
-
 		if (list.size() == 0) {
 			request.setAttribute("cart", null);
 		} else {
