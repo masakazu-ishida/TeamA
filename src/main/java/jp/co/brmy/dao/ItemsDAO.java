@@ -183,6 +183,7 @@ public class ItemsDAO extends BaseDAO {
 				CategoriesDTO cat = new CategoriesDTO();
 				cat.setCategoryId(rs.getInt("category_id"));
 				cat.setName(rs.getString("category_name"));
+				item.setCategoriesDTO(cat);
 
 				itemlist.add(item);
 

@@ -109,6 +109,8 @@ class ItemsDAOTest {
 				assertEquals(12, dto.getStock());
 				assertEquals(false, dto.isRecommended());
 
+				assertEquals("帽子", dto.getCategoriesDTO().getName());
+				assertEquals(1, dto.getCategoriesDTO().getCategoryId());
 				break;
 
 			}
@@ -125,6 +127,9 @@ class ItemsDAOTest {
 				assertEquals(12, dto.getStock());
 				assertEquals(false, dto.isRecommended());
 
+				assertEquals("帽子", dto.getCategoriesDTO().getName());
+				assertEquals(1, dto.getCategoriesDTO().getCategoryId());
+
 				break;
 
 			}
@@ -140,6 +145,9 @@ class ItemsDAOTest {
 				assertEquals(4980, dto.getPrice());
 				assertEquals(12, dto.getStock());
 				assertEquals(false, dto.isRecommended());
+
+				assertEquals("帽子", dto.getCategoriesDTO().getName());
+				assertEquals(1, dto.getCategoriesDTO().getCategoryId());
 
 				break;
 
