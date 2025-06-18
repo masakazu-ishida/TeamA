@@ -7,8 +7,11 @@ import java.util.List;
 
 import javax.servlet.ServletException;
 
+import jp.co.brmy.dao.CategoriesDAO;
 import jp.co.brmy.dao.ItemsDAO;
+import jp.co.brmy.dto.CategoriesDTO;
 import jp.co.brmy.dto.ItemsDTO;
+import jp.co.brmy.util.CommonConstants;
 import jp.co.brmy.util.ConnectionUtil;
 
 public class ItemsService {
@@ -45,6 +48,15 @@ public class ItemsService {
 			return itemsDto;
 
 		}
+	}
+
+	public String categoryName(int id) throws SQLException, ServletException {
+		try (Connection conn = ConnectionUtil.getConnection(CommonConstants.LOOKUP_NAME)) {
+			CategoriesDAO dao = new CategoriesDAO(conn);
+			CategoriesDTO dto = dao.findById(id);
+			return dto.getName();
+		}
+
 	}
 
 }
