@@ -56,17 +56,17 @@ public class MainController extends HttpServlet {
 		String keyword = request.getParameter("keyword");
 		int caregoryId = Integer.parseInt(request.getParameter("categoryId"));
 
-		List<ItemsDTO> itemsDto = new ArrayList<>();
-
 		//サービスに検索処理の依頼をする
 		//アイテムサービスクラスをインスタンス化する
-		ItemsService Itemservice = new ItemsService();
+		ItemsService Itemsservice = new ItemsService();
 
 		//インスタンスに対してfindnamesearchを呼び出す
 		//findnamesearchの戻り値を取得し、それをsetattribureでjspに渡す
 
+		List<ItemsDTO> itemsDto = new ArrayList<>();
+
 		try {
-			itemsDto = Itemservice.findNameSearch(keyword, caregoryId);
+			itemsDto = Itemsservice.findNameSearch(keyword, caregoryId);
 			//String name = Itemservice.categoryName(caregoryId);
 
 		} catch (SQLException | ServletException e) {
@@ -75,9 +75,7 @@ public class MainController extends HttpServlet {
 		}
 
 		//jspにforward
-
 		request.setAttribute("itemsDto", itemsDto);
-
 		RequestDispatcher rd = request.getRequestDispatcher(path1);
 		rd.forward(request, response);
 
