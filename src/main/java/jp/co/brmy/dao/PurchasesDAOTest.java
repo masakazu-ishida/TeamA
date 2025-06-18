@@ -149,6 +149,85 @@ class PurchasesDAOTest {
 	}
 
 	@Test
+	void testFindByName() {
+		try (Connection conn = ConnectionUtil.getConnectionForJUnit()) {
+			PurchasesDAO dao = new PurchasesDAO(conn);
+			//
+			PurchasesDTO dto1 = new PurchasesDTO();
+
+			dto1.setPurchaseUser("user");
+			dto1.setDestination("東京");
+			String strDate = "2020-10-20";
+			java.text.SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+			java.util.Date expected = dateFormat.parse(strDate);
+			dto1.setPurchaseDate(expected);
+			dao.insert(dto1);
+
+			PurchaseDetailsDTO detailsDTO = new PurchaseDetailsDTO();
+			PurchaseDetailsDAO detailsDAO = new PurchaseDetailsDAO(conn);
+			detailsDTO.setPurchaseId(2);
+			detailsDTO.setAmount(1);
+			detailsDTO.setItemId(1);
+
+			detailsDAO.insert(detailsDTO);
+			//
+			List<PurchasesDTO> dto = new ArrayList<>();
+			dto = dao.findByName("user");
+
+			int i = 0;
+			for (PurchasesDTO purch : dto) {
+				if (i == 0) {
+					assertEquals(1, purch.getPurchaseId());
+					assertEquals("user", purch.getPurchaseUser());
+					strDate = "2020-10-23";
+					expected = dateFormat.parse(strDate);
+					assertEquals(expected, purch.getPurchaseDate());
+					assertEquals("鳥取", purch.getDestination());
+					assertEquals(false, purch.getCansel());
+					List<PurchaseDetailsDTO> list = purch.getPurchaseDetailsDTO();
+					for (PurchaseDetailsDTO detail : list) {
+						assertEquals("麦わら帽子", detail.getItemsDTO().getName());
+						assertEquals("日本帽子製造", detail.getItemsDTO().getManufacturer());
+						assertEquals("黄色", detail.getItemsDTO().getColor());
+						assertEquals(4980, detail.getItemsDTO().getPrice());
+						assertEquals(12, detail.getItemsDTO().getStock());
+
+						assertEquals(2, detail.getAmount());
+						break;
+					}
+				}
+				if (i == 1) {
+					assertEquals(2, purch.getPurchaseId());
+					assertEquals("user", purch.getPurchaseUser());
+					strDate = "2020-10-20";
+					expected = dateFormat.parse(strDate);
+					assertEquals(expected, purch.getPurchaseDate());
+					assertEquals("東京", purch.getDestination());
+					assertEquals(false, purch.getCansel());
+					List<PurchaseDetailsDTO> list = purch.getPurchaseDetailsDTO();
+					for (PurchaseDetailsDTO detail : list) {
+						assertEquals("麦わら帽子", detail.getItemsDTO().getName());
+						assertEquals("日本帽子製造", detail.getItemsDTO().getManufacturer());
+						assertEquals("黄色", detail.getItemsDTO().getColor());
+						assertEquals(4980, detail.getItemsDTO().getPrice());
+						assertEquals(12, detail.getItemsDTO().getStock());
+
+						assertEquals(1, detail.getAmount());
+						break;
+					}
+				}
+				i++;
+
+			}
+
+		} catch (Exception e) {
+			e.printStackTrace();
+			fail("まだ実装されていません");
+
+		}
+	}
+
+	@Test
 	void testFindAll() {
 		try (Connection conn = ConnectionUtil.getConnectionForJUnit()) {
 			PurchasesDAO dao = new PurchasesDAO(conn);

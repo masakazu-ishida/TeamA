@@ -46,7 +46,7 @@ public class CartDisplayController extends HttpServlet {
 		try {
 			//			list = service.cartItems(session.getAttribute("user").toString());
 
-			list = service.cartItems("user");
+			list = service.cartItems("user");//後でsessionから取得したユーザー名に変更
 		} catch (Exception e) {
 			// TODO 自動生成された catch ブロック
 			e.printStackTrace();

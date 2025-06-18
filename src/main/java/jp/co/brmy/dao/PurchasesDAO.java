@@ -101,6 +101,68 @@ public class PurchasesDAO extends BaseDAO {
 
 	}
 
+	public List<PurchasesDTO> findByName(String name) throws SQLException {
+
+		name = "%" + name + "%";
+
+		String sql = "select purchases.purchase_id,purchases.purchased_user, purchases.purchased_date,purchases.destination,purchases.cancel ,purchase_details.purchase_detail_id,purchase_details.item_id,purchase_details.amount, purchase_details.purchase_id,items.name,items.color,items.manufacturer,items.price,items.stock,items.item_id,items.recommended,items.category_id from  purchases inner join purchase_details on  purchases.purchase_id = purchase_details.purchase_id inner join items on purchase_details.item_id =items.item_id where purchases.purchased_user like ? order by purchase_details.purchase_detail_id";
+
+		try (PreparedStatement ps = conn.prepareStatement(sql)) {
+			ps.setString(1, name);
+			List<PurchasesDTO> list = new ArrayList<PurchasesDTO>();
+			ResultSet rs = ps.executeQuery();
+
+			PurchasesDTO purchases = new PurchasesDTO();
+			List<PurchaseDetailsDTO> detaillist = new ArrayList<>();
+			if (rs.next()) {
+				purchases.setPurchaseId(rs.getInt("purchase_id"));
+				purchases.setPurchaseUser(rs.getString("purchased_user"));
+				purchases.setPurchaseDate(rs.getDate("purchased_date"));
+				purchases.setDestination(rs.getString("destination"));
+				purchases.setCansel(rs.getBoolean("cancel"));
+			}
+
+			do {
+
+				if (purchases.getPurchaseId() != rs.getInt("purchase_id")) {
+					purchases.setPurchaseDetailsDTO(detaillist);
+					list.add(purchases);
+					purchases = new PurchasesDTO();
+					detaillist = new ArrayList<>();
+					purchases.setPurchaseId(rs.getInt("purchase_id"));
+					purchases.setPurchaseUser(rs.getString("purchased_user"));
+					purchases.setPurchaseDate(rs.getDate("purchased_date"));
+					purchases.setDestination(rs.getString("destination"));
+					purchases.setCansel(rs.getBoolean("cancel"));
+				}
+				ItemsDTO item = new ItemsDTO();
+				PurchaseDetailsDTO details = new PurchaseDetailsDTO();
+				item.setColor(rs.getString("color"));
+				item.setManufacturer(rs.getString("manufacturer"));
+				item.setName(rs.getString("name"));
+				item.setPrice(rs.getInt("price"));
+				item.setStock(rs.getInt("stock"));
+				item.setCategoryId(rs.getInt("category_id"));
+				item.setItemId(rs.getInt("item_id"));
+
+				details.setItemsDTO(item);
+				details.setItemId(rs.getInt("item_id"));
+				details.setPurchaseDetailId(rs.getInt("purchase_detail_id"));
+				details.setAmount(rs.getInt("amount"));
+				details.setPurchaseId(rs.getInt("purchase_id"));
+
+				detaillist.add(details);
+
+			} while (rs.next());
+			purchases.setPurchaseDetailsDTO(detaillist);
+			list.add(purchases);
+
+			return list;
+
+		}
+
+	}
+
 	public List<PurchasesDTO> findAll() throws SQLException {
 
 		String sql = "select purchases.purchase_id,purchases.purchased_user, purchases.purchased_date,purchases.destination,purchases.cancel ,purchase_details.purchase_detail_id,purchase_details.item_id,purchase_details.amount, purchase_details.purchase_id,items.name,items.color,items.manufacturer,items.price,items.stock,items.item_id,items.recommended,items.category_id from  purchases inner join purchase_details on  purchases.purchase_id = purchase_details.purchase_id inner join items on purchase_details.item_id =items.item_id  order by purchase_details.purchase_detail_id";
