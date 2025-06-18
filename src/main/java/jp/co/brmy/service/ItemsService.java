@@ -26,12 +26,12 @@ public class ItemsService {
 			List<ItemsDTO> itemsDto = new ArrayList<>();
 
 			//キーワードが非空かつ、カテゴリ名が全部の場合
-			if ((name != null && null != "") && id == 0) {
+			if ((name != null && name != "") && id == 0) {
 				itemsDto = itemsDao.findNameSearch(name);
 			}
 
 			//キーワードが非空かつ、カテゴリ名が何か指定されている場合
-			else if ((name != null && null != "") && id != 0) {
+			else if ((name != null && name != "") && id != 0) {
 				itemsDto = itemsDao.findNameSearch(name, id);
 			}
 

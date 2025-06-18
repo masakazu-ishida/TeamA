@@ -79,8 +79,8 @@ class ItemsServiceTest {
 
 			assertEquals(9, itemsDto.size());
 
-			//			assertEquals("鞄", dto.getCategoriesDTO().getName());
-			//			assertEquals(2, dto.getCategoriesDTO().getCategoryId());
+			assertEquals("鞄", dto.getCategoriesDTO().getName());
+			assertEquals(2, dto.getCategoriesDTO().getCategoryId());
 			break;
 
 		}
@@ -104,8 +104,8 @@ class ItemsServiceTest {
 
 			assertEquals(2, itemsDto.size());
 
-			//			assertEquals("帽子", dto.getCategoriesDTO().getName());
-			//			assertEquals(1, dto.getCategoriesDTO().getCategoryId());
+			assertEquals("帽子", dto.getCategoriesDTO().getName());
+			assertEquals(1, dto.getCategoriesDTO().getCategoryId());
 			break;
 
 		}

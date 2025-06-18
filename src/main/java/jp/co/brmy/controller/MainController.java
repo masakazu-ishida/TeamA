@@ -37,6 +37,7 @@ public class MainController extends HttpServlet {
 			throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		response.getWriter().append("Served at: ").append(request.getContextPath());
+
 	}
 
 	/**
@@ -56,6 +57,8 @@ public class MainController extends HttpServlet {
 		String keyword = request.getParameter("keyword");
 		int categoryId = Integer.parseInt(request.getParameter("categoryId"));
 
+		// String categoryName = request.getParameter("categoryName");
+
 		//サービスに検索処理の依頼をする
 		//アイテムサービスクラスをインスタンス化する
 		ItemsService Itemsservice = new ItemsService();
@@ -72,12 +75,15 @@ public class MainController extends HttpServlet {
 		} catch (SQLException | ServletException e) {
 			// TODO 自動生成された catch ブロック
 			e.printStackTrace();
+
 		}
 
 		//jspにforward
 		request.setAttribute("keyword", keyword);
 		request.setAttribute("categoryId", categoryId);
-		request.setAttribute("categoryName",);
+
+		//request.setAttribute("categoryName", categoryName);
+
 		request.setAttribute("itemsDto", itemsDto);
 		RequestDispatcher rd = request.getRequestDispatcher(path1);
 		rd.forward(request, response);
