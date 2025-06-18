@@ -1,0 +1,70 @@
+package jp.co.brmy.controller;
+
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.servlet.RequestDispatcher;
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
+import jp.co.brmy.dto.ItemsInCartDTO;
+import jp.co.brmy.service.PurchaseConfirmService;
+
+/**
+ * Servlet implementation class PurchaseConfirmController
+ */
+@WebServlet("/PurchaseConfirmController")
+public class PurchaseConfirmController extends HttpServlet {
+	private static final long serialVersionUID = 1L;
+
+	/**
+	 * @see HttpServlet#HttpServlet()
+	 */
+	public PurchaseConfirmController() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
+	/**
+	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+	 */
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		request.setCharacterEncoding("UTF-8");
+		response.setContentType("text/html; charset=UTF-8");
+
+		HttpSession session = request.getSession();
+		PurchaseConfirmService service = new PurchaseConfirmService();
+		List<ItemsInCartDTO> list = new ArrayList<>();
+		try {
+			//			list = service.cartItems(session.getAttribute("user").toString());
+
+			list = service.cartItems("user");//後でsessionから取得したユーザー名に変更
+		} catch (Exception e) {
+			// TODO 自動生成された catch ブロック
+			e.printStackTrace();
+		}
+		request.setAttribute("cart", list);
+
+		String pass = "/WEB-INF/jsp/purchaseConfirm.jsp";
+		RequestDispatcher rd = request.getRequestDispatcher(pass);
+		rd.forward(request, response);
+
+	}
+
+	/**
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 */
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		// TODO Auto-generated method stub
+		doGet(request, response);
+
+	}
+
+}

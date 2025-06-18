@@ -36,7 +36,7 @@
 
 合計${sum }円
 
-<form action="purchaseConfirm" method="post">
+<form action="/brmy//PurchaseConfirmController" method="post">
 <input type="submit" value="購入する">
 </form>
 
