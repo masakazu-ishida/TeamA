@@ -12,7 +12,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import jp.co.brmy.dto.CategoriesDTO;
 import jp.co.brmy.dto.ItemsDTO;
 import jp.co.brmy.service.ItemsService;
 
@@ -37,7 +36,12 @@ public class MainController extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		response.getWriter().append("Served at: ").append(request.getContextPath());
+		//response.getWriter().append("Served at: ").append(request.getContextPath());
+
+		String path1 = "/WEB-INF/jsp/main.jsp";
+
+		RequestDispatcher rd = request.getRequestDispatcher(path1);
+		rd.forward(request, response);
 
 	}
 
@@ -68,10 +72,11 @@ public class MainController extends HttpServlet {
 		//findnamesearchの戻り値を取得し、それをsetattribureでjspに渡す
 
 		List<ItemsDTO> itemsDto = new ArrayList<>();
+		String name = null;
 
 		try {
 			itemsDto = Itemsservice.findNameSearch(keyword, categoryId);
-			//String name = Itemservice.categoryName(caregoryId);
+			name = Itemsservice.categoryName(categoryId);
 
 		} catch (SQLException | ServletException e) {
 			// TODO 自動生成された catch ブロック
@@ -79,13 +84,10 @@ public class MainController extends HttpServlet {
 
 		}
 
-		CategoriesDTO dto = new CategoriesDTO();
-		String categoryName = dto.getName();
-
 		//jspにforward
 		request.setAttribute("keyword", keyword);
 		request.setAttribute("categoryId", categoryId);
-		request.setAttribute("categoryName", categoryName);
+		request.setAttribute("categoryName", name);
 		request.setAttribute("itemsDto", itemsDto);
 
 		RequestDispatcher rd = request.getRequestDispatcher(path1);

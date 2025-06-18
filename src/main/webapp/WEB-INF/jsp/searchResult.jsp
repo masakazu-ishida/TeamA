@@ -9,12 +9,26 @@
 <title>検索結果</title>
 </head>
 <body>
+<h3>キーワード "<c:out value = "${keyword}"/>" カテゴリ  "<c:out value = "${categoryName}"/>"  の検索結果</h3>
 
-<h3>キーワード <c:out value = "${keyword}"> カテゴリ  <c:out value = "${categoryId}">  の検索結果</h3>
 
+
+
+<table border="1">
+<tr>
+<th>商品名</th><th>商品の色</th><th>メーカー名</th><th>価格</th>
+</tr>
+
+<c:forEach var="item" items="${itemsDto}">
+<tr>
+<td><a href="">${item.name}</a></td><td>${item.color}</td><td>${item.manufacturer}</td><td>${item.price}円</td> 
+</tr>
+</c:forEach>
+
+</table>
 
 <br>
-<a href = "main.jsp"商品検索></a>"へ"
+<a href = "/brmy/main">商品検索</a>へ
 <br>
 
 
