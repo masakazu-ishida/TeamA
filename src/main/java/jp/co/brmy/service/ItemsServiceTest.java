@@ -49,6 +49,12 @@ class ItemsServiceTest {
 			assertEquals(4980, dto.getPrice());
 			assertEquals(12, dto.getStock());
 			assertEquals(false, dto.isRecommended());
+
+			assertEquals(2, itemsDto.size());
+
+			//持田さん完成の暁に行うテスト
+			assertEquals("帽子", dto.getCategoriesDTO().getName());
+			assertEquals(1, dto.getCategoriesDTO().getCategoryId());
 			break;
 
 		}
@@ -70,6 +76,11 @@ class ItemsServiceTest {
 			assertEquals(1980, dto.getPrice());
 			assertEquals(18, dto.getStock());
 			assertEquals(true, dto.isRecommended());
+
+			assertEquals(9, itemsDto.size());
+
+			//			assertEquals("鞄", dto.getCategoriesDTO().getName());
+			//			assertEquals(2, dto.getCategoriesDTO().getCategoryId());
 			break;
 
 		}
@@ -90,6 +101,11 @@ class ItemsServiceTest {
 			assertEquals(4980, dto.getPrice());
 			assertEquals(12, dto.getStock());
 			assertEquals(false, dto.isRecommended());
+
+			assertEquals(2, itemsDto.size());
+
+			//			assertEquals("帽子", dto.getCategoriesDTO().getName());
+			//			assertEquals(1, dto.getCategoriesDTO().getCategoryId());
 			break;
 
 		}
@@ -111,6 +127,11 @@ class ItemsServiceTest {
 			assertEquals(4980, dto.getPrice());
 			assertEquals(12, dto.getStock());
 			assertEquals(false, dto.isRecommended());
+
+			assertEquals(20, itemsDto.size());
+
+			assertEquals("帽子", dto.getCategoriesDTO().getName());
+			assertEquals(1, dto.getCategoriesDTO().getCategoryId());
 			break;
 
 		}
