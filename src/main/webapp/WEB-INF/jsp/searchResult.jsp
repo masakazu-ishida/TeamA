@@ -4,20 +4,16 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>商品検索</title>
+<title>検索結果</title>
 </head>
 <body>
-<h3>商品の検索を行います。</h3>
 
+<h3>キーワード  カテゴリ  の検索結果</h3>
+<c:out value = "${}">
 
-<p>キーワード</p>
-
-<p>カテゴリ</p>
-
-
-ショッピングカートを見る
-
-
+<br>
+<a href = "main.jsp"商品検索></a>"へ"
+<br>
 
 
 
