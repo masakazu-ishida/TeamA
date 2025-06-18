@@ -8,7 +8,7 @@
 </head>
 <body>
 <h1>管理者ログイン</h1>
-<form action="/TeamA/AdminLoginController" method="post">
+<form action="/brmy/AdminLoginController" method="post">
 管理者ID<input type ="text" name="userid">
 パスワード<input type = "text" name="password">
 <input type="submit" value="ログイン">
