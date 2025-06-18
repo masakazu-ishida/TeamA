@@ -172,7 +172,7 @@ class PurchasesDAOTest {
 			detailsDAO.insert(detailsDTO);
 			//
 			List<PurchasesDTO> dto = new ArrayList<>();
-			dto = dao.findByName("user");
+			dto = dao.findByName("us");
 
 			int i = 0;
 			for (PurchasesDTO purch : dto) {
