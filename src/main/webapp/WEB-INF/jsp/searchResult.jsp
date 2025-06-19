@@ -2,8 +2,6 @@
     pageEncoding="UTF-8"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
     
-
-
 <!DOCTYPE html>
 <html>
 <head>
@@ -23,22 +21,11 @@
 
 <c:forEach var="item" items="${itemsDto}">
 <tr>
-<td><a href="/brmy/detail">${item.name}</a></td><td>${item.color}</td><td>${item.manufacturer}</td><td>${item.price}円</td> 
+<td><a href="">${item.name}</a></td><td>${item.color}</td><td>${item.manufacturer}</td><td>${item.price}円</td> 
 </tr>
 </c:forEach>
 
 </table>
-
-
-
-<ul class="example">
-<a href="/" rel="next">前へ
-<a href="/" rel="next">1
-<a href="/" rel="next">2
-<a href="/" rel="next">3
-<a href="/" rel="next">次へ
-</ul>
-
 
 <br>
 <a href = "/brmy/main">商品検索</a>へ

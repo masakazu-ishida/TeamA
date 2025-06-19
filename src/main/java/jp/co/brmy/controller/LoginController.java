@@ -122,6 +122,7 @@ public class LoginController extends HttpServlet {
 		}
 
 		else if (source.equals("1")) {
+
 			//遷移元：カート一覧だった時の処理	
 
 			response.sendRedirect(pass1);

@@ -15,6 +15,7 @@ public class PurchaseConfirmService {
 		try (Connection conn = ConnectionUtil.getConnection(CommonConstants.LOOKUP_NAME)) {
 
 			ItemsInCartDAO dao = new ItemsInCartDAO(conn);
+
 			return dao.findByUserId(userId);
 
 		}
