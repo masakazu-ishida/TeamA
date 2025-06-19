@@ -37,10 +37,20 @@ public class CartDisplayController extends HttpServlet {
 			throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		//		response.getWriter().append("Served at: ").append(request.getContextPath());
+
 		request.setCharacterEncoding("UTF-8");
 		response.setContentType("text/html; charset=UTF-8");
 
 		HttpSession session = request.getSession();
+		if (session.getAttribute("user") != null) {//==に変更
+			String pass = "/WEB-INF/jsp/login.jsp";
+			request.setAttribute("source", "1");
+			RequestDispatcher rd = request.getRequestDispatcher(pass);
+			rd.forward(request, response);
+
+			return;
+		}
+
 		CartDisplayService service = new CartDisplayService();
 		List<ItemsInCartDTO> list = new ArrayList<>();
 		try {
