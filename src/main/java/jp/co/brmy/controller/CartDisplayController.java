@@ -42,14 +42,14 @@ public class CartDisplayController extends HttpServlet {
 		response.setContentType("text/html; charset=UTF-8");
 
 		HttpSession session = request.getSession();
-		if (session.getAttribute("user") != null) {//==に変更
-			String pass = "/WEB-INF/jsp/login.jsp";
-			request.setAttribute("source", "1");
-			RequestDispatcher rd = request.getRequestDispatcher(pass);
-			rd.forward(request, response);
-
-			return;
-		}
+//		if (session.getAttribute("user") == null) {//==に変更
+//			String pass = "/WEB-INF/jsp/login.jsp";
+//			request.setAttribute("source", "1");
+//			RequestDispatcher rd = request.getRequestDispatcher(pass);
+//			rd.forward(request, response);
+//
+//			return;
+//		}
 
 		CartDisplayService service = new CartDisplayService();
 		List<ItemsInCartDTO> list = new ArrayList<>();
