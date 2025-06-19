@@ -27,7 +27,7 @@
 
 </table>
 
-<<<<<<< HEAD
+
 
 
 <ul class="example">
@@ -59,8 +59,7 @@
 
 
 
-=======
->>>>>>> branch 'master' of https://github.com/masakazu-ishida/TeamA.git
+
 <br>
 <a href = "/brmy/main">商品検索</a>へ
 <br>
