@@ -32,12 +32,32 @@
 
 
 <ul class="example">
-<a href="/" rel="next">前へ
-<a href="/" rel="next">1
-<a href="/" rel="next">2
-<a href="/" rel="next">3
-<a href="/" rel="next">次へ
+<c:set var="num" value="${pageNumber-10}"></c:set>
+<a href="/brmy/main2?keyword=${keyword}&categoryId=${categoryId}&pageNumber=${num}">
+<c:if test="${pageNumber<=0 }"></a></c:if>
+前へ
+<c:if test="${pageNumber<=0 }"><a></c:if></a>
+<a href="/brmy/main2?keyword=${keyword}&categoryId=${categoryId}&pageNumber=0">
+<c:if test="${pageNumber<=0 }"></a></c:if>
+1
+<c:if test="${pageNumber<=0 }"><a></c:if></a>
+<a href="/brmy/main2?keyword=${keyword}&categoryId=${categoryId}&pageNumber=10">2</a>
+<a href="/brmy/main2?keyword=${keyword}&categoryId=${categoryId}&pageNumber=20">3</a>
+<a href="/brmy/main2?keyword=${keyword}&categoryId=${categoryId}&pageNumber=30">4</a>
+
+<a href="/brmy/main2?keyword=${keyword}&categoryId=${categoryId}&pageNumber=40">
+<c:if test="${pageNumber>=40 }"></a></c:if>
+5
+<c:if test="${pageNumber>=40 }"><a></c:if></a>
+<c:set var="num" value="${pageNumber+10}"></c:set>
+<a href="/brmy/main2?keyword=${keyword}&categoryId=${categoryId}&pageNumber=${num}">
+<c:if test="${pageNumber>=40 }"></a></c:if>
+次へ
+<c:if test="${pageNumber>=40 }"><a></c:if></a>
+
 </ul>
+
+
 
 
 <br>
