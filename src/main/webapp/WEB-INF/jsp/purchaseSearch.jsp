@@ -30,7 +30,9 @@
 		</c:forEach>
 		</table>
 	</td>
-	<td>${purchase.destination }</td><td><a href="/brmy/DeletePurchaseConfirm?purchaseId=${purchase.purchaseId }">キャンセル </a></td>
+	<td>${purchase.destination }</td>
+	<td><a href="/brmy/DeletePurchaseConfirmController?purchaseId=${purchase.purchaseId }">
+			キャンセル </a></td>
 </tr>
 	</c:forEach>
 </table>
