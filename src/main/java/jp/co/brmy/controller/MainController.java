@@ -58,9 +58,10 @@ public class MainController extends HttpServlet {
 		request.setCharacterEncoding("UTF-8");
 		response.setContentType("text/html; charset=UTF-8");
 
-		//画面から入力されたカテゴリー番号とキーワードを取り出す
+		//画面から入力されたカテゴリー番号とキーワード、スタート番号を取り出す
 		String keyword = request.getParameter("keyword");
 		int categoryId = Integer.parseInt(request.getParameter("categoryId"));
+		int pageNumber = Integer.parseInt(request.getParameter("pageNumber"));
 
 		// String categoryName = request.getParameter("categoryName");
 
@@ -75,7 +76,7 @@ public class MainController extends HttpServlet {
 		String name = null;
 
 		try {
-			itemsDto = Itemsservice.findNameSearch(keyword, categoryId);
+			itemsDto = Itemsservice.findNameSearchByLimit(keyword, categoryId, pageNumber);
 			name = Itemsservice.categoryName(categoryId);
 
 		} catch (SQLException | ServletException e) {
@@ -89,6 +90,7 @@ public class MainController extends HttpServlet {
 		request.setAttribute("categoryId", categoryId);
 		request.setAttribute("categoryName", name);
 		request.setAttribute("itemsDto", itemsDto);
+		request.setAttribute("pageNumber", pageNumber);
 
 		RequestDispatcher rd = request.getRequestDispatcher(path1);
 		rd.forward(request, response);
