@@ -53,15 +53,17 @@ public class LoginController extends HttpServlet {
 			throws ServletException, IOException {
 
 		//遷移元を判断
-		String pass1 = "/CartDisplayController";
+
+		String pass1 = "/brmy/CartDisplayController";
 		String pass2 = "";
-		String pass3 = "/main";
+		String pass3 = "/brmy/main";
+		String passLogin = "/WEB-INF/jsp/login.jsp";
 
 		String id = request.getParameter("userId");
 		String password = request.getParameter("password");
 		String source = request.getParameter("source");
 
-		//String source = "1";
+		source = "1";
 
 		UsersService US = new UsersService();
 
@@ -71,8 +73,17 @@ public class LoginController extends HttpServlet {
 			UsersDTO user = US.findById(id, password);
 
 			if (user == null) {
+
+				//遷移元がカート追加の場合、以下は有効な値がとれるが、それ以外は空が返る
+				String amount = request.getParameter("amount");
+				String itemId = request.getParameter("itemId");
+
+				request.setAttribute("amount", amount);
+				request.setAttribute("itemId", itemId);
+				request.setAttribute("source", source);
+
 				request.setAttribute("error", "エラーが発生しました");
-				request.getRequestDispatcher("/WEB-INF/jsp/login.jsp").forward(request, response);
+				request.getRequestDispatcher(passLogin).forward(request, response);
 				return;
 			} else {
 				HttpSession session = request.getSession();
@@ -80,42 +91,42 @@ public class LoginController extends HttpServlet {
 
 			}
 
-		} catch (SQLException | ServletException e) {
+		} catch (SQLException |
+
+				ServletException e) {
 			// TODO 自動生成された catch ブロック
 			e.printStackTrace();
 			return;
 		}
+
+		//source == null || source.equals("")
+		if (source == null || source.equals("")) {
+			//遷移元：タダのログイン表示
+
+			response.sendRedirect(pass3);
+
+		}
+
 		//カート追加からログインに来るとき、hiddenで商品IDと数量が出力されるので、これを取り出す
 
-		if (source.equals("2")) {
+		else if (source.equals("2")) {
 			int amount = Integer.parseInt(request.getParameter("amount"));
 			int itemId = Integer.parseInt(request.getParameter("itemId"));
 
 			request.setAttribute("amount", amount);
 			request.setAttribute("itemId", itemId);
 
-		}
-
-		if (source.equals("1")) {
-			//遷移元：カート一覧だった時の処理	
-
-			RequestDispatcher rd = request.getRequestDispatcher(pass1);
-			rd.forward(request, response);
-
-		} else if (source.equals("2")) {
-			//遷移元：カート追加だった時の処理	
-
-			//カート追加からログインに来るとき、hiddenで商品IDと数量が出力されるので、これを取り出す
-
 			RequestDispatcher rd = request.getRequestDispatcher(pass2);
 			rd.forward(request, response);
 
-		} else {
-			//遷移元：ログインだった時の処理
+		}
 
-			RequestDispatcher rd = request.getRequestDispatcher(pass3);
-			rd.forward(request, response);
+		else if (source.equals("1")) {
+			//遷移元：カート一覧だった時の処理	
+
+			response.sendRedirect(pass1);
 
 		}
+
 	}
 }
