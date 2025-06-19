@@ -174,4 +174,65 @@ class ItemsInCartDAOTest {
 		}
 	}
 
+	@Test
+	void testFindById() {
+		try (Connection conn = ConnectionUtil.getConnectionForJUnit()) {
+			ItemsInCartDAO dao = new ItemsInCartDAO(conn);
+			ItemsInCartDTO dto = new ItemsInCartDTO();
+			dto = dao.findById("user", 1);
+
+			assertEquals("user", dto.getUserId());
+			assertEquals(1, dto.getItemId());
+			assertEquals(2, dto.getAmount());
+			String strDate = "2020-10-20";
+			java.text.SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+			java.util.Date expected = dateFormat.parse(strDate);
+			assertEquals(expected, dto.getBookedDate());
+
+			assertEquals("麦わら帽子", dto.getItemsDTO().getName());
+			assertEquals("日本帽子製造", dto.getItemsDTO().getManufacturer());
+			assertEquals(1, dto.getItemsDTO().getCategoryId());
+			assertEquals("黄色", dto.getItemsDTO().getColor());
+			assertEquals(4980, dto.getItemsDTO().getPrice());
+			assertEquals(12, dto.getItemsDTO().getStock());
+			assertEquals(false, dto.getItemsDTO().isRecommended());
+
+		} catch (Exception e) {
+			e.printStackTrace();
+			fail("まだ実装されていません");
+
+		}
+	}
+
+	@Test
+	void testFindByIdNull() {
+		try (Connection conn = ConnectionUtil.getConnectionForJUnit()) {
+			ItemsInCartDAO dao = new ItemsInCartDAO(conn);
+			ItemsInCartDTO dto = new ItemsInCartDTO();
+			dto = dao.findById("aaaaa", 99);
+
+			assertNull(dto);
+		} catch (Exception e) {
+			e.printStackTrace();
+			fail("まだ実装されていません");
+
+		}
+	}
+
+	@Test
+	void testDeleteId() {
+		try (Connection conn = ConnectionUtil.getConnectionForJUnit()) {
+			ItemsInCartDAO dao = new ItemsInCartDAO(conn);
+			dao.deleteId("user", 1);
+			ItemsInCartDTO dto = null;
+			dto = dao.findById("user", 1);
+
+			assertNull(dto);
+
+		} catch (Exception e) {
+			e.printStackTrace();
+			fail("まだ実装されていません");
+
+		}
+	}
 }

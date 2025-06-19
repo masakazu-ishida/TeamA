@@ -13,19 +13,19 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import jp.co.brmy.dto.ItemsInCartDTO;
-import jp.co.brmy.service.CartDisplayService;
+import jp.co.brmy.service.PurchaseCommitService;
 
 /**
- * Servlet implementation class CartDisplayController
+ * Servlet implementation class PurchaseCommitController
  */
-@WebServlet("/CartDisplayController")
-public class CartDisplayController extends HttpServlet {
+@WebServlet("/PurchaseCommitController")
+public class PurchaseCommitController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	/**
 	 * @see HttpServlet#HttpServlet()
 	 */
-	public CartDisplayController() {
+	public PurchaseCommitController() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
@@ -36,42 +36,7 @@ public class CartDisplayController extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		//		response.getWriter().append("Served at: ").append(request.getContextPath());
-
-		request.setCharacterEncoding("UTF-8");
-		response.setContentType("text/html; charset=UTF-8");
-
-		HttpSession session = request.getSession();
-//		if (session.getAttribute("user") == null) {//==に変更
-//			String pass = "/WEB-INF/jsp/login.jsp";
-//			request.setAttribute("source", "1");
-//			RequestDispatcher rd = request.getRequestDispatcher(pass);
-//			rd.forward(request, response);
-//
-//			return;
-//		}
-
-		CartDisplayService service = new CartDisplayService();
-		List<ItemsInCartDTO> list = new ArrayList<>();
-		try {
-			//			list = service.cartItems(session.getAttribute("user").toString());
-
-			list = service.cartItems("user");//後でsessionから取得したユーザー名に変更
-		} catch (Exception e) {
-			// TODO 自動生成された catch ブロック
-			e.printStackTrace();
-		}
-		if (list.size() == 0) {
-			request.setAttribute("cart", null);
-		} else {
-			request.setAttribute("cart", list);
-
-		}
-
-		String pass = "/WEB-INF/jsp/cart.jsp";
-		RequestDispatcher rd = request.getRequestDispatcher(pass);
-		rd.forward(request, response);
-
+		response.getWriter().append("Served at: ").append(request.getContextPath());
 	}
 
 	/**
@@ -80,7 +45,40 @@ public class CartDisplayController extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		doGet(request, response);
+		//		doGet(request, response);
+		request.setCharacterEncoding("UTF-8");
+		response.setContentType("text/html; charset=UTF-8");
+
+		String pay = request.getParameter("payment");
+		String des = request.getParameter("destination");
+		String add = request.getParameter("address");
+
+		String juusyo = des;
+
+		if ("another" == des) {
+			juusyo = add;
+		}else {
+			juusyo="ご自宅";
+		}
+		HttpSession session = request.getSession();
+		PurchaseCommitService service = new PurchaseCommitService();
+		List<ItemsInCartDTO> list = new ArrayList<>();
+		try {
+			//			list = service.cartItems(session.getAttribute("user").toString());
+
+			list = service.purchaseCommit("user", pay, juusyo);//後でsessionから取得したユーザー名に変更
+		} catch (Exception e) {
+			// TODO 自動生成された catch ブロック
+			e.printStackTrace();
+		}
+		request.setAttribute("cart", list);
+		request.setAttribute("juusyo", juusyo);
+		request.setAttribute("paymen", pay);
+
+		String pass = "/WEB-INF/jsp/purchaseCommit.jsp";
+		RequestDispatcher rd = request.getRequestDispatcher(pass);
+		rd.forward(request, response);
+
 	}
 
 }

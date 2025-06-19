@@ -40,7 +40,7 @@
 合計${sum }円
 <br>
 <br>
-<form action="servlet" method="post">
+<form action="/brmy/PurchaseCommitController" method="post">
 清算方法
 <br>
 <select name="payment">
