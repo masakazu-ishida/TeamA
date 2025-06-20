@@ -42,7 +42,8 @@ public class CartDisplayController extends HttpServlet {
 		response.setContentType("text/html; charset=UTF-8");
 
 		HttpSession session = request.getSession();
-		if (session.getAttribute("user") == null) {
+
+		if (session.getAttribute("user").toString() == null) {
 			String pass = "/WEB-INF/jsp/login.jsp";
 			request.setAttribute("source", "1");
 			RequestDispatcher rd = request.getRequestDispatcher(pass);
@@ -50,11 +51,11 @@ public class CartDisplayController extends HttpServlet {
 
 			return;
 		}
-
+		String userId = session.getAttribute("user").toString();
 		CartDisplayService service = new CartDisplayService();
 		List<ItemsInCartDTO> list = new ArrayList<>();
 		try {
-			list = service.cartItems(session.getAttribute("user").toString());
+			list = service.cartItems(userId);
 			//
 			//			list = service.cartItems("user");//後でsessionから取得したユーザー名に変更
 		} catch (Exception e) {
