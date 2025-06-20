@@ -38,15 +38,13 @@ public class CartAddController extends HttpServlet {
 
 		HttpSession session = request.getSession();
 
-		String userId = session.getAttribute("user").toString();
 		int itemId = Integer.parseInt(request.getParameter("userId"));
 		int amount = Integer.parseInt(request.getParameter("amount"));
 
-		request.setAttribute("user", userId);
 		request.setAttribute("itemId", itemId);
 		request.setAttribute("amount", amount);
 
-		if (session.getAttribute("user") == null) {
+		if (session.getAttribute("user").toString() == null) {
 			String pass = "/WEB-INF/jsp/login.jsp";
 			request.setAttribute("source", "2");
 			RequestDispatcher rd = request.getRequestDispatcher(pass);
@@ -54,6 +52,7 @@ public class CartAddController extends HttpServlet {
 
 			return;
 		}
+		String userId = session.getAttribute("user").toString();
 
 		try {
 			CartAddService service = new CartAddService();
