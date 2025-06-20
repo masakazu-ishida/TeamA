@@ -21,7 +21,7 @@
 
 <c:forEach var="item" items="${itemsDto}">
 <tr>
-<td><a href="">${item.name}</a></td><td>${item.color}</td><td>${item.manufacturer}</td><td>${item.price}円</td> 
+<td><a href="">${item.name}</a><c:if test ="${item.recommended=='true'}">オススメ!</c:if></tdi><td>${item.color}</td><td>${item.manufacturer}</td><td>${item.price}円</td> 
 </tr>
 </c:forEach>
 
