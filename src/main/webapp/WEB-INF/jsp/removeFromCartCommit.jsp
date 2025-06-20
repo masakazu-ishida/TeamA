@@ -9,7 +9,7 @@
 </head>
 <body>
 
-		<h3>以下の商品をショッピングカートから削除してよろしいですか？</h3>
+		<h3>以下の商品をショッピングカートから削除しました。</h3>
 		<br />
 		<br />
 
@@ -18,11 +18,6 @@
 		${dto.itemsDTO.price * dto.amount}円<br />
 		数量 ${dto.amount} 個<br />
 
-		<form action="/brmy/RemoveFromCartCommitController"" method="POST">
-			<input type="hidden" name="itemId" value="${itemId }" />
-			<input type="submit" value="削除する" /><br />
-		</form>
 		<a href="/brmy/main">商品検索</a>へ<br />
-
 </body>
 </html>
