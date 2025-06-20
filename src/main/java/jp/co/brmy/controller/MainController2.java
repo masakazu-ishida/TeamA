@@ -61,7 +61,7 @@ public class MainController2 extends HttpServlet {
 		String name = null;
 
 		try {
-			itemsDto = Itemsservice.findNameSearchByLimit(keyword, categoryId, pageNumber);
+			itemsDto = Itemsservice.findNameSearchLimmit(keyword, categoryId, pageNumber);
 			name = Itemsservice.categoryName(categoryId);
 
 		} catch (SQLException | ServletException e) {

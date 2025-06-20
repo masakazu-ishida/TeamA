@@ -178,6 +178,123 @@ class ItemsDAOTest {
 	}
 
 	@Test
+	void testFindAllLimmit() {
+		try (Connection conn = ConnectionUtil.getConnectionForJUnit()) {
+			ItemsDAO dao = new ItemsDAO(conn);
+			List<ItemsDTO> list = new ArrayList<>();
+			list = dao.findAllLimmit(0);
+			assertEquals(10, list.size());
+			for (ItemsDTO dto : list) {
+				assertEquals(1, dto.getItemId());
+				assertEquals("麦わら帽子", dto.getName());
+				assertEquals("日本帽子製造", dto.getManufacturer());
+				assertEquals(1, dto.getCategoryId());
+				assertEquals("黄色", dto.getColor());
+				assertEquals(4980, dto.getPrice());
+				assertEquals(12, dto.getStock());
+				assertEquals(false, dto.isRecommended());
+
+				assertEquals("帽子", dto.getCategoriesDTO().getName());
+				assertEquals(1, dto.getCategoriesDTO().getCategoryId());
+
+				break;
+
+			}
+
+		} catch (Exception e) {
+			e.printStackTrace();
+			fail("まだ実装されていません");
+
+		}
+	}
+
+	@Test
+	void testFindNameSearchLimmit() {
+		try (Connection conn = ConnectionUtil.getConnectionForJUnit()) {
+			ItemsDAO dao = new ItemsDAO(conn);
+
+			List<ItemsDTO> list = new ArrayList<>();
+			list = dao.findNameSearchLimmit("麦わら", 0);
+			assertEquals(2, list.size());
+			for (ItemsDTO dto : list) {
+				assertEquals(1, dto.getItemId());
+				assertEquals("麦わら帽子", dto.getName());
+				assertEquals("日本帽子製造", dto.getManufacturer());
+				assertEquals(1, dto.getCategoryId());
+				assertEquals("黄色", dto.getColor());
+				assertEquals(4980, dto.getPrice());
+				assertEquals(12, dto.getStock());
+				assertEquals(false, dto.isRecommended());
+
+				assertEquals("帽子", dto.getCategoriesDTO().getName());
+				assertEquals(1, dto.getCategoriesDTO().getCategoryId());
+				break;
+
+			}
+
+			list = dao.findNameSearchLimmit(1, 0);
+			assertEquals(10, list.size());
+			for (ItemsDTO dto : list) {
+				assertEquals(1, dto.getItemId());
+				assertEquals("麦わら帽子", dto.getName());
+				assertEquals("日本帽子製造", dto.getManufacturer());
+				assertEquals(1, dto.getCategoryId());
+				assertEquals("黄色", dto.getColor());
+				assertEquals(4980, dto.getPrice());
+				assertEquals(12, dto.getStock());
+				assertEquals(false, dto.isRecommended());
+
+				assertEquals("帽子", dto.getCategoriesDTO().getName());
+				assertEquals(1, dto.getCategoriesDTO().getCategoryId());
+
+				break;
+
+			}
+
+			list = dao.findNameSearchLimmit("麦わら", 0);
+			assertEquals(2, list.size());
+			for (ItemsDTO dto : list) {
+				assertEquals(1, dto.getItemId());
+				assertEquals("麦わら帽子", dto.getName());
+				assertEquals("日本帽子製造", dto.getManufacturer());
+				assertEquals(1, dto.getCategoryId());
+				assertEquals("黄色", dto.getColor());
+				assertEquals(4980, dto.getPrice());
+				assertEquals(12, dto.getStock());
+				assertEquals(false, dto.isRecommended());
+
+				assertEquals("帽子", dto.getCategoriesDTO().getName());
+				assertEquals(1, dto.getCategoriesDTO().getCategoryId());
+
+				break;
+
+			}
+
+		} catch (Exception e) {
+			e.printStackTrace();
+			fail("まだ実装されていません");
+
+		}
+	}
+
+	@Test
+	void testFindNameSearchLimmitNull() {
+		try (Connection conn = ConnectionUtil.getConnectionForJUnit()) {
+			ItemsDAO dao = new ItemsDAO(conn);
+
+			List<ItemsDTO> list = new ArrayList<>();
+			list = dao.findNameSearchLimmit("aaaa", 0);
+			assertNotNull(list);
+			assertEquals(0, list.size());
+
+		} catch (Exception e) {
+			e.printStackTrace();
+			fail("まだ実装されていません");
+
+		}
+	}
+
+	@Test
 	void testUpdateStock() {
 		try (Connection conn = ConnectionUtil.getConnectionForJUnit()) {
 			ItemsDAO dao = new ItemsDAO(conn);
