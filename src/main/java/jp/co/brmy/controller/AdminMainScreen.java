@@ -12,7 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 /**
  * Servlet implementation class AdminloginScreen
  */
-@WebServlet(name = "AdminLoginScreen", urlPatterns = { "/AdminLoginScreen" })
+@WebServlet(name = "AdminMainScreen", urlPatterns = { "/AdminMainScreen" })
 public class AdminMainScreen extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
@@ -30,7 +30,7 @@ public class AdminMainScreen extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		String path = "/WEB-INF/jsp/adminlogin.jsp";
+		String path = "/WEB-INF/jsp/adminmain.jsp";
 		RequestDispatcher rd = request.getRequestDispatcher(path);
 		rd.forward(request, response);
 	}

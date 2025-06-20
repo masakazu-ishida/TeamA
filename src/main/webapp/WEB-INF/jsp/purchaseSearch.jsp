@@ -9,15 +9,16 @@
 </head>
 <body>
 <h1>購入履歴</h1>
-<table border="1">
+<table  border="1">
 <tr>
 	<th>購入者ID</th><th>注文日</th><th>購入商品</th><th>配送先</th><th</th>
 </tr>
 	<c:forEach var="purchase" items="${purchas }">
+	<c:if test="${purchase.cansel == false}">
 <tr>
 	<td>${purchase.purchaseId }</td><td>${purchase.purchaseDate }</td>
 	<td>
-		<table border="1">
+		<table  border="1">
 		<tr>
 			<th>商品名</th><th>色</th><th>メーカー</th><th>単価</th><th>数量</th>
 		</tr>	
@@ -34,6 +35,7 @@
 	<td><a href="/brmy/DeletePurchaseConfirmController?purchaseId=${purchase.purchaseId }">
 			キャンセル </a></td>
 </tr>
+	</c:if>
 	</c:forEach>
 </table>
 

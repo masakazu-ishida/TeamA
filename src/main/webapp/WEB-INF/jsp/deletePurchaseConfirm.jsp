@@ -10,7 +10,7 @@
 <body>
 <h1>以下の注文をキャンセルしてよろしいですか？</h1>
 <form action="/brmy/DeletePurchaseCommitController" method="get">
-<table border="1">
+<table  border="1">
 <tr>
 	<th>購入者ID</th><td>${dto.purchaseId }</td>
 </tr>
@@ -18,7 +18,7 @@
 	<th>注文日</th><td>${dto.purchaseDate }</td>
 </tr>
 <tr>
-	<th>購入商品</th><td>	<table border="1">
+	<th>購入商品</th><td>	<table  border="1">
 								<tr>
 								<th>商品名</th><th>色</th><th>メーカー</th><th>単価</th><th>数量</th>
 								</tr>
