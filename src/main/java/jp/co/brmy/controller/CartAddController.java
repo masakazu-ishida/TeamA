@@ -38,7 +38,7 @@ public class CartAddController extends HttpServlet {
 
 		HttpSession session = request.getSession();
 
-		int itemId = Integer.parseInt(request.getParameter("userId"));
+		int itemId = Integer.parseInt(request.getParameter("itemId"));
 		int amount = Integer.parseInt(request.getParameter("amount"));
 
 		request.setAttribute("itemId", itemId);
