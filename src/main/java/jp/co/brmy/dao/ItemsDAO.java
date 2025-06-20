@@ -194,6 +194,158 @@ public class ItemsDAO extends BaseDAO {
 
 	}
 
+	public List<ItemsDTO> findAllLimmit(int pageName) throws SQLException {
+		String sql = "select item_id,items.name,manufacturer,items.category_id,color,price,stock,recommended,categories.name as category_name\n"
+				+ "from items inner join categories on items.category_id=categories.category_id   order by item_id OFFSET ? LIMIT 10";
+		List<ItemsDTO> itemlist = new ArrayList<>();
+		try (PreparedStatement ps = conn.prepareStatement(sql)) {
+			ps.setInt(1, pageName);
+			ResultSet rs = ps.executeQuery();
+
+			while (rs.next()) {
+				ItemsDTO item = new ItemsDTO();
+
+				item.setCategoryId(rs.getInt("category_id"));
+				item.setColor(rs.getString("color"));
+				item.setItemId(rs.getInt("item_id"));
+				item.setManufacturer(rs.getString("manufacturer"));
+				item.setName(rs.getString("name"));
+				item.setPrice(rs.getInt("price"));
+				item.setRecommended(rs.getBoolean("recommended"));
+				item.setStock(rs.getInt("stock"));
+
+				CategoriesDTO cat = new CategoriesDTO();
+				cat.setCategoryId(rs.getInt("category_id"));
+				cat.setName(rs.getString("category_name"));
+
+				item.setCategoriesDTO(cat);
+
+				itemlist.add(item);
+
+			}
+
+		}
+		return itemlist;
+
+	}
+
+	public List<ItemsDTO> findNameSearchLimmit(String name, int pageName) throws SQLException {
+		String sql = "select item_id,items.name,manufacturer,items.category_id,color,price,stock,recommended,categories.name as category_name from items inner join categories on items.category_id=categories.category_id where items.name like ?  order by item_id OFFSET ? LIMIT 10";
+		List<ItemsDTO> itemlist = new ArrayList<>();
+		try (PreparedStatement ps = conn.prepareStatement(sql)) {
+			name = "%" + name + "%";
+			ps.setString(1, name);
+			ps.setInt(2, pageName);
+
+			System.out.println(ps);
+			ResultSet rs = ps.executeQuery();
+
+			while (rs.next()) {
+
+				ItemsDTO item = new ItemsDTO();
+
+				item.setCategoryId(rs.getInt("category_id"));
+				item.setColor(rs.getString("color"));
+				item.setItemId(rs.getInt("item_id"));
+				item.setManufacturer(rs.getString("manufacturer"));
+				item.setName(rs.getString("name"));
+				item.setPrice(rs.getInt("price"));
+				item.setRecommended(rs.getBoolean("recommended"));
+				item.setStock(rs.getInt("stock"));
+
+				CategoriesDTO cat = new CategoriesDTO();
+				cat.setCategoryId(rs.getInt("category_id"));
+				cat.setName(rs.getString("category_name"));
+
+				item.setCategoriesDTO(cat);
+
+				itemlist.add(item);
+
+			}
+
+		}
+		return itemlist;
+
+	}
+
+	public List<ItemsDTO> findNameSearchLimmit(int id, int pageName) throws SQLException {
+		String sql = "select item_id,items.name,manufacturer,items.category_id,color,price,stock,recommended,categories.name as category_name from items inner join categories on items.category_id=categories.category_id where items.category_id= ?  order by item_id OFFSET ? LIMIT 10";
+		List<ItemsDTO> itemlist = new ArrayList<>();
+		try (PreparedStatement ps = conn.prepareStatement(sql)) {
+
+			ps.setInt(1, id);
+			ps.setInt(2, pageName);
+
+			System.out.println(ps);
+			ResultSet rs = ps.executeQuery();
+
+			while (rs.next()) {
+
+				ItemsDTO item = new ItemsDTO();
+
+				item.setCategoryId(rs.getInt("category_id"));
+				item.setColor(rs.getString("color"));
+				item.setItemId(rs.getInt("item_id"));
+				item.setManufacturer(rs.getString("manufacturer"));
+				item.setName(rs.getString("name"));
+				item.setPrice(rs.getInt("price"));
+				item.setRecommended(rs.getBoolean("recommended"));
+				item.setStock(rs.getInt("stock"));
+
+				CategoriesDTO cat = new CategoriesDTO();
+				cat.setCategoryId(rs.getInt("category_id"));
+				cat.setName(rs.getString("category_name"));
+
+				item.setCategoriesDTO(cat);
+
+				itemlist.add(item);
+
+			}
+
+		}
+		return itemlist;
+
+	}
+
+	public List<ItemsDTO> findNameSearchLimmit(String name, int id, int pageName) throws SQLException {
+		String sql = "select item_id,items.name,manufacturer,items.category_id,color,price,stock,recommended,categories.name as category_name from items inner join categories on items.category_id=categories.category_id where items.name like ?  and items.category_id=? order by item_id OFFSET ? LIMIT 10";
+		List<ItemsDTO> itemlist = new ArrayList<>();
+		try (PreparedStatement ps = conn.prepareStatement(sql)) {
+			name = "%" + name + "%";
+			ps.setString(1, name);
+			ps.setInt(2, id);
+			ps.setInt(3, pageName);
+
+			System.out.println(ps);
+			ResultSet rs = ps.executeQuery();
+
+			while (rs.next()) {
+
+				ItemsDTO item = new ItemsDTO();
+
+				item.setCategoryId(rs.getInt("category_id"));
+				item.setColor(rs.getString("color"));
+				item.setItemId(rs.getInt("item_id"));
+				item.setManufacturer(rs.getString("manufacturer"));
+				item.setName(rs.getString("name"));
+				item.setPrice(rs.getInt("price"));
+				item.setRecommended(rs.getBoolean("recommended"));
+				item.setStock(rs.getInt("stock"));
+
+				CategoriesDTO cat = new CategoriesDTO();
+				cat.setCategoryId(rs.getInt("category_id"));
+				cat.setName(rs.getString("category_name"));
+				item.setCategoriesDTO(cat);
+
+				itemlist.add(item);
+
+			}
+
+		}
+		return itemlist;
+
+	}
+
 	public int updateStock(int stock, int id) throws SQLException {
 		String sql = "update items set stock=? where item_id=?";
 		try (PreparedStatement ps = conn.prepareStatement(sql)) {

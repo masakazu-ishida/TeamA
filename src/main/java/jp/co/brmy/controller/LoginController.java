@@ -43,7 +43,8 @@ public class LoginController extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
-		request.getRequestDispatcher("/WEB-INF/jsp/login.jsp").forward(request, response);
+		String passLogin = "/WEB-INF/jsp/login.jsp";
+		request.getRequestDispatcher(passLogin).forward(request, response);
 	}
 
 	/**
@@ -63,7 +64,7 @@ public class LoginController extends HttpServlet {
 		String password = request.getParameter("password");
 		String source = request.getParameter("source");
 
-		source = "1";
+		//source = "1";
 
 		UsersService US = new UsersService();
 

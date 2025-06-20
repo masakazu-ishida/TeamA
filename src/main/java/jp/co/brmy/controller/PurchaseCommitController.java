@@ -57,14 +57,13 @@ public class PurchaseCommitController extends HttpServlet {
 
 		if ("another" == des) {
 			juusyo = add;
-		}else {
-			juusyo="ご自宅";
+		} else {
+			juusyo = "ご自宅";
 		}
 		HttpSession session = request.getSession();
 		PurchaseCommitService service = new PurchaseCommitService();
 		List<ItemsInCartDTO> list = new ArrayList<>();
 		try {
-			//			list = service.cartItems(session.getAttribute("user").toString());
 
 			list = service.purchaseCommit("user", pay, juusyo);//後でsessionから取得したユーザー名に変更
 		} catch (Exception e) {

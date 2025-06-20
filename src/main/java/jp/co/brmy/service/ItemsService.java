@@ -50,6 +50,41 @@ public class ItemsService {
 		}
 	}
 
+	public List<ItemsDTO> findNameSearchLimmit(String name, int id, int pageNumber)
+			throws SQLException, ServletException {
+		String lookupstring = "java:comp/env/jdbc/ecsite";
+		try (Connection conn = ConnectionUtil.getConnection(lookupstring)) {
+			//itemsDAOのfindnamesearchを呼び出し、戻り値をそのままリターン
+
+			ItemsDAO itemsDao = new ItemsDAO(conn);
+
+			List<ItemsDTO> itemsDto = new ArrayList<>();
+
+			//キーワードが非空かつ、カテゴリ名が全部の場合
+			if ((name != null && name != "") && id == 0) {
+				itemsDto = itemsDao.findNameSearchLimmit(name, pageNumber);
+			}
+
+			//キーワードが非空かつ、カテゴリ名が何か指定されている場合
+			else if ((name != null && name != "") && id != 0) {
+				itemsDto = itemsDao.findNameSearchLimmit(name, id, pageNumber);
+			}
+
+			//キーワードが空白かつ、カテゴリ名が何か指定されている場合
+			else if ((name == "" || name == null) && id != 0) {
+				itemsDto = itemsDao.findNameSearchLimmit(id, pageNumber);
+			}
+
+			//キーワードが空白かつ、カテゴリ名が全部の場合
+			else if ((name == "" || name == null) && id == 0) {
+				itemsDto = itemsDao.findAllLimmit(pageNumber);
+			}
+
+			return itemsDto;
+
+		}
+	}
+
 	public String categoryName(int id) throws SQLException, ServletException {
 		try (Connection conn = ConnectionUtil.getConnection(CommonConstants.LOOKUP_NAME)) {
 			CategoriesDAO dao = new CategoriesDAO(conn);

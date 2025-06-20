@@ -45,10 +45,10 @@ public class MainController2 extends HttpServlet {
 
 		//画面から入力されたカテゴリー番号とキーワード、スタート番号を取り出す
 		String keyword = request.getParameter("keyword");
-//		int categoryId = Integer.parseInt(request.getParameter("categoryId"));
+		int categoryId = Integer.parseInt(request.getParameter("categoryId"));
 		int pageNumber = Integer.parseInt(request.getParameter("pageNumber"));
 
-		// String categoryName = request.getParameter("categoryName");
+		String categoryName = request.getParameter("categoryName");
 
 		//サービスに検索処理の依頼をする
 		//アイテムサービスクラスをインスタンス化する
@@ -60,19 +60,19 @@ public class MainController2 extends HttpServlet {
 		List<ItemsDTO> itemsDto = new ArrayList<>();
 		String name = null;
 
-//		try {
-//			itemsDto = Itemsservice.findNameSearchByLimit(keyword, categoryId, pageNumber);
-//			name = Itemsservice.categoryName(categoryId);
-//
-//		} catch (SQLException | ServletException e) {
-//			// TODO 自動生成された catch ブロック
-//			e.printStackTrace();
-//
-//		}
+		try {
+			itemsDto = Itemsservice.findNameSearchLimmit(keyword, categoryId, pageNumber);
+			name = Itemsservice.categoryName(categoryId);
+
+		} catch (SQLException | ServletException e) {
+			// TODO 自動生成された catch ブロック
+			e.printStackTrace();
+
+		}
 
 		//jspにforward
 		request.setAttribute("keyword", keyword);
-//		request.setAttribute("categoryId", categoryId);
+		request.setAttribute("categoryId", categoryId);
 		request.setAttribute("categoryName", name);
 		request.setAttribute("itemsDto", itemsDto);
 		request.setAttribute("pageNumber", pageNumber);
