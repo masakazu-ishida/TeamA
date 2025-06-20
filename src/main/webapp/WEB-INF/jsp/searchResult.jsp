@@ -7,6 +7,7 @@
 <head>
 <meta charset="UTF-8">
 <title>検索結果</title>
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/style.css">
 </head>
 <body>
 <h3>キーワード "<c:out value = "${keyword}"/>" カテゴリ  "<c:out value = "${categoryName}"/>"  の検索結果</h3>
@@ -21,7 +22,7 @@
 
 <c:forEach var="item" items="${itemsDto}">
 <tr>
-<td><a href="">${item.name}</a><c:if test ="${item.recommended=='true'}">オススメ!</c:if></td><td>${item.color}</td><td>${item.manufacturer}</td><td>${item.price}円</td> 
+<td><a href="/brmy/itemDetail?itemId=${item.itemId}">${item.name}</a><c:if test ="${item.recommended=='true'}">オススメ!</c:if></td><td>${item.color}</td><td>${item.manufacturer}</td><td>${item.price}円</td> 
 </tr>
 </c:forEach>
 
