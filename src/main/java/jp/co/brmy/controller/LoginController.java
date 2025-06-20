@@ -56,7 +56,7 @@ public class LoginController extends HttpServlet {
 		//遷移元を判断
 
 		String pass1 = "/brmy/CartDisplayController";
-		String pass2 = "";
+		String pass2 = "/brmy/CartAddController";
 		String pass3 = "/brmy/main";
 		String passLogin = "/WEB-INF/jsp/login.jsp";
 
