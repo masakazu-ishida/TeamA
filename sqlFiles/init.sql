@@ -1,4 +1,4 @@
-DELETE FROM items_in_cart;
+		DELETE FROM items_in_cart;
 DELETE FROM purchase_details;
 DELETE FROM purchases;
 DELETE FROM administrators;

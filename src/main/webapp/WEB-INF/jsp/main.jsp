@@ -13,6 +13,11 @@
 <br><form action = "/brmy/main" method = "post">
 キーワード<br><input type = "text" name = "keyword"><br>
 
+
+<input type = "hidden" value = "0" name = "pageNumber">
+
+
+
 カテゴリ<br><select name = "categoryId">
 <option selected="" value="0">すべて</option>
 <option value="1">帽子</option>
