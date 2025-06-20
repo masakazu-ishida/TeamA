@@ -52,7 +52,6 @@ public class RemoveFromCartCommitController extends HttpServlet {
 
 		HttpSession session = request.getSession();
 		String userId = (String) session.getAttribute("id");
-		userId = "user";
 
 		RemoveFromCartCommitService serv = new RemoveFromCartCommitService();
 		ItemsInCartDTO dto = new ItemsInCartDTO();
