@@ -9,6 +9,12 @@
 </head>
 <body>
 <h1>管理者メインページ</h1>
+
+<c:if test="${not empty errorMsg}">
+	<p>${errorMsg}</p>
+</c:if>
+
+
 <table border="1">
 	<form action="/brmy/PurchaseSearchController" method="post">
 <tr>

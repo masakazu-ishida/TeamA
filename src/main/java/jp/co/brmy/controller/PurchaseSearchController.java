@@ -11,8 +11,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import jp.co.brmy.dto.ItemsDTO;
-import jp.co.brmy.dto.PurchaseDetailsDTO;
 import jp.co.brmy.dto.PurchasesDTO;
 import jp.co.brmy.service.PurchaseSearchService;
 
@@ -59,6 +57,7 @@ public class PurchaseSearchController extends HttpServlet {
 			list = service.findByName(name);
 
 			if (list.size() == 0) {
+				request.setAttribute("errorMsg", "リストが見つかりませんでした");
 				RequestDispatcher rd = request.getRequestDispatcher(path1);
 				rd.forward(request, response);
 			} else {
@@ -67,6 +66,9 @@ public class PurchaseSearchController extends HttpServlet {
 				rd.forward(request, response);
 			}
 		} catch (Exception e) {
+			request.setAttribute("errorMsg", "会員IDが見つかりませんでした");
+			RequestDispatcher rd = request.getRequestDispatcher(path1);
+			rd.forward(request, response);
 		}
 	}
 }

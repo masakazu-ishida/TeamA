@@ -57,6 +57,7 @@ public class AdminLoginController extends HttpServlet {
 				RequestDispatcher rd1 = request.getRequestDispatcher(path1);
 				rd1.forward(request, response);
 			} else {
+				request.setAttribute("errorMsg", "ユーザー名またはパスワードが間違っています。");
 				RequestDispatcher rd2 = request.getRequestDispatcher(path2);
 				rd2.forward(request, response);
 			}
