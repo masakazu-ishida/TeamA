@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-     <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+         <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+    
 <!DOCTYPE html>
 <html>
 <head>
@@ -8,8 +9,6 @@
 <title>Insert title here</title>
 </head>
 <body>
-<h1>以下の注文をキャンセルしてよろしいですか？</h1>
-<form action="/brmy/DeletePurchaseCommitController" method="get">
 <table border="1">
 <tr>
 	<th>購入者ID</th><td>${dto.purchaseId }</td>
@@ -34,12 +33,7 @@
 <tr>
 	<th>配送先</th><td>${dto.destination}</td>
 </tr>
-<tr>
-	<td colspan="2"><input type="submit" value="キャンセル"></td>
-</tr>
 </table>
-<input type="hidden" name="purchaseId" value="${dto.purchaseId }" >
-</form>
 
 <a href="/brmy/AdminMainScreen">管理者メインページへ戻る </a>
 
