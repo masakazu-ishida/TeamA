@@ -28,6 +28,8 @@ public class AdministratorsLoginDAO extends BaseDAO {
 				adminDto = new AdministratorsDTO();
 				adminDto.setAdminId(rs.getString("admin_id"));
 				adminDto.setPassword(rs.getString("password"));
+				adminDto.setName(rs.getString("name"));
+
 			}
 		}
 		return adminDto;

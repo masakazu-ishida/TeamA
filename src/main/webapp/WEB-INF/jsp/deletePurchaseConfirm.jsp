@@ -9,7 +9,7 @@
 </head>
 <body>
 <h1>以下の注文をキャンセルしてよろしいですか？</h1>
-<form action="/brmy/deletePurchaseCommitController" method="get">
+<form action="/brmy/DeletePurchaseCommitController" method="get">
 <table border="1">
 <tr>
 	<th>購入者ID</th><td>${dto.purchaseId }</td>

@@ -34,7 +34,7 @@ public class DeletePurchaseConfirmController extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		String purchaseIdParam = request.getParameter("purchasId");
+		String purchaseIdParam = request.getParameter("purchaseId");
 		String path = "/WEB-INF/jsp/deletePurchaseConfirm.jsp";
 
 		int purchaseId = Integer.parseInt(purchaseIdParam);
