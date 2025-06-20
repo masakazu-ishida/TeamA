@@ -22,7 +22,7 @@
 <c:set var="sum" value="0" />
 <c:forEach var="item" items="${cart }">
 <tr>
-<td>${item.itemsDTO.name }</td><td>${item.itemsDTO.color }</td><td>${item.itemsDTO.manufacturer }</td><td>${item.itemsDTO.price }</td><td>${item.amount }</td><td><a href="removeFromCartConfirm.html?itemId=${item.itemId }">削除</a></td>    
+<td>${item.itemsDTO.name }</td><td>${item.itemsDTO.color }</td><td>${item.itemsDTO.manufacturer }</td><td>${item.itemsDTO.price }</td><td>${item.amount }</td><td><a href="/brmy/RemoveFromCartConfirm?itemId=${item.itemId }">削除</a></td>    
 </tr>
 <c:set var="sum" value="${sum+item.itemsDTO.price*item.amount}" />
 </c:forEach>
