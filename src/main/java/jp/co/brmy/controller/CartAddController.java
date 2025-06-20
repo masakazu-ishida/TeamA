@@ -37,20 +37,16 @@ public class CartAddController extends HttpServlet {
 		response.setContentType("text/html; charset=UTF-8");
 
 		HttpSession session = request.getSession();
-		//
-		//		String userId = session.getAttribute("user").toString();
-		//		int itemId = Integer.parseInt(request.getParameter("userId"));
-		//		int amount = Integer.parseInt(request.getParameter("amount"));
 
-		//
-		String userId = "user";
-		int itemId = 1;
-		int amount = 1;
+		String userId = session.getAttribute("user").toString();
+		int itemId = Integer.parseInt(request.getParameter("userId"));
+		int amount = Integer.parseInt(request.getParameter("amount"));
+
 		request.setAttribute("user", userId);
 		request.setAttribute("itemId", itemId);
 		request.setAttribute("amount", amount);
 
-		if (session.getAttribute("user") != null) {
+		if (session.getAttribute("user") == null) {
 			String pass = "/WEB-INF/jsp/login.jsp";
 			request.setAttribute("source", "2");
 			RequestDispatcher rd = request.getRequestDispatcher(pass);
@@ -61,7 +57,7 @@ public class CartAddController extends HttpServlet {
 
 		try {
 			CartAddService service = new CartAddService();
-			service.cartadd(itemId, amount, "user");//後でsessionから取得したユーザー名に変更
+			service.cartadd(itemId, amount, userId);//後でsessionから取得したユーザー名に変更
 		} catch (Exception e) {
 			// TODO 自動生成された catch ブロック
 			e.printStackTrace();
