@@ -26,8 +26,8 @@
 								<c:forEach var="detail" items="${dto.purchaseDetailsDTO }">
 								<tr>
 								<td>${detail.itemsDTO.name }</td><td>${detail.itemsDTO.color}</td>
-								<td>${detail.itemsDTO.manufacturer}</td><td>${detail.itemsDTO.price}</td>
-								<td>${detail.amount}</td>
+								<td>${detail.itemsDTO.manufacturer}</td><td>${detail.itemsDTO.price}円</td>
+								<td>${detail.amount}個</td>
 								</tr>
 								</c:forEach>
 							</table>
