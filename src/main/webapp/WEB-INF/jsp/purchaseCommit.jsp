@@ -11,7 +11,7 @@
 
 
 <c:choose>
-    <c:when test="${flg!=null}">
+    <c:when test="${flg=='flg'}">
         
    <h1>在庫がありません</h1>
     </c:when>

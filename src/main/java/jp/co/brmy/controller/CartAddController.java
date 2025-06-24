@@ -65,9 +65,8 @@ public class CartAddController extends HttpServlet {
 			pass = "/itemDetailController";
 
 		}
-		flg = "flg";
 
-		request.setAttribute("flg", flg);
+		request.setAttribute("flg", "flg");
 
 		RequestDispatcher rd = request.getRequestDispatcher(pass);
 		rd.forward(request, response);
