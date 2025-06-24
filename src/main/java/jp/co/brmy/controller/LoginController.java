@@ -83,7 +83,7 @@ public class LoginController extends HttpServlet {
 				request.setAttribute("itemId", itemId);
 				request.setAttribute("source", source);
 
-				request.setAttribute("error", "エラーが発生しました");
+				request.setAttribute("error", "エラーが発生しました。再度入力してください。");
 				request.getRequestDispatcher(passLogin).forward(request, response);
 				return;
 			} else {
