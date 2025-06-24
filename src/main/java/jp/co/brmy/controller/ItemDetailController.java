@@ -59,6 +59,10 @@ public class ItemDetailController extends HttpServlet {
 		request.setAttribute("id", id);
 		request.setAttribute("itemsDto", itemsDto);
 
+		if (request.getParameter("flg") != null) {
+			request.setAttribute("flg", request.getParameter("flg").toString());
+
+		}
 		RequestDispatcher rd = request.getRequestDispatcher(path1);
 		rd.forward(request, response);
 

@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+    
 <!DOCTYPE html>
 <html>
 <head>
@@ -10,7 +12,7 @@
 <body>
 
 <h3>商品の詳細表示</h3><br>
-
+<c:if test="${flg=='flg' }">すでにカートに存在します</c:if>
 
 <table border="1">
 
