@@ -26,7 +26,7 @@
 </select><br>
 <input type = "submit" value = "検索"><br>
 
-<br><a href="">ショッピングカートを見る</a>
+<br><a href="/brmy/CartDisplayController">ショッピングカートを見る</a>
 
 </form>
 
