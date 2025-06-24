@@ -40,6 +40,7 @@ public class CartAddController extends HttpServlet {
 
 		int itemId = Integer.parseInt(request.getParameter("itemId"));
 		int amount = Integer.parseInt(request.getParameter("amount"));
+		String flg = null;
 
 		request.setAttribute("itemId", itemId);
 		request.setAttribute("amount", amount);
@@ -61,7 +62,12 @@ public class CartAddController extends HttpServlet {
 		} catch (Exception e) {
 			// TODO 自動生成された catch ブロック
 			e.printStackTrace();
+			pass = "/itemDetailController";
+
 		}
+		flg = "flg";
+
+		request.setAttribute("flg", flg);
 
 		RequestDispatcher rd = request.getRequestDispatcher(pass);
 		rd.forward(request, response);

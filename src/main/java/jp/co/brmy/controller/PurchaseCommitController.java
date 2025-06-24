@@ -1,6 +1,7 @@
 package jp.co.brmy.controller;
 
 import java.io.IOException;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -48,11 +49,13 @@ public class PurchaseCommitController extends HttpServlet {
 		//		doGet(request, response);
 		request.setCharacterEncoding("UTF-8");
 		response.setContentType("text/html; charset=UTF-8");
+		HttpSession session = request.getSession();
 
 		String pay = request.getParameter("payment");
 		String des = request.getParameter("destination");
 		String add = request.getParameter("address");
-
+		String user = session.getAttribute("user").toString();
+		String flg = null;
 		String juusyo = des;
 
 		if ("another" == des) {
@@ -60,19 +63,20 @@ public class PurchaseCommitController extends HttpServlet {
 		} else {
 			juusyo = "ご自宅";
 		}
-		HttpSession session = request.getSession();
 		PurchaseCommitService service = new PurchaseCommitService();
 		List<ItemsInCartDTO> list = new ArrayList<>();
 		try {
 
-			list = service.purchaseCommit("user", pay, juusyo);//後でsessionから取得したユーザー名に変更
-		} catch (Exception e) {
+			list = service.purchaseCommit(user, pay, juusyo);
+		} catch (SQLException e) {
 			// TODO 自動生成された catch ブロック
 			e.printStackTrace();
+			flg = "flg";
 		}
 		request.setAttribute("cart", list);
 		request.setAttribute("juusyo", juusyo);
 		request.setAttribute("paymen", pay);
+		request.setAttribute("flg", flg);
 
 		String pass = "/WEB-INF/jsp/purchaseCommit.jsp";
 		RequestDispatcher rd = request.getRequestDispatcher(pass);

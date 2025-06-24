@@ -56,15 +56,26 @@ public class PurchaseCommitService {
 
 					ItemsDTO itemsDTO = itemsDAO.findById(itemsInCartDTO.getItemId());
 					int a = itemsDTO.getStock() - itemsInCartDTO.getAmount();
+					if (a <= 0) {
+						SQLException e = new SQLException();
+						throw e;
+					}
 					itemsDAO.updateStock(a, itemsDTO.getItemId());
 
 				}
 				itemInCartDAO.deleteItemsInCart(user);
 
 				conn.commit();
+
+			} catch (SQLException e) {
+				// TODO: handle exception
+				e.printStackTrace();
+				conn.rollback();
+				throw e;
 			} catch (Exception e) {
 				e.printStackTrace();
 				conn.rollback();
+				throw e;
 			}
 			return cartdto;
 

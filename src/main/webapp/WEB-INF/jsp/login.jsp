@@ -10,7 +10,10 @@
 </head>
 <body>
 		<h3>ログインしてください。</h3><br />
-		<c:out value="${error}"/>
+		<c:out value="${error1}"/>
+		<c:out value="${error2}"/>
+		<c:out value="${error3}"/>
+		<c:out value="${error4}"/>
 		<br />
 		<form action='/brmy/login' method='POST'>
 			<table>
