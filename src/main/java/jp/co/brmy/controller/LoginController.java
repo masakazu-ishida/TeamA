@@ -88,7 +88,7 @@ public class LoginController extends HttpServlet {
 				return;
 			} else {
 				HttpSession session = request.getSession();
-				session.setAttribute("id", user.getUserId());
+				session.setAttribute("user", user.getUserId());
 
 			}
 
