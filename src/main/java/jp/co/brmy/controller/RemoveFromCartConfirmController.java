@@ -43,7 +43,7 @@ public class RemoveFromCartConfirmController extends HttpServlet {
 		request.setAttribute("itemId", itemId);
 
 		HttpSession session = request.getSession();
-		String userId = (String) session.getAttribute("id");
+		String userId = (String) session.getAttribute("user");
 
 		RemoveFromCartConfirmService serv = new RemoveFromCartConfirmService();
 		ItemsInCartDTO dto = new ItemsInCartDTO();
