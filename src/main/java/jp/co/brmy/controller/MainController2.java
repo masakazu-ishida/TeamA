@@ -18,7 +18,7 @@ import jp.co.brmy.service.ItemsService;
 /**
  * Servlet implementation class MainController2
  */
-@WebServlet("/main2")
+@WebServlet("/MainController2")
 public class MainController2 extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
