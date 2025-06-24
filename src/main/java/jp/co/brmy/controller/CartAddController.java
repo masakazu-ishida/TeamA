@@ -53,6 +53,7 @@ public class CartAddController extends HttpServlet {
 			return;
 		}
 		String userId = session.getAttribute("user").toString();
+		String pass = "/CartDisplayController";
 
 		try {
 			CartAddService service = new CartAddService();
@@ -62,7 +63,6 @@ public class CartAddController extends HttpServlet {
 			e.printStackTrace();
 		}
 
-		String pass = "/CartDisplayController";
 		RequestDispatcher rd = request.getRequestDispatcher(pass);
 		rd.forward(request, response);
 

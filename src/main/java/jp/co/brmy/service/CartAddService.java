@@ -28,9 +28,10 @@ public class CartAddService {
 				// TODO: handle exception
 				e.printStackTrace();
 				conn.rollback();
+				throw e;
 			}
 
-		} 
+		}
 
 	}
 }
