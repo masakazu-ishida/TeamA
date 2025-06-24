@@ -43,7 +43,7 @@ public class CartDisplayController extends HttpServlet {
 
 		HttpSession session = request.getSession();
 
-		if (session.getAttribute("user").toString() == null) {
+		if (session.getAttribute("user") == null) {
 			String pass = "/WEB-INF/jsp/login.jsp";
 			request.setAttribute("source", "1");
 			RequestDispatcher rd = request.getRequestDispatcher(pass);

@@ -23,7 +23,7 @@
 			<input type="hidden" name="itemId" value="${itemId }" />
 			<input type="submit" value="削除する" /><br />
 		</form>
-		<a href="/brmy/main">商品検索</a>へ<br />
+		<a href="/brmy/MainController">商品検索</a>へ<br />
 
 </body>
 </html>

@@ -19,6 +19,6 @@
 		${dto.itemsDTO.price * dto.amount}円<br />
 		数量 ${dto.amount} 個<br />
 
-		<a href="/brmy/main">商品検索</a>へ<br />
+		<a href="/brmy/MainController">商品検索</a>へ<br />
 </body>
 </html>
