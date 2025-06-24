@@ -56,7 +56,12 @@ public class PurchaseSearchController extends HttpServlet {
 		try {
 			list = service.findByName(name);
 
-			if (list.size() == 0) {
+			if (name == null) {
+				request.setAttribute("errorMsg", "会員IDを入力してください");
+				RequestDispatcher rd = request.getRequestDispatcher(path1);
+				rd.forward(request, response);
+
+			} else if (list.size() == 0) {
 				request.setAttribute("errorMsg", "リストが見つかりませんでした");
 				RequestDispatcher rd = request.getRequestDispatcher(path1);
 				rd.forward(request, response);
