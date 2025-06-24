@@ -60,7 +60,7 @@
 <br>
 <input type="submit" value="購入する">
 </form>
-<a href="/brmy/MainControlle">商品検索 </a>
+<a href="/brmy/MainController">商品検索 </a>
 へ
 
 
