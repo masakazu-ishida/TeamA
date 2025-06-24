@@ -31,14 +31,15 @@
 
 </table>
 
-</c:otherwise>
-</c:choose>
-
 合計${sum }円
 
 <form action="/brmy/PurchaseConfirmController" method="post">
 <input type="submit" value="購入する">
 </form>
+
+</c:otherwise>
+</c:choose>
+
 
 <br>
 <a href="/brmy/main">商品検索 </a>
