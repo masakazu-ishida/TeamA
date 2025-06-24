@@ -30,7 +30,6 @@
 
 
 
-
 <ul class="example">
 <c:set var="num" value="${pageNumber-10}"></c:set>
 <a href="/brmy/MainController2?keyword=${keyword}&categoryId=${categoryId}&pageNumber=${num}">
