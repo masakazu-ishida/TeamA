@@ -49,7 +49,7 @@
 
 
 <br>
-<a href = "/brmy/main">商品検索</a>へ
+<a href = "/brmy/MainController">商品検索</a>へ
 <br>
 
 

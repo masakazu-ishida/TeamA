@@ -16,7 +16,7 @@ import jp.co.brmy.service.ItemDetailService;
 /**
  * Servlet implementation class ItemDetailController
  */
-@WebServlet("/itemDetail")
+@WebServlet("/itemDetailController")
 public class ItemDetailController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
