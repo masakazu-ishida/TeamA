@@ -57,7 +57,7 @@ public class LoginController extends HttpServlet {
 
 		String pass1 = "/brmy/CartDisplayController";
 		String pass2 = "/brmy/CartAddController";
-		String pass3 = "/brmy/main";
+		String pass3 = "/brmy/MainController";
 		String passLogin = "/WEB-INF/jsp/login.jsp";
 
 		String id = request.getParameter("userId");
