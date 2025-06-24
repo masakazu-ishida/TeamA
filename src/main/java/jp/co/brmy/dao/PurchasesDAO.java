@@ -23,7 +23,7 @@ public class PurchasesDAO extends BaseDAO {
 		String sql = "INSERT INTO purchases(purchased_user,purchased_date,destination)VALUES(?,?,?)";
 		int result;
 
-		try (PreparedStatement ps = conn.prepareStatement(sql)) {
+		try (PreparedStatement ps = conn.prepareStatement(sql, PreparedStatement.RETURN_GENERATED_KEYS)) {
 			ps.setString(1, dto.getPurchaseUser());
 			SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
 			String formattedDate = simpleDateFormat.format(dto.getPurchaseDate());
