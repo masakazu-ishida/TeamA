@@ -22,7 +22,7 @@
 
 <c:forEach var="item" items="${itemsDto}">
 <tr>
-<td><a href="/brmy/itemDetail?itemId=${item.itemId}">${item.name}</a><c:if test ="${item.recommended=='true'}">オススメ!</c:if></td><td>${item.color}</td><td>${item.manufacturer}</td><td>${item.price}円</td> 
+<td><a href="/brmy/itemDetailController?itemId=${item.itemId}">${item.name}</a><c:if test ="${item.recommended=='true'}">オススメ!</c:if></td><td>${item.color}</td><td>${item.manufacturer}</td><td>${item.price}円</td> 
 </tr>
 </c:forEach>
 
@@ -33,24 +33,24 @@
 
 <ul class="example">
 <c:set var="num" value="${pageNumber-10}"></c:set>
-<a href="/brmy/main2?keyword=${keyword}&categoryId=${categoryId}&pageNumber=${num}">
+<a href="/brmy/MainController2?keyword=${keyword}&categoryId=${categoryId}&pageNumber=${num}">
 <c:if test="${pageNumber<=0 }"></a></c:if>
 前へ
 <c:if test="${pageNumber<=0 }"><a></c:if></a>
-<a href="/brmy/main2?keyword=${keyword}&categoryId=${categoryId}&pageNumber=0">
+<a href="/brmy/MainController2?keyword=${keyword}&categoryId=${categoryId}&pageNumber=0">
 <c:if test="${pageNumber<=0 }"></a></c:if>
 1
 <c:if test="${pageNumber<=0 }"><a></c:if></a>
-<a href="/brmy/main2?keyword=${keyword}&categoryId=${categoryId}&pageNumber=10">2</a>
-<a href="/brmy/main2?keyword=${keyword}&categoryId=${categoryId}&pageNumber=20">3</a>
-<a href="/brmy/main2?keyword=${keyword}&categoryId=${categoryId}&pageNumber=30">4</a>
+<a href="/brmy/MainController2?keyword=${keyword}&categoryId=${categoryId}&pageNumber=10">2</a>
+<a href="/brmy/MainController2?keyword=${keyword}&categoryId=${categoryId}&pageNumber=20">3</a>
+<a href="/brmy/MainController2?keyword=${keyword}&categoryId=${categoryId}&pageNumber=30">4</a>
 
-<a href="/brmy/main2?keyword=${keyword}&categoryId=${categoryId}&pageNumber=40">
+<a href="/brmy/MainController2?keyword=${keyword}&categoryId=${categoryId}&pageNumber=40">
 <c:if test="${pageNumber>=40 }"></a></c:if>
 5
 <c:if test="${pageNumber>=40 }"><a></c:if></a>
 <c:set var="num" value="${pageNumber+10}"></c:set>
-<a href="/brmy/main2?keyword=${keyword}&categoryId=${categoryId}&pageNumber=${num}">
+<a href="/brmy/MainController2?keyword=${keyword}&categoryId=${categoryId}&pageNumber=${num}">
 <c:if test="${pageNumber>=40 }"></a></c:if>
 次へ
 <c:if test="${pageNumber>=40 }"><a></c:if></a>
