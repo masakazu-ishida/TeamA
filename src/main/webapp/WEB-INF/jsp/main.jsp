@@ -11,7 +11,7 @@
 <h3>商品の検索を行います。</h3>
 
 
-<br><form action = "/brmy/main" method = "post">
+<br><form action = "/brmy/MainController" method = "post">
 キーワード<br><input type = "text" name = "keyword"><br>
 
 

@@ -36,6 +36,7 @@ public class PurchaseCommitService {
 
 			List<PurchasesDTO> list = purchasesDAO.findAll();
 			int id = list.size() + 1;
+
 			try {
 				PurchasesDTO purchasesDTO = new PurchasesDTO();
 				purchasesDTO.setDestination(haisou);
