@@ -43,7 +43,7 @@
 
 
 <br>
-<a href="/brmy/Main">商品検索 </a>
+<a href="/brmy/MainController">商品検索 </a>
 へ
 </body>
 </html>
