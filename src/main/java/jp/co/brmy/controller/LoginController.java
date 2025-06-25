@@ -56,7 +56,7 @@ public class LoginController extends HttpServlet {
 		//遷移元を判断
 
 		String pass1 = "/brmy/CartDisplayController";
-		String pass2 = "/brmy/CartAddController";
+		String pass2 = "/CartAddController";
 		String pass3 = "/brmy/MainController";
 		String passLogin = "/WEB-INF/jsp/login.jsp";
 
@@ -83,16 +83,7 @@ public class LoginController extends HttpServlet {
 				request.setAttribute("itemId", itemId);
 				request.setAttribute("source", source);
 
-				if (id == null) {
-					if (password == null) {
-						request.setAttribute("error1", "エラーが発生しました。会員IDとパスワードを入力してください。");
-					}
-					request.setAttribute("error2", "エラーが発生しました。会員IDを入力してください。");
-				} else if (password == null) {
-					request.setAttribute("error3", "エラーが発生しました。パスワードを入力してください。");
-				} else {
-					request.setAttribute("error4", "エラーが発生しました。再度入力してください。");
-				}
+				request.setAttribute("error", "エラーが発生しました。再度入力してください。");
 				request.getRequestDispatcher(passLogin).forward(request, response);
 				return;
 			} else {
