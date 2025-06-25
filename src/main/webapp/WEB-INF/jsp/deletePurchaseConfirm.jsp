@@ -6,9 +6,10 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/style.css">
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/admincss/style.css">
 </head>
 <body>
+<div class="container">
 <h1>以下の注文をキャンセルしてよろしいですか？</h1>
 <form action="/brmy/DeletePurchaseCommitController" method="get">
 <table  border="1">
@@ -43,6 +44,6 @@
 </form>
 
 <a href="/brmy/AdminMainScreen">管理者メインページへ戻る </a>
-
+</div>
 </body>
 </html>

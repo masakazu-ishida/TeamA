@@ -7,9 +7,10 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/style.css">
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/admincss/style.css">
 </head>
 <body>
+<div class="container">
 <h1>注文をキャンセルしました</h1>
 <table  border="1">
 <tr>
@@ -38,6 +39,6 @@
 </table>
 
 <a href="/brmy/AdminMainScreen">管理者メインページへ戻る </a>
-
+</div>
 </body>
 </html>

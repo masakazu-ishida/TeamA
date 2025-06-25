@@ -5,14 +5,14 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/style.css">
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/admincss/style.css">
 </head>
 <body>
+<div class="container">
 <h1>管理者ログイン</h1>
 <c:if test="${not empty errorMsg}">
 	<p>${errorMsg}</p>
 </c:if>
-
 <table border = 1>
 <tr>
 	<form action="/brmy/AdminLoginController" method="post">
@@ -26,5 +26,6 @@
 </tr>
 	</form>
 </table>
+</div>
 </body>
 </html>
