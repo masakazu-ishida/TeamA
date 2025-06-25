@@ -78,6 +78,11 @@ submit:hover {
   border-bottom: 1px solid #ddd;
 }
 
+.info-table tr:nth-child(even)td,
+.info-table tr:nth-child(even)th{
+	background-color: #f9f9f9;
+}
+
 .styled-link {
     color: #4facfe;
     text-decoration: none;          /* 下線を消す */
