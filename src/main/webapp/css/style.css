@@ -30,18 +30,21 @@ input.text {
 
 input.id {
 	float: left;
-	width: 300px;
+	width: 200px;
 	ime-mode: disabled;
 }
 
 input.password {
 	float: left;
-	width: 300px;
+	width: 200px;
 	ime-mode: disabled;
 }
 
-input.userId {
-	float: left;
-	width: 300px;
-	ime-mode: disabled;
+
+h1 {
+  color:#C2185B;
+  text-align: center;
+  padding: 5px;
+  border-top: 1px solid #E91E63;
+  border-bottom: 3px solid #E91E63;
 }
