@@ -30,12 +30,18 @@ input.text {
 
 input.id {
 	float: left;
-	width: 200px;
+	width: 300px;
 	ime-mode: disabled;
 }
 
 input.password {
 	float: left;
-	width: 200px;
+	width: 300px;
+	ime-mode: disabled;
+}
+
+input.userId {
+	float: left;
+	width: 300px;
 	ime-mode: disabled;
 }
