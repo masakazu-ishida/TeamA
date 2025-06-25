@@ -9,18 +9,18 @@
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/style.css">
 </head>
 <body>
-		<h3>ログインしてください。</h3><br />
+		<h1>ログインしてください。</h1><br />
 		<c:out value="${error}"/>
 		<br />
 		<form action='/brmy/login' method='POST'>
 			<table>
 				<tr>
 					<th>会員ID</th>
-					<td><input type='text' name='userId' /></td>
+					<td><input type='text' name='userId'/></td>
 				</tr>
 				<tr>
 					<th>パスワード</th>
-					<td><input type='password' name='password' /></td>
+					<td><input type='password' name='password'/></td>
 				</tr>
 				<tr>
 					<td colspan='2'><input type='submit' value='ログイン' /></td>
