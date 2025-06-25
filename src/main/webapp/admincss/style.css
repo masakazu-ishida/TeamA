@@ -55,46 +55,40 @@ submit:hover {
 
 
 
-
-
-table {
-	border: 1px #7f7f7f solid;
-	border-collapse: collapse;
+.info-table {
+  border-collapse: collapse;
+  width: 	auto;
+  margin: 20px auto;
+  font-family: "Helvetica Neue", sans-serif;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.1);
 }
 
-th {
-	background-color: #ffcfcf;
-	text-align: center;
-	border: 1px #7f7f7f solid;
+.info-table th {
+  background-color: #f0f8ff;
+  color: #333;
+  text-align: left;
+  padding: 12px 16px;
+  width: auto;
+  border-bottom: 1px solid #ddd;
 }
 
-td {
-	background-color: #ffffff;
-	text-align: center;
-	border: 1px #7f7f7f solid;
+.info-table td {
+  background-color: #fff;
+  padding: 12px 16px;
+  border-bottom: 1px solid #ddd;
 }
 
-.noborder {
-	border: 0px #000000 hidden;
+.styled-link {
+    color: #4facfe;
+    text-decoration: none;          /* 下線を消す */
+    font-weight: bold;
+    border-bottom: 2px solid transparent;
+    transition: all 0.3s ease;
 }
 
-sup {
-	color: red;
-}
-
-input.text {
-	width: 300px;
-	ime-mode: auto;
-}
-
-input.id {
-	float: left;
-	width: 200px;
-	ime-mode: disabled;
-}
-
-input.password {
-	float: left;
-	width: 200px;
-	ime-mode: disabled;
+/* ホバー時の効果 */
+.styled-link:hover {
+    color: #00c6ff;
+    border-bottom: 2px solid #00c6ff;
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
 }

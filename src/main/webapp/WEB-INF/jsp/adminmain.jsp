@@ -16,7 +16,7 @@
 </c:if>
 
 
-<table border="1">
+<table class ="info-table">
 	<form action="/brmy/PurchaseSearchController" method="post">
 <tr>
 	<th>会員ID</th><td><input type ="text" name="userId"></td>
