@@ -19,7 +19,7 @@
 		<th>管理者ID</th><td><input type ="text" name="userid"></td>
 </tr>
 <tr>
-		<th>パスワード</th><td><input type = "text" name="password"></td>
+		<th>パスワード</th><td><input type = "password" name="password"></td>
 </tr>
 <tr>	
 		<td colspan="2"><input type="submit" value="ログイン"></td>
