@@ -9,7 +9,7 @@
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/style.css">
 </head>
 <body>
-<h3>商品の検索を行います。</h3>
+<h1>商品の検索</h1>
 
 
 <br><form action = "/brmy/MainController" method = "post">
