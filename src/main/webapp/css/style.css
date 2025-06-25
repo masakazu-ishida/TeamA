@@ -1,10 +1,12 @@
 table {
 	border: 1px #7f7f7f solid;
 	border-collapse: collapse;
+/*	margin: 0 auto ;*/
+	font-size: 1.3em;
 }
 
 th {
-	background-color: #ffcfcf;
+	background-color: #e0ffff;
 	text-align: center;
 	border: 1px #7f7f7f solid;
 }
@@ -42,9 +44,9 @@ input.password {
 
 
 h1 {
-  color:#C2185B;
+  color:#1565C0;
   text-align: center;
   padding: 5px;
-  border-top: 1px solid #E91E63;
-  border-bottom: 3px solid #E91E63;
+  border-top: 1px solid #2196F3;
+  border-bottom: 3px solid  #2196F3;
 }
