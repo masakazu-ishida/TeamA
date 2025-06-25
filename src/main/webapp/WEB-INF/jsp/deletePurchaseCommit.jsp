@@ -20,16 +20,20 @@
 	<th>注文日</th><td>${dto.purchaseDate }</td>
 </tr>
 <tr>
-	<th>購入商品</th><td>	<table class ="info-table">
+	<th>購入商品</th><td>	<table class ="styled-table">
+								<thead>
 								<tr>
 								<th>商品名</th><th>色</th><th>メーカー</th><th>単価</th><th>数量</th>
 								</tr>
+								</thead>
 								<c:forEach var="detail" items="${dto.purchaseDetailsDTO }">
+								<tbody>
 								<tr>
 								<td>${detail.itemsDTO.name }</td><td>${detail.itemsDTO.color}</td>
 								<td>${detail.itemsDTO.manufacturer}</td><td>${detail.itemsDTO.price}円</td>
 								<td>${detail.amount}個</td>
 								</tr>
+								</tbody>
 								</c:forEach>
 							</table>
 					 </td>

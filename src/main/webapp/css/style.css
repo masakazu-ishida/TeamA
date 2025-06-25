@@ -1,12 +1,10 @@
 table {
 	border: 1px #7f7f7f solid;
 	border-collapse: collapse;
-/*	margin: 0 auto ;*/
-	font-size: 1.3em;
 }
 
 th {
-	background-color: #e0ffff;
+	background-color: #ffcfcf;
 	text-align: center;
 	border: 1px #7f7f7f solid;
 }
@@ -32,21 +30,18 @@ input.text {
 
 input.id {
 	float: left;
-	width: 200px;
+	width: 300px;
 	ime-mode: disabled;
 }
 
 input.password {
 	float: left;
-	width: 200px;
+	width: 300px;
 	ime-mode: disabled;
 }
 
-
-h1 {
-  color:#1565C0;
-  text-align: center;
-  padding: 5px;
-  border-top: 1px solid #2196F3;
-  border-bottom: 3px solid  #2196F3;
+input.userId {
+	float: left;
+	width: 300px;
+	ime-mode: disabled;
 }
