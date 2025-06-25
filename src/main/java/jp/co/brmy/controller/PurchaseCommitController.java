@@ -56,13 +56,14 @@ public class PurchaseCommitController extends HttpServlet {
 		String add = request.getParameter("address");
 		String user = session.getAttribute("user").toString();
 		String flg = null;
-		String juusyo = des;
+		String juusyo = "";
 
-		if ("another" == des) {
+		if (des.equals("another")) {
 			juusyo = add;
 		} else {
 			juusyo = "ご自宅";
 		}
+
 		PurchaseCommitService service = new PurchaseCommitService();
 		List<ItemsInCartDTO> list = new ArrayList<>();
 		try {
