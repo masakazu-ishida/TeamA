@@ -9,7 +9,7 @@
 <title>Insert title here</title>
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/admincss/style.css">
 </head>
-<body class="center">
+<body>
 <div class="container">
 <h1>注文をキャンセルしました</h1>
 <table class ="info-table">

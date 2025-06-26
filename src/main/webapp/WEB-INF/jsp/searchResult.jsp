@@ -9,7 +9,7 @@
 <title>検索結果</title>
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/style.css">
 </head>
-<body>
+<body class="center">
 <h3>キーワード "<c:out value = "${keyword}"/>" カテゴリ  "<c:out value = "${categoryName}"/>"  の検索結果</h3>
 
 
