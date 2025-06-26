@@ -6,9 +6,10 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/style.css">
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/admincss/style.css">
 </head>
-<body class="center">
+<body >
+<div class="container">
 <c:choose>
     <c:when test="${empty cart }">
         
@@ -16,10 +17,12 @@
     </c:when>
     <c:otherwise>
         <h1>ショッピングカート内の商品一覧</h1>
-<table border="1">
+<table class ="styled-table">
+<thead>
 <tr>
 <th>商品名</th><th>商品の色</th><th>メーカー名</th><th>単価</th><th>数量</th><th></th>
 </tr>
+</thead>
 <c:set var="sum" value="0" />
 <c:forEach var="item" items="${cart }">
 <tr>
@@ -43,7 +46,8 @@
 
 
 <br>
-<a href="/brmy/MainController">商品検索 </a>
+<a href="/brmy/MainController" class ="styled-link">商品検索 </a>
 へ
+</div>
 </body>
 </html>

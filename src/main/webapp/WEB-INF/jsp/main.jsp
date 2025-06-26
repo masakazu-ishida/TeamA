@@ -6,9 +6,10 @@
 <head>
 <meta charset="UTF-8">
 <title>商品検索</title>
-<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/style.css">
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/admincss/style.css">
 </head>
-<body class="center">
+<body >
+<div class="container">
 <h1>商品の検索</h1>
 
 
@@ -33,11 +34,11 @@
         <br><a href="/brmy/login">ログイン</a>
     </c:when>
     <c:otherwise>
-        <br><a href="/brmy/CartDisplayController">ショッピングカートを見る</a>
+        <br><a href="/brmy/CartDisplayController"class="styled-link">ショッピングカートを見る</a>
 </c:otherwise>
 </c:choose>
 
 
-
+</div>
 </body>
 </html>

@@ -6,9 +6,10 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/style.css">
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/admincss/style.css">
 </head>
-<body class="center">
+<body>
+<div class="container">
 
 		<h1>以下の商品をショッピングカートから削除してよろしいですか？</h1>
 		<br />
@@ -23,7 +24,8 @@
 			<input type="hidden" name="itemId" value="${itemId }" />
 			<input type="submit" value="削除する" /><br />
 		</form>
-		<a href="/brmy/MainController">商品検索</a>へ<br />
-
+		<a href="/brmy/MainController"class ="styled-link">商品検索</a>へ<br />
+		
+</div>
 </body>
 </html>

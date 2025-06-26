@@ -7,18 +7,21 @@
 <head>
 <meta charset="UTF-8">
 <title>検索結果</title>
-<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/style.css">
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/admincss/style.css">
 </head>
-<body class="center">
+<body>
+<div class="container">
 <h3>キーワード "<c:out value = "${keyword}"/>" カテゴリ  "<c:out value = "${categoryName}"/>"  の検索結果</h3>
 
 
 
 
-<table border="1">
+<table class ="styled-table">
+<thead>
 <tr>
 <th>商品名</th><th>商品の色</th><th>メーカー名</th><th>価格</th>
 </tr>
+</thead>
 
 <c:forEach var="item" items="${itemsDto}">
 <tr>
@@ -32,24 +35,24 @@
 
 <ul class="example">
 <c:set var="num" value="${pageNumber-10}"></c:set>
-<a href="/brmy/MainController2?keyword=${keyword}&categoryId=${categoryId}&pageNumber=${num}">
+<a href="/brmy/MainController2?keyword=${keyword}&categoryId=${categoryId}&pageNumber=${num}"class ="styled-link">
 <c:if test="${pageNumber<=0 }"></a></c:if>
 前へ
 <c:if test="${pageNumber<=0 }"><a></c:if></a>
-<a href="/brmy/MainController2?keyword=${keyword}&categoryId=${categoryId}&pageNumber=0">
+<a href="/brmy/MainController2?keyword=${keyword}&categoryId=${categoryId}&pageNumber=0"class ="styled-link">
 <c:if test="${pageNumber<=0 }"></a></c:if>
 1
 <c:if test="${pageNumber<=0 }"><a></c:if></a>
-<a href="/brmy/MainController2?keyword=${keyword}&categoryId=${categoryId}&pageNumber=10">2</a>
-<a href="/brmy/MainController2?keyword=${keyword}&categoryId=${categoryId}&pageNumber=20">3</a>
-<a href="/brmy/MainController2?keyword=${keyword}&categoryId=${categoryId}&pageNumber=30">4</a>
+<a href="/brmy/MainController2?keyword=${keyword}&categoryId=${categoryId}&pageNumber=10"class ="styled-link">2</a>
+<a href="/brmy/MainController2?keyword=${keyword}&categoryId=${categoryId}&pageNumber=20"class ="styled-link">3</a>
+<a href="/brmy/MainController2?keyword=${keyword}&categoryId=${categoryId}&pageNumber=30"class ="styled-link">4</a>
 
-<a href="/brmy/MainController2?keyword=${keyword}&categoryId=${categoryId}&pageNumber=40">
+<a href="/brmy/MainController2?keyword=${keyword}&categoryId=${categoryId}&pageNumber=40"class ="styled-link">
 <c:if test="${pageNumber>=40 }"></a></c:if>
 5
 <c:if test="${pageNumber>=40 }"><a></c:if></a>
 <c:set var="num" value="${pageNumber+10}"></c:set>
-<a href="/brmy/MainController2?keyword=${keyword}&categoryId=${categoryId}&pageNumber=${num}">
+<a href="/brmy/MainController2?keyword=${keyword}&categoryId=${categoryId}&pageNumber=${num}"class ="styled-link">
 <c:if test="${pageNumber>=40 }"></a></c:if>
 次へ
 <c:if test="${pageNumber>=40 }"><a></c:if></a>
@@ -61,10 +64,10 @@
 
 
 <br>
-<a href = "/brmy/MainController">商品検索</a>へ
+<a href = "/brmy/MainController"class ="styled-link">商品検索</a>へ
 <br>
 
 
-
+</div>
 </body>
 </html>

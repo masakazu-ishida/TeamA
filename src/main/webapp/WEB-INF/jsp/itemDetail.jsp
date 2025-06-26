@@ -7,14 +7,15 @@
 <head>
 <meta charset="UTF-8">
 <title>商品詳細</title>
-<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/style.css">
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/admincss/style.css">
 </head>
-<body class="center">
+<body>
+<div class="container">
 
 <h3>商品の詳細表示</h3><br>
 <c:if test="${flg=='flg' }">すでにカートに存在します</c:if>
 
-<table border="1">
+<table class ="info-table">
 
 <tr>
 <th>商品名</th><td>${itemsDto.name}</td>
@@ -51,9 +52,9 @@
 
 
 <br>
-<a href = "/brmy/MainController">商品検索</a>へ
+<a href = "/brmy/MainController"class="styled-link">商品検索</a>へ
 <br>
 
-
+</div>
 </body>
 </html>

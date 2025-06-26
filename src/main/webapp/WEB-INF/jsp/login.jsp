@@ -6,14 +6,15 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/style.css">
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/admincss/style.css">
 </head>
-<body class="center"> 
+<body > 
+<div class="container">
 		<h1>ログインしてください。</h1><br />
 		<c:out value="${error}"/>
 		<br />
 		<form action='/brmy/login' method='POST'>
-			<table>
+			<table class ="info-table">
 				<tr>
 					<th>会員ID</th>
 					<td><input type='text' name='userId'/></td>
@@ -33,6 +34,6 @@
 
 			
 		</form>
-
+</div>
 </body>
 </html>
