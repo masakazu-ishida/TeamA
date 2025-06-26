@@ -8,7 +8,7 @@
 <title>商品検索</title>
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/style.css">
 </head>
-<body>
+<body class="center">
 <h1>商品の検索</h1>
 
 

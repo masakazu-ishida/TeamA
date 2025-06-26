@@ -8,7 +8,7 @@
 <title>Insert title here</title>
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/admincss/style.css">
 </head>
-<body>
+<body class="center">
 <div class="container">
 <h1>以下の注文をキャンセルしてよろしいですか？</h1>
 <form action="/brmy/DeletePurchaseCommitController" method="get">
