@@ -8,7 +8,7 @@
 <title>Insert title here</title>
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/style.css">
 </head>
-<body>
+<body class="center">
 <c:choose>
     <c:when test="${empty cart }">
         
