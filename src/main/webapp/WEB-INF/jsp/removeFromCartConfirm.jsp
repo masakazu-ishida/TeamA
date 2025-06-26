@@ -8,7 +8,7 @@
 <title>Insert title here</title>
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/style.css">
 </head>
-<body>
+<body class="center">
 
 		<h1>以下の商品をショッピングカートから削除してよろしいですか？</h1>
 		<br />

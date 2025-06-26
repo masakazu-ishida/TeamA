@@ -9,7 +9,7 @@
 <title>商品詳細</title>
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/style.css">
 </head>
-<body>
+<body class="center">
 
 <h3>商品の詳細表示</h3><br>
 <c:if test="${flg=='flg' }">すでにカートに存在します</c:if>
