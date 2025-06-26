@@ -14,7 +14,7 @@
 <form action="/brmy/DeletePurchaseCommitController" method="get">
 <table class ="info-table">
 <tr>
-	<th>購入者ID</th><td>${dto.purchaseId }</td>
+	<th>注文者ID</th><td>${dto.purchaseUser }</td>
 </tr>
 <tr>
 	<th>注文日</th><td>${dto.purchaseDate }</td>

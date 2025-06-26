@@ -14,13 +14,13 @@
 <table class ="styled-table">
 <thead>
 <tr>
-	<th>購入者ID</th><th>注文日</th><th>購入商品</th><th>配送先</th><th</th>
+	<th>注文者ID</th><th>注文日</th><th>購入商品</th><th>配送先</th><th</th>
 </tr>
 </thead>
 <c:forEach var="purchase" items="${purchas }">
 <c:if test="${purchase.cansel == false}">
 <tr>
-	<td>${purchase.purchaseId }</td><td>${purchase.purchaseDate }</td>
+	<td>${purchase.purchaseUser }</td><td>${purchase.purchaseDate }</td>
 	<td>
 		<table class ="styled-table">
 		<tr>
