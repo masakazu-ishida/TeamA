@@ -42,9 +42,9 @@ public class PurchaseConfirmController extends HttpServlet {
 		PurchaseConfirmService service = new PurchaseConfirmService();
 		List<ItemsInCartDTO> list = new ArrayList<>();
 		try {
-			//			list = service.cartItems(session.getAttribute("user").toString());
+			list = service.cartItems(session.getAttribute("user").toString());
 
-			list = service.cartItems("user");//後でsessionから取得したユーザー名に変更
+			//			list = service.cartItems("user");//後でsessionから取得したユーザー名に変更
 		} catch (Exception e) {
 			// TODO 自動生成された catch ブロック
 			e.printStackTrace();
