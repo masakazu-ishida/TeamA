@@ -1,0 +1,26 @@
+# === OS generated files ===
+.DS_Store
+Thumbs.db
+
+# === Build outputs ===
+*.class
+*.war
+*.jar
+*.ear
+bin/
+build/
+target/
+
+# === Eclipse Metadata & Servers ===
+.metadata/
+Servers/
+.settings/
+
+# === Build Tool templates (If you use Maven/Gradle) ===
+# MavenやGradleを使っている場合は、Eclipse用の設定ファイルも除外してOK
+.classpath
+.project
+
+# === Security (If any) ===
+# データベースの接続パスワードなどを別ファイルに切り出す場合は、それも除外
+# config/db-passwords.properties
