@@ -9,6 +9,7 @@ public class PurchasesDTO {
 
 	public int getPurchaseId() {
 		return purchaseId;
+
 	}
 
 	public void setPurchaseId(int purchaseId) {

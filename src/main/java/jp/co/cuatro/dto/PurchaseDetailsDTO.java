@@ -24,6 +24,7 @@ public class PurchaseDetailsDTO {
 
 	public int getItemId() {
 		return itemId;
+
 	}
 
 	public void setItemId(int itemId) {
