@@ -1,6 +1,7 @@
 package jp.co.cuatro.dto;
 
 public class CartDTO {
+	private String userId;
 	private String itemId;
 	private int amount;
 	private String bookedDate;
@@ -81,6 +82,14 @@ public class CartDTO {
 
 	public void setTotal(int total) {
 		this.total = total;
+	}
+
+	public String getUserId() {
+		return userId;
+	}
+
+	public void setUserId(String userId) {
+		this.userId = userId;
 	}
 
 }

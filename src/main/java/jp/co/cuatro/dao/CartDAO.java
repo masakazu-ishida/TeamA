@@ -24,7 +24,7 @@ public class CartDAO {
 	// 全件検索 
 	public List<CartDTO> findAll() throws SQLException {
 		//String sql = "SELECT name, color, manufacturer, price, amount, item_id FROM public.users";
-		String sql = "select name, color, manufacturer, price, amount, i.item_id from items i inner join items_in_cart ic on i.item_id = ic.item_id";
+		String sql = "select name, color, manufacturer, price, amount, i.item_id from items i inner join items_in_cart ic on i.item_id = ic.item_id WHERE ic.user_id = ?";
 		//結果を格納するListオブジェクトを用意
 		List<CartDTO> list = new ArrayList<>();
 		//データベースの接続と切断
@@ -45,6 +45,7 @@ public class CartDAO {
 				dto.setPrice(rs.getInt("price"));
 				dto.setAmount(rs.getInt("amount"));
 				dto.setItemId(rs.getString("item_id"));
+				dto.setUserId(rs.getString("user_id"));
 				//すべての列の値を設定した変数をListオブジェクトに格納
 				list.add(dto);
 			}
