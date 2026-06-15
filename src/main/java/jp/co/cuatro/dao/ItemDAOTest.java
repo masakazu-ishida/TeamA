@@ -58,6 +58,11 @@ class ItemDAOTest extends TestBase {
 					assertEquals("茶色", item.getColor());
 					assertEquals("(株)ストローハットジャパン", item.getManufacturer());
 					assertEquals(3480, item.getPrice());
+
+					String name3 = "aaaa";
+					itemsList = dao.findAll(categoryId, name3);
+					assertNotNull(itemsList);
+					assertEquals(0, itemsList.size());
 				}
 				if (categoryId == 2) {
 					String name1 = "";
@@ -79,6 +84,11 @@ class ItemDAOTest extends TestBase {
 					assertEquals("茶色", item.getColor());
 					assertEquals("日本鞄製造", item.getManufacturer());
 					assertEquals(780, item.getPrice());
+
+					String name3 = "aaaa";
+					itemsList = dao.findAll(categoryId, name3);
+					assertNotNull(itemsList);
+					assertEquals(0, itemsList.size());
 				}
 				if (categoryId == 3) {
 					String name1 = "";
@@ -100,6 +110,11 @@ class ItemDAOTest extends TestBase {
 					assertEquals("青色", item.getColor());
 					assertEquals("(株)ストローハットジャパン", item.getManufacturer());
 					assertEquals(4480, item.getPrice());
+
+					String name3 = "aaaa";
+					itemsList = dao.findAll(categoryId, name3);
+					assertNotNull(itemsList);
+					assertEquals(0, itemsList.size());
 				}
 			}
 		} catch (Exception e) {
