@@ -21,7 +21,7 @@
 			
 			<c:forEach items="${itemsList}" var="item">
        			<tr>
-            		<td><a href='itemDetail.html?${item.getItemId()}'><c:out value="${item.getItemName()}" /></a></td>
+            		<td><a href='/itemsDetail?itemId=${item.getItemId()}'><c:out value="${item.getItemName()}" /></a></td>
             		<td><c:out value="${item.getColor()}" /></a></td>
             		<td><c:out value="${item.getManufacturer()}" /></a></td>
             		<td><c:out value="${item.getPrice()}" /></a></td>
