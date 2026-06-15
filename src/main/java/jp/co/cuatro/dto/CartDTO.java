@@ -13,7 +13,7 @@ public class CartDTO {
 	//コンストラクタ、Getter、Setter
 
 	public CartDTO() {
-		// TODO 自動生成されたコンストラクター・スタブ
+
 	}
 
 	public CartDTO(String name, String color, String manufacturer, int price, int amount, String itemId, int total) {

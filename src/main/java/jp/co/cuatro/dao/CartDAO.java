@@ -10,7 +10,7 @@ import java.util.List;
 import jp.co.cuatro.dto.CartDTO;
 
 public class CartDAO {
-	//Connectionオブジェクトを格納するフィールド
+
 	private Connection con;
 
 	/**

@@ -49,7 +49,6 @@ class CartDAOTest extends TestBase {
 	@Test
 	void testFindAll() {
 
-		//JUnitテストでは引数はNULLでよい。
 		try (Connection conn = ConnectionUtil.getConnection(null)) {
 			CartDAO dao = new CartDAO(conn);
 			List<CartDTO> cartList = dao.findAll();
