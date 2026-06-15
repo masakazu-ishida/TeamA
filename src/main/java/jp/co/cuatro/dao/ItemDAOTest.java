@@ -44,6 +44,7 @@ class ItemDAOTest extends TestBase {
 					assertNotNull(itemsList);
 					assertEquals(11, itemsList.size());
 					ItemDTO item = itemsList.get(0);
+					assertEquals(1, item.getItemId());
 					assertEquals("麦わら帽子", item.getItemName());
 					assertEquals("黄色", item.getColor());
 					assertEquals("日本帽子製造", item.getManufacturer());
@@ -54,6 +55,7 @@ class ItemDAOTest extends TestBase {
 					assertNotNull(itemsList);
 					assertEquals(3, itemsList.size());
 					item = itemsList.get(0);
+					assertEquals(2, item.getItemId());
 					assertEquals("ストローハット", item.getItemName());
 					assertEquals("茶色", item.getColor());
 					assertEquals("(株)ストローハットジャパン", item.getManufacturer());
@@ -70,6 +72,7 @@ class ItemDAOTest extends TestBase {
 					assertNotNull(itemsList);
 					assertEquals(9, itemsList.size());
 					ItemDTO item = itemsList.get(0);
+					assertEquals(12, item.getItemId());
 					assertEquals("鞄A", item.getItemName());
 					assertEquals("青色", item.getColor());
 					assertEquals("東京鞄店", item.getManufacturer());
@@ -80,6 +83,7 @@ class ItemDAOTest extends TestBase {
 					assertNotNull(itemsList);
 					assertEquals(1, itemsList.size());
 					item = itemsList.get(0);
+					assertEquals(16, item.getItemId());
 					assertEquals("鞄H", item.getItemName());
 					assertEquals("茶色", item.getColor());
 					assertEquals("日本鞄製造", item.getManufacturer());
@@ -96,6 +100,7 @@ class ItemDAOTest extends TestBase {
 					assertNotNull(itemsList);
 					assertEquals(20, itemsList.size());
 					ItemDTO item = itemsList.get(11);
+					assertEquals(12, item.getItemId());
 					assertEquals("鞄A", item.getItemName());
 					assertEquals("青色", item.getColor());
 					assertEquals("東京鞄店", item.getManufacturer());
@@ -106,6 +111,7 @@ class ItemDAOTest extends TestBase {
 					assertNotNull(itemsList);
 					assertEquals(3, itemsList.size());
 					item = itemsList.get(0);
+					assertEquals(4, item.getItemId());
 					assertEquals("ストローハット PART2", item.getItemName());
 					assertEquals("青色", item.getColor());
 					assertEquals("(株)ストローハットジャパン", item.getManufacturer());

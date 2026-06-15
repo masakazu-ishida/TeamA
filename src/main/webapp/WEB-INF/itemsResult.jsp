@@ -17,14 +17,18 @@
 				<th>メーカー名</th>
 				<th>価格</th>
 			</tr>
+			<form action="itemsDetailResult.jsp" method="get">
+			
 			<c:forEach items="${itemsList}" var="item">
        			<tr>
-            		<td><a href='itemDetail.html?itemId=123'><c:out value="${item.getItemName()}" /></a></td>
-            		<td><a href='itemDetail.html?itemId=123'><c:out value="${item.getColor()}" /></a></td>
-            		<td><a href='itemDetail.html?itemId=123'><c:out value="${item.getManufacturer()}" /></a></td>
-            		<td><a href='itemDetail.html?itemId=123'><c:out value="${item.getPrice()}" /></a></td>    
+            		<td><a href='itemDetail.html?${item.getItemId()}'><c:out value="${item.getItemName()}" /></a></td>
+            		<td><c:out value="${item.getColor()}" /></a></td>
+            		<td><c:out value="${item.getManufacturer()}" /></a></td>
+            		<td><c:out value="${item.getPrice()}" /></a></td>
         		</tr>
     		</c:forEach>
+			</form>
+			
 		</table>
 <br><a href='main.jsp'>商品検索</a>へ
 </body>

@@ -43,7 +43,6 @@ public class ItemsSerchController extends HttpServlet {
 		List<ItemDTO> itemsList = itemSerch.execute(categoryId, name);
 
 		request.setAttribute("itemsList", itemsList);
-		request.setAttribute("itemsList", itemsList);
 
 		String path = "/itemsResult.jsp";
 		RequestDispatcher rd = request.getRequestDispatcher(path);
