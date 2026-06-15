@@ -30,6 +30,7 @@ public class PurchaseDetailsDAOTest {
 		public void setUp() throws Exception {
 			String sqlFilePath = "/init_data.sql";
 			super.initSQLFiles(sqlFilePath);
+
 		}
 
 		/**

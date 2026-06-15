@@ -7,5 +7,6 @@ public class PurchasesDAO {
 
 	public PurchasesDAO(Connection con) {
 		this.con = con;
+
 	}
 }
