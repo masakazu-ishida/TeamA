@@ -4,6 +4,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 import java.sql.Connection;
 import java.sql.SQLException;
+import java.time.LocalDate;
 import java.util.List;
 
 import org.junit.jupiter.api.AfterAll;
@@ -51,18 +52,20 @@ class CartDAOTest extends TestBase {
 
 		try (Connection conn = ConnectionUtil.getConnection(null)) {
 			CartDAO dao = new CartDAO(conn);
-			List<CartDTO> cartList = dao.findAll();
+			List<CartDTO> cartList = dao.findByUserId("user1");
 
 			assertNotNull(cartList);
 			assertEquals(1, cartList.size());
 
 			for (CartDTO cart : cartList) {
-				assertEquals("麦わら帽子", cart.getName());
-				assertEquals("黄色", cart.getColor());
-				assertEquals("日本帽子製造", cart.getManufacturer());
-				assertEquals(4980, cart.getPrice());
+				assertEquals("麦わら帽子", cart.getItem().getItemName());
+				assertEquals("黄色", cart.getItem().getColor());
+				assertEquals("日本帽子製造", cart.getItem().getManufacturer());
+				assertEquals(4980, cart.getItem().getPrice());
 				assertEquals(1, cart.getAmount());
 				assertEquals("1", cart.getItemId());
+				assertEquals("user1", cart.getUserId());
+				assertEquals(LocalDate.of(2026, 6, 15), cart.getBookedDate());
 				//先頭だけDTOの中身をチェック
 				break;
 			}

@@ -1,14 +1,13 @@
 package jp.co.cuatro.dto;
 
+import java.time.LocalDate;
+
 public class CartDTO {
 	private String userId;
 	private String itemId;
 	private int amount;
-	private String bookedDate;
-	private String name;
-	private String manufacturer;
-	private String color;
-	private int price;
+	private LocalDate bookedDate;
+	private ItemDTO Item;
 	private int total;
 
 	//コンストラクタ、Getter、Setter
@@ -17,15 +16,22 @@ public class CartDTO {
 
 	}
 
-	public CartDTO(String name, String color, String manufacturer, int price, int amount, String itemId, int total) {
+	public CartDTO(String userId, String itemId, int amount, LocalDate bookedDate, int total, ItemDTO Item) {
 		// TODO 自動生成されたコンストラクター・スタブ
-		this.name = name;
-		this.color = color;
-		this.manufacturer = manufacturer;
-		this.price = price;
-		this.amount = amount;
+		this.userId = userId;
 		this.itemId = itemId;
+		this.amount = amount;
+		this.bookedDate = bookedDate;
 		this.total = total;
+		this.Item = Item;
+	}
+
+	public String getUserId() {
+		return userId;
+	}
+
+	public void setUserId(String userId) {
+		this.userId = userId;
 	}
 
 	public String getItemId() {
@@ -44,36 +50,20 @@ public class CartDTO {
 		this.amount = amount;
 	}
 
-	public String getName() {
-		return name;
+	public LocalDate getBookedDate() {
+		return bookedDate;
 	}
 
-	public void setName(String name) {
-		this.name = name;
+	public void setBookedDate(LocalDate bookedDate) {
+		this.bookedDate = bookedDate;
 	}
 
-	public String getManufacturer() {
-		return manufacturer;
+	public ItemDTO getItem() {
+		return Item;
 	}
 
-	public void setManufacturer(String manufacturer) {
-		this.manufacturer = manufacturer;
-	}
-
-	public String getColor() {
-		return color;
-	}
-
-	public void setColor(String color) {
-		this.color = color;
-	}
-
-	public int getPrice() {
-		return price;
-	}
-
-	public void setPrice(int price) {
-		this.price = price;
+	public void setItem(ItemDTO item) {
+		Item = item;
 	}
 
 	public int getTotal() {
@@ -82,14 +72,6 @@ public class CartDTO {
 
 	public void setTotal(int total) {
 		this.total = total;
-	}
-
-	public String getUserId() {
-		return userId;
-	}
-
-	public void setUserId(String userId) {
-		this.userId = userId;
 	}
 
 }
