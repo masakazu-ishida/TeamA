@@ -136,3 +136,7 @@ ALTER TABLE items  ALTER COLUMN "item_id" SET DEFAULT nextval('SEQ_ITEMS_ITEMID'
 ALTER TABLE purchases ALTER COLUMN "purchase_id" SET DEFAULT nextval('SEQ_PURCHASE_ID');
 ALTER TABLE purchase_details ALTER COLUMN "purchase_detail_id" SET DEFAULT nextval('SEQ_PUR_DETAIL_ID');
 
+INSERT INTO public.items_in_cart(
+	user_id, item_id, amount, booked_date)
+	VALUES ('user1', 1, 1, '2026-06-15 11:00:00');
+
