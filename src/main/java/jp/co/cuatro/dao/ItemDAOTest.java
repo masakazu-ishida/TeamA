@@ -40,7 +40,7 @@ class ItemDAOTest extends TestBase {
 			for (int categoryId = 1; categoryId < 4; categoryId++) {
 				if (categoryId == 1) {
 					String name1 = "";
-					List<ItemDTO> itemsList = dao.findAll(categoryId, name1);
+					List<ItemDTO> itemsList = dao.findByCondition(categoryId, name1);
 					assertNotNull(itemsList);
 					assertEquals(11, itemsList.size());
 					ItemDTO item = itemsList.get(0);
@@ -51,7 +51,7 @@ class ItemDAOTest extends TestBase {
 					assertEquals(4980, item.getPrice());
 
 					String name2 = "ストロー";
-					itemsList = dao.findAll(categoryId, name2);
+					itemsList = dao.findByCondition(categoryId, name2);
 					assertNotNull(itemsList);
 					assertEquals(3, itemsList.size());
 					item = itemsList.get(0);
@@ -62,13 +62,13 @@ class ItemDAOTest extends TestBase {
 					assertEquals(3480, item.getPrice());
 
 					String name3 = "aaaa";
-					itemsList = dao.findAll(categoryId, name3);
+					itemsList = dao.findByCondition(categoryId, name3);
 					assertNotNull(itemsList);
 					assertEquals(0, itemsList.size());
 				}
 				if (categoryId == 2) {
 					String name1 = "";
-					List<ItemDTO> itemsList = dao.findAll(categoryId, name1);
+					List<ItemDTO> itemsList = dao.findByCondition(categoryId, name1);
 					assertNotNull(itemsList);
 					assertEquals(9, itemsList.size());
 					ItemDTO item = itemsList.get(0);
@@ -79,7 +79,7 @@ class ItemDAOTest extends TestBase {
 					assertEquals(1980, item.getPrice());
 
 					String name2 = "H";
-					itemsList = dao.findAll(categoryId, name2);
+					itemsList = dao.findByCondition(categoryId, name2);
 					assertNotNull(itemsList);
 					assertEquals(1, itemsList.size());
 					item = itemsList.get(0);
@@ -90,13 +90,13 @@ class ItemDAOTest extends TestBase {
 					assertEquals(780, item.getPrice());
 
 					String name3 = "aaaa";
-					itemsList = dao.findAll(categoryId, name3);
+					itemsList = dao.findByCondition(categoryId, name3);
 					assertNotNull(itemsList);
 					assertEquals(0, itemsList.size());
 				}
 				if (categoryId == 3) {
 					String name1 = "";
-					List<ItemDTO> itemsList = dao.findAll(categoryId, name1);
+					List<ItemDTO> itemsList = dao.findByCondition(categoryId, name1);
 					assertNotNull(itemsList);
 					assertEquals(20, itemsList.size());
 					ItemDTO item = itemsList.get(11);
@@ -107,7 +107,7 @@ class ItemDAOTest extends TestBase {
 					assertEquals(1980, item.getPrice());
 
 					String name2 = "A";
-					itemsList = dao.findAll(categoryId, name2);
+					itemsList = dao.findByCondition(categoryId, name2);
 					assertNotNull(itemsList);
 					assertEquals(3, itemsList.size());
 					item = itemsList.get(0);
@@ -118,7 +118,7 @@ class ItemDAOTest extends TestBase {
 					assertEquals(4480, item.getPrice());
 
 					String name3 = "aaaa";
-					itemsList = dao.findAll(categoryId, name3);
+					itemsList = dao.findByCondition(categoryId, name3);
 					assertNotNull(itemsList);
 					assertEquals(0, itemsList.size());
 				}

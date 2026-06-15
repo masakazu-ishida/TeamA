@@ -16,7 +16,7 @@ public class ItemDAO {
 		this.conn = conn;
 	}
 
-	public List<ItemDTO> findAll(int categoryId, String name) throws SQLException {
+	public List<ItemDTO> findByCondition(int categoryId, String name) throws SQLException {
 		String sql = null;
 
 		if (categoryId == 3) {
@@ -65,7 +65,7 @@ public class ItemDAO {
 		return itemsList;
 	}
 
-	public List<ItemDTO> findInDetail(int itemId) throws SQLException {
+	public List<ItemDTO> findById(int itemId) throws SQLException {
 		String sql = "SELECT name, color, manufacturer, price, stock FROM items where item_id = ?;";
 		List<ItemDTO> itemsDetailList = new ArrayList<>();
 		try (PreparedStatement ps = conn.prepareStatement(sql)) {
