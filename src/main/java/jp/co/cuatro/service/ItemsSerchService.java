@@ -17,7 +17,7 @@ public class ItemsSerchService {
 
 			ItemDAO dao = new ItemDAO(conn);
 
-			List<ItemDTO> itemsList = dao.findAll(categoryId, name);
+			List<ItemDTO> itemsList = dao.findByCondition(categoryId, name);
 
 			return itemsList;
 
