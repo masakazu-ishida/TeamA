@@ -33,7 +33,7 @@ public class ItemDAO {
 			}
 		}
 
-		List<ItemDTO> itemsList = new ArrayList<>();
+		List<ItemDTO> List = new ArrayList<>();
 
 		try (PreparedStatement ps = conn.prepareStatement(sql)) {
 
@@ -51,40 +51,42 @@ public class ItemDAO {
 			}
 
 			try (ResultSet rs = ps.executeQuery()) {
-				while (rs.next()) {
-					ItemDTO item = new ItemDTO();
-					item.setItemId(rs.getInt("item_id"));
-					item.setItemName(rs.getString("name"));
-					item.setColor(rs.getString("color"));
-					item.setManufacturer(rs.getString("manufacturer"));
-					item.setPrice(rs.getInt("price"));
-					itemsList.add(item);
-				}
+				List = mapRow(rs);
+				return List;
 			}
 		}
-		return itemsList;
+
 	}
 
 	public List<ItemDTO> findById(int itemId) throws SQLException {
 		String sql = "SELECT name, color, manufacturer, price, stock FROM items where item_id = ?;";
-		List<ItemDTO> itemsDetailList = new ArrayList<>();
+		List<ItemDTO> List = new ArrayList<>();
 		try (PreparedStatement ps = conn.prepareStatement(sql)) {
 			ps.setInt(1, itemId);
 
 			ResultSet rs = ps.executeQuery();
 
-			while (rs.next()) {
-				ItemDTO item = new ItemDTO();
-				item.setItemName(rs.getString("name"));
-				item.setColor(rs.getString("color"));
-				item.setManufacturer(rs.getString("manufacturer"));
-				item.setPrice(rs.getInt("price"));
-				item.setStock(rs.getInt("stock"));
-				itemsDetailList.add(item);
-			}
+			List = mapRow(rs);
+			return List;
 		}
-		return itemsDetailList;
 
 	}
 
+	private List<ItemDTO> mapRow(ResultSet rs) throws SQLException {
+		List<ItemDTO> List = new ArrayList<>();
+		while (rs.next())
+
+		{
+			ItemDTO item = new ItemDTO();
+			item.setItemId(rs.getInt("item_id"));
+			item.setItemName(rs.getString("name"));
+			item.setColor(rs.getString("color"));
+			item.setManufacturer(rs.getString("manufacturer"));
+			item.setPrice(rs.getInt("price"));
+			item.setStock(rs.getInt("stock"));
+			List.add(item);
+		}
+		return List;
+
+	}
 }
