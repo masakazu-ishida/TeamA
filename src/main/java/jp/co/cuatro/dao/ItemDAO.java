@@ -21,19 +21,19 @@ public class ItemDAO {
 
 		if (categoryId == 3) {
 			if (name == null || name.isEmpty()) {
-				sql = "select item_id, name, color, manufacturer, price from items;";
+				sql = "select item_id, name, color, manufacturer, price, stock from items;";
 			} else {
-				sql = "select item_id, name, color, manufacturer, price from items where name like ?;";
+				sql = "select item_id, name, color, manufacturer, price, stock from items where name like ?;";
 			}
 		} else {
 			if (name == null || name.isEmpty()) {
-				sql = "select item_id, name, color, manufacturer, price from items where category_id = ?;";
+				sql = "select item_id, name, color, manufacturer, price, stock from items where category_id = ?;";
 			} else {
-				sql = "select item_id, name, color, manufacturer, price from items where category_id = ? and name like ?;";
+				sql = "select item_id, name, color, manufacturer, price, stock from items where category_id = ? and name like ?;";
 			}
 		}
 
-		List<ItemDTO> List = new ArrayList<>();
+		List<ItemDTO> itemsList = new ArrayList<>();
 
 		try (PreparedStatement ps = conn.prepareStatement(sql)) {
 
@@ -51,24 +51,26 @@ public class ItemDAO {
 			}
 
 			try (ResultSet rs = ps.executeQuery()) {
-				List = mapRow(rs);
-				return List;
+				itemsList = mapRow(rs);
+
 			}
+			return itemsList;
 		}
 
 	}
 
 	public List<ItemDTO> findById(int itemId) throws SQLException {
 		String sql = "SELECT name, color, manufacturer, price, stock FROM items where item_id = ?;";
-		List<ItemDTO> List = new ArrayList<>();
+		List<ItemDTO> itemsDetailList = new ArrayList<>();
 		try (PreparedStatement ps = conn.prepareStatement(sql)) {
 			ps.setInt(1, itemId);
 
 			ResultSet rs = ps.executeQuery();
 
-			List = mapRow(rs);
-			return List;
+			itemsDetailList = mapRow(rs);
+
 		}
+		return itemsDetailList;
 
 	}
 

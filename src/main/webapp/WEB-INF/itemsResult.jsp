@@ -10,7 +10,7 @@
 <body>
 <h3>キーワード "<%= request.getParameter("keyword") %>" カテゴリ "<%= request.getParameter("cnumber") %>" の検索結果</h3>
 		<br />
-		<table border="1">
+		<table>
 			<tr>
 				<th>商品名</th>
 				<th>商品の色</th>
