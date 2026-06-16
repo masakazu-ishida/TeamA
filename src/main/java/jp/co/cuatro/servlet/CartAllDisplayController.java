@@ -51,7 +51,7 @@ public class CartAllDisplayController extends HttpServlet {
 				List<CartDTO> cartList = cartDisplay.execute(userId);
 				request.setAttribute("cartList", cartList);
 
-				String path = "/cartAll.jsp";
+				String path = "/WEB-INF/cartAll.jsp";
 				RequestDispatcher rd = request.getRequestDispatcher(path);
 				rd.forward(request, response);
 
