@@ -90,7 +90,8 @@ class CartDAOTest extends TestBase {
 			CartDAO dao = new CartDAO(conn);
 			List<CartDTO> cartList = dao.findByUserId("999999ABVS?(%#$");
 
-			assertNull(cartList);
+			assertNotNull(cartList);
+			assertEquals(0, cartList.size());
 
 		} catch (Exception e) {
 			e.printStackTrace();
