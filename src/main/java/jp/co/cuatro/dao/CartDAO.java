@@ -47,9 +47,10 @@ public class CartDAO {
 				itemDto.setColor(rs.getString("color"));
 				itemDto.setManufacturer(rs.getString("manufacturer"));
 				itemDto.setPrice(rs.getInt("price"));
+				itemDto.setItemId(rs.getInt("item_id"));
 
 				cartDto.setAmount(rs.getInt("amount"));
-				cartDto.setItemId(rs.getString("item_id"));
+				cartDto.setItemId(rs.getInt("item_id"));
 				cartDto.setUserId(rs.getString("user_id"));
 				cartDto.setItem(itemDto);
 				cartDto.setBookedDate(rs.getObject("booked_date", LocalDate.class));

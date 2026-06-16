@@ -66,7 +66,8 @@ class CartDAOTest extends TestBase {
 				assertEquals("日本帽子製造", cart.getItem().getManufacturer());
 				assertEquals(4980, cart.getItem().getPrice());
 				assertEquals(1, cart.getAmount());
-				assertEquals("1", cart.getItemId());
+				assertEquals(1, cart.getItemId());
+				assertEquals(1, cart.getItem().getItemId());
 				assertEquals("user1", cart.getUserId());
 				assertEquals(LocalDate.of(2026, 6, 15), cart.getBookedDate());
 				//先頭だけDTOの中身をチェック

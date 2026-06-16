@@ -4,7 +4,7 @@ import java.time.LocalDate;
 
 public class CartDTO {
 	private String userId;
-	private String itemId;
+	private int itemId;
 	private int amount;
 	private LocalDate bookedDate;
 	private ItemDTO Item;
@@ -16,7 +16,7 @@ public class CartDTO {
 
 	}
 
-	public CartDTO(String userId, String itemId, int amount, LocalDate bookedDate, int total, ItemDTO Item) {
+	public CartDTO(String userId, int itemId, int amount, LocalDate bookedDate, int total, ItemDTO Item) {
 		// TODO 自動生成されたコンストラクター・スタブ
 		this.userId = userId;
 		this.itemId = itemId;
@@ -34,11 +34,11 @@ public class CartDTO {
 		this.userId = userId;
 	}
 
-	public String getItemId() {
+	public int getItemId() {
 		return itemId;
 	}
 
-	public void setItemId(String itemId) {
+	public void setItemId(int itemId) {
 		this.itemId = itemId;
 	}
 
