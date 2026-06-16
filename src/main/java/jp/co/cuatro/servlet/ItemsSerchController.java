@@ -24,13 +24,13 @@ public class ItemsSerchController extends HttpServlet {
 	 * @see HttpServlet#HttpServlet()
 	 */
 	public ItemsSerchController() {
-		super();
 		// TODO Auto-generated constructor stub
 	}
 
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
+	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		request.setCharacterEncoding("UTF-8");
@@ -46,7 +46,7 @@ public class ItemsSerchController extends HttpServlet {
 		request.setAttribute("name", name);
 		request.setAttribute("itemsList", itemsList);
 
-		String path = "/itemsResult.jsp";
+		String path = "/WEB-INF/itemsResult.jsp";
 		RequestDispatcher rd = request.getRequestDispatcher(path);
 		rd.forward(request, response);
 	}
@@ -54,6 +54,7 @@ public class ItemsSerchController extends HttpServlet {
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
+	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		// TODO Auto-generated method stub
