@@ -55,26 +55,26 @@ public class LoginController extends HttpServlet {
 			LoginService service = new LoginService();
 			UsersDTO user = service.execute(userId, password);
 
-			if (user != null) {
+			if (user != null) { // ログイン情報がある場合
 				HttpSession session = request.getSession(true);
 				session.setAttribute("loginUser", user);
 
-				if (path == null || path.isEmpty()) {
+				if (path == null || path.isEmpty()) { // 遷移元が無く、直接ログインjspが起動されたとき
 					response.sendRedirect(request.getContextPath() + "/main");
 
-				} else if (path.equals("/main")) {
+				} else if (path.equals("/main")) { // メイン画面からログインを押されたとき
 					response.sendRedirect(request.getContextPath() + "/main");
 
-				} else if (path.equals("/cart/add")) {
+				} else if (path.equals("/cartAdd")) { // 商品詳細画面からカートに追加しようとしたときに未ログインで遷移してきたとき
 
-					String redirectUrl = request.getContextPath() + "/cart/add?itemId=" + itemId + "&amount=" + amount;
+					String redirectUrl = request.getContextPath() + "/cartAdd?itemId=" + itemId + "&amount=" + amount;
 					response.sendRedirect(redirectUrl);
 
-				} else {
+				} else { // その他の場合はメイン画面に遷移
 					response.sendRedirect(request.getContextPath() + "/main");
 				}
 
-			} else {
+			} else { // ログイン情報がDBと一致しなかった場合
 				request.setAttribute("errorMessage", "ユーザID・パスワードが間違っています");
 
 				request.setAttribute("src", path);
