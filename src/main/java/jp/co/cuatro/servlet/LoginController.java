@@ -70,7 +70,7 @@ public class LoginController extends HttpServlet {
 					String redirectUrl = request.getContextPath() + "/cartAdd?itemId=" + itemId + "&amount=" + amount;
 					response.sendRedirect(redirectUrl);
 
-				} else { // その他の場合はメイン画面に遷移
+				} else { // その他の場合はメイン画面に遷移　エラー
 					response.sendRedirect(request.getContextPath() + "/main");
 				}
 

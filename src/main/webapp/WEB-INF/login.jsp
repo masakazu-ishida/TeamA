@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="jakarta.tags.core" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 	<head>
@@ -12,6 +12,12 @@
 		<h3>ログインしてください。</h3>
 		<br />
 		<form action="${pageContext.request.contextPath}/login" method="POST">
+		
+			<!-- 遷移元によって引き渡しが必要なデータ -->
+			<input type="hidden" name="src" value="${src}" />
+			<input type="hidden" name="itemId" value="${itemId}" />
+			<input type="hidden" name="amount" value="${amount}" />
+			
 			<table>
 				<tr>
 					<th>会員ID</th>

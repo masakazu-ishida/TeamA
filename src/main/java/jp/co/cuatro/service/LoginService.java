@@ -18,6 +18,7 @@ public class LoginService {
 
 			if (user != null) {
 
+				// パスワードが違う場合nullを返す
 				if (!password.equals(user.getPassword())) {
 					user = null;
 				}

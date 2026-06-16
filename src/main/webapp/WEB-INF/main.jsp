@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="jakarta.tags.core" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 
 <html>
@@ -15,10 +15,10 @@
 		<br />
 		<form action='${pageContext.request.contextPath}/ItemsSerch' method='GET'>
 			キーワード<br />
-			<input type='text' name='keyword' /><br />
+			<input type='text' name="name" /><br />
 			カテゴリ<br />
-			<select name='cnumber'>
-				<option selected value=1'>すべて</option>
+			<select name="categoryId">
+				<option selected value='1'>すべて</option>
 				<option value='2'>帽子</option>
 				<option value='3'>鞄</option>
 			</select><br/>
