@@ -47,8 +47,11 @@ class CartDAOTest extends TestBase {
 		}
 	}
 
+	/**
+	 * 主キーが存在する場合のテスト
+	 */
 	@Test
-	void testFindAll() {
+	void testFindByUserId1() {
 
 		try (Connection conn = ConnectionUtil.getConnection(null)) {
 			CartDAO dao = new CartDAO(conn);
@@ -75,6 +78,24 @@ class CartDAOTest extends TestBase {
 			fail(e);
 		}
 
+	}
+
+	/**
+	 * 主キーが存在しない場合のテスト
+	 */
+	@Test
+	void testFindByUserId2() {
+		//JUnitテストでは引数はNULLでよい。
+		try (Connection conn = ConnectionUtil.getConnection(null)) {
+			CartDAO dao = new CartDAO(conn);
+			List<CartDTO> cartList = dao.findByUserId("999999ABVS?(%#$");
+
+			assertNull(cartList);
+
+		} catch (Exception e) {
+			e.printStackTrace();
+			fail(e);
+		}
 	}
 
 }
