@@ -18,7 +18,7 @@ class ItemsSerchServiceTest extends TestBase {
 	}
 
 	@Test
-	void testFindAll() throws Exception {
+	void testFindByCondition() throws Exception {
 
 		ItemsSerchService item = new ItemsSerchService();
 
