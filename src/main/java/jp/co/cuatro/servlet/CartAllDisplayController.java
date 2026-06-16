@@ -49,7 +49,14 @@ public class CartAllDisplayController extends HttpServlet {
 
 				CartAllService cartDisplay = new CartAllService();
 				List<CartDTO> cartList = cartDisplay.execute(userId);
+
+				int grandTotal = 0;
+				for (CartDTO c : cartList) {
+					grandTotal += c.getTotal();
+				}
+
 				request.setAttribute("cartList", cartList);
+				request.setAttribute("grandTotal", grandTotal);
 
 				String path = "/WEB-INF/cartAll.jsp";
 				RequestDispatcher rd = request.getRequestDispatcher(path);
