@@ -32,8 +32,6 @@ class CartAllServiceTest extends TestBase {
 
 			assertNotNull(cartList);
 
-			cartList = svc.execute("user1");
-
 			assertEquals(1, cartList.size());
 
 			//1件目のデータを取り出して合計計算結果をチェック
