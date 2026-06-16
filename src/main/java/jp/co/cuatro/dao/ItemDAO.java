@@ -21,15 +21,15 @@ public class ItemDAO {
 
 		if (categoryId == 3) {
 			if (name == null || name.isEmpty()) {
-				sql = "select item_id, name, color, manufacturer, price, stock from items;";
+				sql = "select item_id, name, color, manufacturer, price, stock, recommended from items;";
 			} else {
-				sql = "select item_id, name, color, manufacturer, price, stock from items where name like ?;";
+				sql = "select item_id, name, color, manufacturer, price, stock, recommended from items where name like ?;";
 			}
 		} else {
 			if (name == null || name.isEmpty()) {
-				sql = "select item_id, name, color, manufacturer, price, stock from items where category_id = ?;";
+				sql = "select item_id, name, color, manufacturer, price, stock, recommended from items where category_id = ?;";
 			} else {
-				sql = "select item_id, name, color, manufacturer, price, stock from items where category_id = ? and name like ?;";
+				sql = "select item_id, name, color, manufacturer, price, stock, recommended from items where category_id = ? and name like ?;";
 			}
 		}
 
@@ -86,6 +86,7 @@ public class ItemDAO {
 			item.setManufacturer(rs.getString("manufacturer"));
 			item.setPrice(rs.getInt("price"));
 			item.setStock(rs.getInt("stock"));
+			item.isRecommended();
 			List.add(item);
 		}
 		return List;

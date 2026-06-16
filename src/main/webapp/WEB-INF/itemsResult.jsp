@@ -8,7 +8,7 @@
 <title>検索結果</title>
 </head>
 <body>
-<h3>キーワード "<c:out value="${param.keyword}" />" カテゴリ "<c:out value="${param.cnumber}" />" の検索結果</h3>
+<h3>キーワード "<c:out value="" />" カテゴリ "<c:out value="" />" の検索結果</h3>
 <br />
 <table border="1">
     <tr>

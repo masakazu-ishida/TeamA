@@ -42,6 +42,8 @@ public class ItemsSerchController extends HttpServlet {
 
 		List<ItemDTO> itemsList = itemSerch.execute(categoryId, name);
 
+		request.setAttribute("categoryId", categoryId);
+		request.setAttribute("name", name);
 		request.setAttribute("itemsList", itemsList);
 
 		String path = "/itemsResult.jsp";

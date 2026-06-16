@@ -13,12 +13,6 @@ public class ItemDTO {
 	public ItemDTO() {
 	}
 
-	public ItemDTO(int categoryId, String itemName) {
-		this.categoryId = categoryId;
-		this.itemName = itemName;
-
-	}
-
 	public String getManufacturer() {
 		return manufacturer;
 	}
