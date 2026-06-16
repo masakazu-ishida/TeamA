@@ -8,6 +8,8 @@
 </head>
 <body>
 
-	<p>エラーが発生</p>
+	<p>エラーが発生しました</p>
+	<a href='main.jsp'>メイン画面</a>へ<br/>
+	<a href='login.jsp'>ログイン画面</a>へ<br/>
 </body>
 </html>
