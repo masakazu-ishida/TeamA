@@ -36,8 +36,6 @@ public class CartAllDisplayController extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
-		request.setCharacterEncoding("UTF-8");
-
 		try {
 			HttpSession session = request.getSession(false);
 
@@ -63,7 +61,9 @@ public class CartAllDisplayController extends HttpServlet {
 				rd.forward(request, response);
 
 			} else {
-				response.sendRedirect(request.getContextPath() + "/login");
+				request.setAttribute("src", "/cartDisplay");
+				RequestDispatcher rd = request.getRequestDispatcher("/login");
+				rd.forward(request, response);
 			}
 		} catch (Exception e) {
 
