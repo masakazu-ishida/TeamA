@@ -10,7 +10,11 @@
 		<link rel='stylesheet' type='text/css' href='style.css' />
 	</head>
 	<body>
-		<h2>ようこそ！${sessionScope.loginUser.name}さん</h2>
+		<%-- ログイン済の場合（セッションのloginUserが存在するとき） --%>
+		<c:if test="${not empty sessionScope.loginUser}">
+			<h2>ようこそ！${sessionScope.loginUser.name}さん</h2>
+		</c:if>
+		
 		<h3>商品の検索を行います。</h3>
 		<br />
 		<form action='${pageContext.request.contextPath}/ItemsSerch' method='GET'>
@@ -24,7 +28,7 @@
 			</select><br/>
 			<input type='submit' value='検索' /><br/>
 		</form>
-		<a href='cartAll.jsp'>ショッピングカートを見る</a><br/><br/>
+		<a href='/cartDisplay'>ショッピングカートを見る</a><br/><br/>
 		<c:choose>
 			<%-- 未ログインの場合（セッションのloginUserが空のとき） --%>
 			<c:when test="${empty sessionScope.loginUser}">
