@@ -13,23 +13,23 @@
 		<table>
         <tr>
 				<th>商品名</th>
-				<td>${itemsDetailList.itemName}</td>
+				<td>${itemsDetail.itemName}</td>
 			</tr>
 			<tr>
 				<th>商品の色</th>
-				<td>${itemsDetailList.color}</td>
+				<td>${itemsDetail.color}</td>
 			</tr>
 			<tr>
 				<th>メーカー名</th>
-				<td>${itemsDetailList.manufacturer}</td>
+				<td>${itemsDetail.manufacturer}</td>
 			</tr>
 			<tr>
 				<th>価格</th>
-				<td>${itemsDetailList.price}</td>
+				<td>${itemsDetail.price}</td>
 			</tr>
 			<tr>
 				<th>在庫数</th>
-				<td>${itemsDetailList.stock}</td>
+				<td>${itemsDetail.stock}</td>
 			</tr>
 		</table>
 		<form action='/TeamA/jp.co.cuatro/servlet/cartAll' method='POST'>
@@ -41,7 +41,7 @@
 				<option value='4'>4</option>
 				<option value='5'>5</option>
 			</select><br />
-			<input type='hidden' name='itemId' value='${itemsDetailList.itemId}' />
+			<input type='hidden' name='itemId' value='${itemsDetail.itemId}' />
 			<input type='submit' value='ショッピングカートに入れる' /><br />
 		</form>
 		<a href='main.jsp'>商品検索</a>へ<br />

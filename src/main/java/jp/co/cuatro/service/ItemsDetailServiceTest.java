@@ -2,8 +2,6 @@ package jp.co.cuatro.service;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-import java.util.List;
-
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -23,13 +21,10 @@ class ItemsDetailServiceTest extends TestBase {
 
 		ItemsDetailService item = new ItemsDetailService();
 
-		List<ItemDTO> itemsList = item.execute(1);
-		assertNotNull(itemsList);
-		assertEquals(1, itemsList.size());
-
-		itemsList = item.execute(10);
-		assertNotNull(itemsList);
-		assertEquals(1, itemsList.size());
+		ItemDTO items = item.execute(1);
+		assertNotNull(items);
+		items = item.execute(10);
+		assertNotNull(items);
 
 	}
 
@@ -37,9 +32,8 @@ class ItemsDetailServiceTest extends TestBase {
 
 		ItemsDetailService item = new ItemsDetailService();
 
-		List<ItemDTO> itemsList = item.execute(0);
-		assertNotNull(itemsList);
-		assertEquals(0, itemsList.size());
+		ItemDTO items = item.execute(0);
+		assertNotNull(items);
 
 	}
 }

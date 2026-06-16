@@ -134,15 +134,13 @@ class ItemDAOTest extends TestBase {
 		try (Connection conn = ConnectionUtil.getConnection(null)) {
 			ItemDAO dao = new ItemDAO(conn);
 			int itemId = 1;
-			List<ItemDTO> itemsDetailList = dao.findById(itemId);
-			assertNotNull(itemsDetailList);
-			assertEquals(1, itemsDetailList.size());
-			ItemDTO item = itemsDetailList.get(0);
-			assertEquals("麦わら帽子", item.getItemName());
-			assertEquals("黄色", item.getColor());
-			assertEquals("日本帽子製造", item.getManufacturer());
-			assertEquals(4980, item.getPrice());
-			assertEquals(12, item.getStock());
+			ItemDTO itemsDetail = dao.findById(itemId);
+			assertNotNull(itemsDetail);
+			assertEquals("麦わら帽子", itemsDetail.getItemName());
+			assertEquals("黄色", itemsDetail.getColor());
+			assertEquals("日本帽子製造", itemsDetail.getManufacturer());
+			assertEquals(4980, itemsDetail.getPrice());
+			assertEquals(12, itemsDetail.getStock());
 
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -155,15 +153,13 @@ class ItemDAOTest extends TestBase {
 		try (Connection conn = ConnectionUtil.getConnection(null)) {
 			ItemDAO dao = new ItemDAO(conn);
 			int itemId = 10;
-			List<ItemDTO> itemsDetailList = dao.findById(itemId);
-			assertNotNull(itemsDetailList);
-			assertEquals(1, itemsDetailList.size());
-			ItemDTO item = itemsDetailList.get(0);
-			assertEquals("ベレー帽", item.getItemName());
-			assertEquals("青色", item.getColor());
-			assertEquals("東京帽子店", item.getManufacturer());
-			assertEquals(3200, item.getPrice());
-			assertEquals(8, item.getStock());
+			ItemDTO itemsDetail = dao.findById(itemId);
+			assertNotNull(itemsDetail);
+			assertEquals("ベレー帽", itemsDetail.getItemName());
+			assertEquals("青色", itemsDetail.getColor());
+			assertEquals("東京帽子店", itemsDetail.getManufacturer());
+			assertEquals(3200, itemsDetail.getPrice());
+			assertEquals(8, itemsDetail.getStock());
 
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -176,10 +172,8 @@ class ItemDAOTest extends TestBase {
 		try (Connection conn = ConnectionUtil.getConnection(null)) {
 			ItemDAO dao = new ItemDAO(conn);
 			int itemId = 0;
-			List<ItemDTO> itemsDetailList = dao.findById(itemId);
-			itemsDetailList = dao.findById(itemId);
-			assertNotNull(itemsDetailList);
-			assertEquals(0, itemsDetailList.size());
+			ItemDTO itemsDetail = dao.findById(itemId);
+			assertNull(itemsDetail);
 
 		} catch (Exception e) {
 			e.printStackTrace();

@@ -51,45 +51,46 @@ public class ItemDAO {
 			}
 
 			try (ResultSet rs = ps.executeQuery()) {
-				itemsList = mapRow(rs);
 
+				while (rs.next()) {
+					ItemDTO item = mapRow(rs);
+					itemsList.add(item);
+				}
 			}
 			return itemsList;
 		}
 
 	}
 
-	public List<ItemDTO> findById(int itemId) throws SQLException {
-		String sql = "SELECT item_id, name, color, manufacturer, price, stock, recommended FROM items where item_id = ?;";
-		List<ItemDTO> itemsDetailList = new ArrayList<>();
+	public ItemDTO findById(int itemId) throws SQLException {
+		String sql = "SELECT item_id, name, color, manufacturer, price, stock, recommended FROM items where item_id = ?";
+		ItemDTO item = null;
 		try (PreparedStatement ps = conn.prepareStatement(sql)) {
 			ps.setInt(1, itemId);
 
-			ResultSet rs = ps.executeQuery();
-
-			itemsDetailList = mapRow(rs);
-
+			try (ResultSet rs = ps.executeQuery()) {
+				if (rs.next()) {
+					item = mapRow(rs);
+				}
+			}
 		}
-		return itemsDetailList;
+		return item;
 
 	}
 
-	private List<ItemDTO> mapRow(ResultSet rs) throws SQLException {
-		List<ItemDTO> List = new ArrayList<>();
-		while (rs.next())
+	// 1行分のデータをDTOに変換する便利な共通メソッド
+	private ItemDTO mapRow(ResultSet rs) throws SQLException {
+		ItemDTO item = new ItemDTO();
 
-		{
-			ItemDTO item = new ItemDTO();
-			item.setItemId(rs.getInt("item_id"));
-			item.setItemName(rs.getString("name"));
-			item.setColor(rs.getString("color"));
-			item.setManufacturer(rs.getString("manufacturer"));
-			item.setPrice(rs.getInt("price"));
-			item.setStock(rs.getInt("stock"));
-			item.isRecommended();
-			List.add(item);
-		}
-		return List;
+		item.setItemId(rs.getInt("item_id"));
+		item.setItemName(rs.getString("name"));
+		item.setColor(rs.getString("color"));
+		item.setManufacturer(rs.getString("manufacturer"));
+		item.setPrice(rs.getInt("price"));
+		item.setStock(rs.getInt("stock"));
+		item.setRecommended(rs.getBoolean("recommended"));
+
+		return item;
 
 	}
 }

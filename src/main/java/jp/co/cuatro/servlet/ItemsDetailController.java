@@ -1,7 +1,6 @@
 package jp.co.cuatro.servlet;
 
 import java.io.IOException;
-import java.util.List;
 
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
@@ -37,11 +36,11 @@ public class ItemsDetailController extends HttpServlet {
 
 		int itemId = Integer.parseInt(request.getParameter("itemId"));
 
-		ItemsDetailService itemsDetail = new ItemsDetailService();
+		ItemsDetailService itemsDetailService = new ItemsDetailService();
 
-		List<ItemDTO> itemsDetailList = itemsDetail.execute(itemId);
+		ItemDTO itemsDetail = itemsDetailService.execute(itemId);
 
-		request.setAttribute("itemsDetailList", itemsDetailList);
+		request.setAttribute("itemsDetail", itemsDetail);
 
 		String path = "/itemsDetailResult.jsp";
 		RequestDispatcher rd = request.getRequestDispatcher(path);
