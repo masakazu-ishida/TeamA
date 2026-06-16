@@ -60,7 +60,7 @@ public class ItemDAO {
 	}
 
 	public List<ItemDTO> findById(int itemId) throws SQLException {
-		String sql = "SELECT name, color, manufacturer, price, stock FROM items where item_id = ?;";
+		String sql = "SELECT item_id, name, color, manufacturer, price, stock, recommended FROM items where item_id = ?;";
 		List<ItemDTO> itemsDetailList = new ArrayList<>();
 		try (PreparedStatement ps = conn.prepareStatement(sql)) {
 			ps.setInt(1, itemId);

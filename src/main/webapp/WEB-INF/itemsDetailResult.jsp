@@ -44,7 +44,7 @@
 			<input type='hidden' name='itemId' value='${itemsDetailList.itemId}' />
 			<input type='submit' value='ショッピングカートに入れる' /><br />
 		</form>
-		<a href='main.html'>商品検索</a>へ<br />
+		<a href='main.jsp'>商品検索</a>へ<br />
 
 </body>
 </html>

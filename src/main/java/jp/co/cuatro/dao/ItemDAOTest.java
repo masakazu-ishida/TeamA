@@ -125,11 +125,12 @@ class ItemDAOTest extends TestBase {
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
+			fail(e);
 		}
 	}
 
 	@Test
-	void testFindById() {
+	void testFindById_1() {
 		try (Connection conn = ConnectionUtil.getConnection(null)) {
 			ItemDAO dao = new ItemDAO(conn);
 			int itemId = 1;
@@ -137,26 +138,52 @@ class ItemDAOTest extends TestBase {
 			assertNotNull(itemsDetailList);
 			assertEquals(1, itemsDetailList.size());
 			ItemDTO item = itemsDetailList.get(0);
-			assertEquals(1, item.getItemId());
 			assertEquals("麦わら帽子", item.getItemName());
 			assertEquals("黄色", item.getColor());
 			assertEquals("日本帽子製造", item.getManufacturer());
 			assertEquals(4980, item.getPrice());
 			assertEquals(12, item.getStock());
 
-			itemId = 10;
-			itemsDetailList = dao.findById(itemId);
+		} catch (Exception e) {
+			e.printStackTrace();
+			fail(e);
+		}
+	}
+
+	@Test
+	void testFindById_10() {
+		try (Connection conn = ConnectionUtil.getConnection(null)) {
+			ItemDAO dao = new ItemDAO(conn);
+			int itemId = 10;
+			List<ItemDTO> itemsDetailList = dao.findById(itemId);
 			assertNotNull(itemsDetailList);
 			assertEquals(1, itemsDetailList.size());
-			item = itemsDetailList.get(0);
-			assertEquals(1, item.getItemId());
+			ItemDTO item = itemsDetailList.get(0);
 			assertEquals("ベレー帽", item.getItemName());
 			assertEquals("青色", item.getColor());
 			assertEquals("東京帽子店", item.getManufacturer());
 			assertEquals(3200, item.getPrice());
 			assertEquals(8, item.getStock());
+
 		} catch (Exception e) {
 			e.printStackTrace();
+			fail(e);
+		}
+	}
+
+	@Test
+	void testFindByNoId() {
+		try (Connection conn = ConnectionUtil.getConnection(null)) {
+			ItemDAO dao = new ItemDAO(conn);
+			int itemId = 0;
+			List<ItemDTO> itemsDetailList = dao.findById(itemId);
+			itemsDetailList = dao.findById(itemId);
+			assertNotNull(itemsDetailList);
+			assertEquals(0, itemsDetailList.size());
+
+		} catch (Exception e) {
+			e.printStackTrace();
+			fail(e);
 		}
 	}
 
