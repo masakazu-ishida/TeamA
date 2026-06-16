@@ -8,21 +8,26 @@
 <title>検索結果</title>
 </head>
 <body>
-<h3>キーワード "<c:out value="" />" カテゴリ "<c:out value="" />" の検索結果</h3>
+<h3>キーワード "<c:out value="${name}" />" カテゴリ "<c:out value="${categoryId}" />" の検索結果</h3>
 <br />
 <table border="1">
-    <tr>
-        <th>商品名</th>
-        <th>商品の色</th>
-        <th>メーカー名</th>
-        <th>価格</th>
-    </tr>
+    <tr style="background-color: rgb(128, 128, 255); color: white;">
+    <th>商品名</th>
+    <th>商品の色</th>
+    <th>メーカー名</th>
+    <th>価格</th>
+</tr>
+
     
     <c:forEach items="${itemsList}" var="item">
         <tr>
             <td>
                 <a href="/TeamA/jp.co.cuatro/servlet/itemsDetail?itemId=${item.itemId}">
                     <c:out value="${item.itemName}" />
+                    <c:if test="${item.recommended == true}">
+  					<h6 style="color: red;">オススメ！</h6>
+					</c:if>
+                    
                 </a>
             </td>
             <td><c:out value="${item.color}" /></td>
