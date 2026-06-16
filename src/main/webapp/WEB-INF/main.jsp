@@ -28,7 +28,7 @@
 			</select><br/>
 			<input type='submit' value='検索' /><br/>
 		</form>
-		<a href='/cartDisplay'>ショッピングカートを見る</a><br/><br/>
+		<a href='${pageContext.request.contextPath}/cartDisplay'>ショッピングカートを見る</a><br/><br/>
 		<c:choose>
 			<%-- 未ログインの場合（セッションのloginUserが空のとき） --%>
 			<c:when test="${empty sessionScope.loginUser}">
