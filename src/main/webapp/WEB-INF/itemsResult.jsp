@@ -10,7 +10,7 @@
 <body>
 <h3>キーワード "<c:out value="${param.keyword}" />" カテゴリ "<c:out value="${param.cnumber}" />" の検索結果</h3>
 <br />
-<table border="1"> <!-- borderをつけると枠線が見やすくなります -->
+<table border="1">
     <tr>
         <th>商品名</th>
         <th>商品の色</th>
@@ -20,9 +20,8 @@
     
     <c:forEach items="${itemsList}" var="item">
         <tr>
-            <!-- リンクの先頭の / を無くし、ゲッターの書き方をシンプルにしました -->
             <td>
-                <a href="itemsDetail?itemId=${item.itemId}">
+                <a href="/TeamA/jp.co.cuatro/servlet/itemsDetail?itemId=${item.itemId}">
                     <c:out value="${item.itemName}" />
                 </a>
             </td>
