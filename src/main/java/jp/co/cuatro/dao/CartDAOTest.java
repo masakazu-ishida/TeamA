@@ -122,6 +122,8 @@ class CartDAOTest extends TestBase {
 			CartDTO checkedCart = dao.findByUserAndItem("user1", 2);
 
 			assertNotNull(checkedCart);
+			assertEquals("user1", checkedCart.getUserId());
+			assertEquals(2, checkedCart.getItemId());
 			assertEquals(2, checkedCart.getAmount());
 
 		} catch (Exception e) {
@@ -152,6 +154,8 @@ class CartDAOTest extends TestBase {
 			CartDTO checkedCart = dao.findByUserAndItem("user1", 1);
 
 			assertNotNull(checkedCart);
+			assertEquals("user1", checkedCart.getUserId());
+			assertEquals(1, checkedCart.getItemId());
 			assertEquals(3, checkedCart.getAmount());
 
 		} catch (Exception e) {
