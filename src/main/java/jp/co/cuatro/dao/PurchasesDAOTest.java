@@ -43,7 +43,7 @@ class PurchasesDAOTest extends TestBase {
 
 			String testUserId = "user1";
 
-			List<PurchasesDTO> resultList = dao.findByUserId(testUserId);
+			List<PurchasesDTO> resultList = dao.historyPurchasesFindByUserId(testUserId);
 
 			assertNotNull(resultList);
 			assertEquals(1, resultList.size());
@@ -88,7 +88,7 @@ class PurchasesDAOTest extends TestBase {
 
 			String testUserId = "user0";
 
-			List<PurchasesDTO> resultList = dao.findByUserId(testUserId);
+			List<PurchasesDTO> resultList = dao.historyPurchasesFindByUserId(testUserId);
 
 			assertNotNull(resultList);
 			assertEquals(0, resultList.size());

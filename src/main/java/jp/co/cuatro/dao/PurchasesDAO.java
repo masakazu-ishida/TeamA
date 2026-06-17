@@ -18,7 +18,70 @@ public class PurchasesDAO {
 		this.con = con;
 	}
 
-	public List<PurchasesDTO> findByUserId(String userId) throws SQLException {
+	public List<PurchasesDTO> historyPurchasesFindByUserId(String userId) throws SQLException {
+		String sql = "SELECT p.purchase_id, p.purchased_user, p.purchased_date,  p.destination, p.cancel,"
+				+ "d.purchase_detail_id,  d.purchase_id,  d.item_id,  d.amount,"
+				+ "i.item_id, i.name, i.manufacturer, i.category_id, i.color, i.price, i.stock, i.recommended"
+				+ " FROM purchases p "
+				+ "INNER JOIN purchase_details d ON p.purchase_id = d.purchase_id "
+				+ "INNER JOIN items i ON d.item_id = i.item_id "
+				+ "WHERE p.purchased_user = ? "
+				+ "ORDER BY p.purchased_date DESC, p.purchase_id DESC";
+
+		List<PurchasesDTO> list = new ArrayList<PurchasesDTO>();
+
+		try (PreparedStatement ps = con.prepareStatement(sql)) {
+			ps.setString(1, userId);
+
+			try (ResultSet rs = ps.executeQuery()) {
+				while (rs.next()) {
+					int nowPurchaseId = rs.getInt("purchase_id");
+
+					PurchasesDTO purchases = null;
+					for (PurchasesDTO p : list) {
+						if (p.getPurchaseId() == nowPurchaseId) {
+							purchases = p;
+							break;
+						}
+					}
+
+					if (purchases == null) {
+						purchases = new PurchasesDTO();
+						purchases.setPurchaseId(rs.getInt("purchase_id"));
+						purchases.setPurchasedUser(rs.getString("purchased_user"));
+						purchases.setPurchasedDate(rs.getString("purchased_date"));
+						purchases.setDestination(rs.getString("destination"));
+						purchases.setCancel(rs.getBoolean("cancel"));
+
+						list.add(purchases);
+					}
+
+					PurchaseDetailsDTO purchasesDetails = new PurchaseDetailsDTO();
+					purchasesDetails.setPurchaseDetailId(rs.getInt("purchase_detail_id"));
+					purchasesDetails.setPurchaseId(rs.getInt("purchase_id"));
+					purchasesDetails.setItemId(rs.getInt("item_id"));
+					purchasesDetails.setAmount(rs.getInt("amount"));
+
+					ItemDTO item = new ItemDTO();
+					item.setItemId(rs.getInt("item_id"));
+					item.setItemName(rs.getString("name"));
+					item.setManufacturer(rs.getString("manufacturer"));
+					item.setCategoryId(rs.getInt("category_id"));
+					item.setColor(rs.getString("color"));
+					item.setPrice(rs.getInt("price"));
+					item.setStock(rs.getInt("stock"));
+					item.setRecommended(rs.getBoolean("recommended"));
+
+					purchasesDetails.setItemDTO(item);
+					purchases.getDetailsList().add(purchasesDetails);
+				}
+			}
+		}
+
+		return list;
+	}
+
+	public List<PurchasesDTO> purchasesCancelConfirmationFindByUserId(String userId) throws SQLException {
 		String sql = "SELECT p.purchase_id, p.purchased_user, p.purchased_date,  p.destination, p.cancel,"
 				+ "d.purchase_detail_id,  d.purchase_id,  d.item_id,  d.amount,"
 				+ "i.item_id, i.name, i.manufacturer, i.category_id, i.color, i.price, i.stock, i.recommended"

@@ -44,7 +44,7 @@
         
         <td><c:out value="${history.destination == null ? '自宅' : history.destination}" /></td>
         
-        <td><a href="${pageContext.request.contextPath}/cancel?purchaseId=${history.purchaseId}">キャンセル</a></td>
+        <td><a href="${pageContext.request.contextPath}/cancelConfirmation?purchaseId=${history.purchaseId}">キャンセル</a></td>
     </tr>
     </c:forEach>
 </table>

@@ -17,7 +17,7 @@ public class HistoryPurchasesService {
 
 			PurchasesDAO dao = new PurchasesDAO(conn);
 
-			List<PurchasesDTO> List = dao.findByUserId(userId);
+			List<PurchasesDTO> List = dao.historyPurchasesFindByUserId(userId);
 
 			return List;
 
