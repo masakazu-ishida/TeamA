@@ -40,6 +40,6 @@
 </table>
 
 <br>
-<a href="main.jsp">商品検索へ戻る</a>
+<a href="${pageContext.request.contextPath}/main.jsp">商品検索へ戻る</a>
 </body>
 </html>
