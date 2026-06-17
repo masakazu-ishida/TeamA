@@ -100,4 +100,63 @@ class CartDAOTest extends TestBase {
 		}
 	}
 
+	/**
+	 * データの追加とID検索のテスト
+	 */
+	@Test
+	void testInsertAndFind() {
+		//JUnitテストでは引数はNULLでよい。
+		try (Connection conn = ConnectionUtil.getConnection(null)) {
+			CartDAO dao = new CartDAO(conn);
+			CartDTO newCart = new CartDTO();
+
+			newCart.setUserId("user1");
+			newCart.setItemId(2);
+			newCart.setAmount(2);
+			newCart.setBookedDate(LocalDate.now());
+
+			int result = dao.insert(newCart);
+
+			assertEquals(1, result);
+
+			CartDTO checkedCart = dao.findByUserAndItem("user1", 2);
+
+			assertNotNull(checkedCart);
+			assertEquals(2, checkedCart.getAmount());
+
+		} catch (Exception e) {
+			e.printStackTrace();
+			fail(e);
+		}
+	}
+
+	/**
+	 * データの更新のテスト
+	 */
+	@Test
+	void testUpdate() {
+		//JUnitテストでは引数はNULLでよい。
+		try (Connection conn = ConnectionUtil.getConnection(null)) {
+			CartDAO dao = new CartDAO(conn);
+			CartDTO updateCart = new CartDTO();
+
+			updateCart.setUserId("user1");
+			updateCart.setItemId(1);
+			updateCart.setAmount(3);
+			updateCart.setBookedDate(LocalDate.now());
+
+			int result = dao.update(updateCart);
+
+			assertEquals(1, result);
+
+			CartDTO checkedCart = dao.findByUserAndItem("user1", 1);
+
+			assertNotNull(checkedCart);
+			assertEquals(3, checkedCart.getAmount());
+
+		} catch (Exception e) {
+			e.printStackTrace();
+			fail(e);
+		}
+	}
 }
