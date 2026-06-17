@@ -70,6 +70,9 @@ public class LoginController extends HttpServlet {
 					String redirectUrl = request.getContextPath() + "/cartAdd?itemId=" + itemId + "&amount=" + amount;
 					response.sendRedirect(redirectUrl);
 
+				} else if (path.equals("/cartDisplay")) { // メイン画面からカートを見るを押されたとき
+
+					response.sendRedirect(request.getContextPath() + "/cartDisplay");
 				} else { // その他の場合はメイン画面に遷移　エラー
 					response.sendRedirect(request.getContextPath() + "/main");
 				}
@@ -81,7 +84,7 @@ public class LoginController extends HttpServlet {
 				request.setAttribute("itemId", itemId);
 				request.setAttribute("amount", amount);
 
-				String jspPath = "/WEB-INF/login.jsp";
+				String jspPath = "/WEB-INF/error.jsp";
 				request.getRequestDispatcher(jspPath).forward(request, response);
 			}
 
