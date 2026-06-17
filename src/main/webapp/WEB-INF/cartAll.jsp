@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="jakarta.tags.core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -26,14 +27,15 @@
             <td><c:out value="${cart.item.itemName}" /></td>
             <td><c:out value="${cart.item.color}" /></td>
             <td><c:out value="${cart.item.manufacturer}" /></td>
-            <td><c:out value="${cart.item.price}" />円</td>
+            <td><fmt:formatNumber value="${cart.item.price}" />円</td>
             <td><c:out value="${cart.amount}" />個</td>
             <td>
             <a href="${pageContext.request.contextPath}/cartDeleteConfirmation?itemId=${cart.item.itemId}">削除
             </a></td>
             </tr>
             </c:forEach></table>
-            <p>合計　<c:out value="${grandTotal}" />円</p>
+            <p>合計　<fmt:formatNumber value="${grandTotal}" />円</p>
+            
    
 
 <br>

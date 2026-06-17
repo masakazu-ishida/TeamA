@@ -8,7 +8,9 @@
 <title>検索結果</title>
 </head>
 <body>
-<h3>キーワード "<c:out value="${name}" />" カテゴリ "<c:out value="${categoryId}" />" の検索結果</h3>
+<h3>キーワード "<c:out value="${name}" />" カテゴリ "<c:if test="${categoryId == 0}">すべて</c:if>
+													<c:if test="${categoryId == 1}">帽子</c:if>
+													<c:if test="${categoryId == 2}">鞄</c:if>" の検索結果</h3>
 <br />
 <table border="1">
     <tr style="background-color: rgb(128, 128, 255); color: white;">
@@ -23,12 +25,12 @@
         <tr>
             <td>
                 <a href="${pageContext.request.contextPath}/itemsDetail?itemId=${item.itemId}">
-                    <c:out value="${item.itemName}" />
-                    <c:if test="${item.recommended == true}">
-  					<h6 style="color: red;">オススメ！</h6>
-					</c:if>
-                    
-                </a>
+    <c:out value="${item.itemName}" />
+    
+    <c:if test="${item.recommended == true}">
+        <span style="color: red; font-size: 0.8rem; font-weight: bold; margin-left: 5px;">オススメ！</span>
+    </c:if>
+</a>
             </td>
             <td><c:out value="${item.color}" /></td>
             <td><c:out value="${item.manufacturer}" /></td>
@@ -38,6 +40,6 @@
 </table>
 
 <br>
-<a href="main.jsp">商品検索へ戻る</a>
+<a href="${pageContext.request.contextPath}/main">商品検索へ戻る</a>
 </body>
 </html>

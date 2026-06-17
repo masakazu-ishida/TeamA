@@ -1,6 +1,7 @@
 package jp.co.cuatro.servlet;
 
 import java.io.IOException;
+import java.util.List;
 
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
@@ -8,21 +9,23 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
 
-import jp.co.cuatro.dto.ItemDTO;
-import jp.co.cuatro.service.ItemsDetailService;
+import jp.co.cuatro.dto.PurchasesDTO;
+import jp.co.cuatro.dto.UsersDTO;
+import jp.co.cuatro.service.HistoryPurchasesService;
 
 /**
- * Servlet implementation class ItemsDetailController
+ * Servlet implementation class HistoryPurchasesController
  */
-@WebServlet("/itemsDetail")
-public class ItemsDetailController extends HttpServlet {
+@WebServlet("/history")
+public class HistoryPurchasesController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	/**
 	 * @see HttpServlet#HttpServlet()
 	 */
-	public ItemsDetailController() {
+	public HistoryPurchasesController() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
@@ -32,19 +35,28 @@ public class ItemsDetailController extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+
 		request.setCharacterEncoding("UTF-8");
 
-		int itemId = Integer.parseInt(request.getParameter("itemId"));
+		try {
+			HttpSession session = request.getSession(false);
 
-		ItemsDetailService itemsDetailService = new ItemsDetailService();
+			UsersDTO user = (UsersDTO) session.getAttribute("loginUser");
+			String userId = user.getUserId();
 
-		ItemDTO itemsDetail = itemsDetailService.execute(itemId);
+			HistoryPurchasesService historyPurchases = new HistoryPurchasesService();
+			List<PurchasesDTO> list = historyPurchases.execute(userId);
 
-		request.setAttribute("itemsDetail", itemsDetail);
+			request.setAttribute("List", list);
 
-		String path = "/WEB-INF/itemsDetailResult.jsp";
-		RequestDispatcher rd = request.getRequestDispatcher(path);
-		rd.forward(request, response);
+			String path = "/WEB-INF/historyPurchases.jsp";
+			RequestDispatcher rd = request.getRequestDispatcher(path);
+			rd.forward(request, response);
+
+		} catch (Exception e) {
+			e.printStackTrace();
+			throw new ServletException(e);
+		}
 	}
 
 	/**

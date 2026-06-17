@@ -23,7 +23,7 @@ public class CartDAO {
 		this.con = con;
 	}
 
-	// 全件検索 
+	// 主キーによる検索 
 	public List<CartDTO> findByUserId(String userId) throws SQLException {
 		String sql = "select user_id, name, color, manufacturer, price, amount, booked_date, i.item_id from items i inner join items_in_cart ic on i.item_id = ic.item_id WHERE ic.user_id = ?";
 		//結果を格納するListオブジェクトを用意
@@ -63,4 +63,60 @@ public class CartDAO {
 		}
 		return list;
 	}
+
+	// データの追加
+	public int insert(CartDTO cart) throws SQLException {
+		String sql = "INSERT INTO public.items_in_cart(\n"
+				+ "	user_id, item_id, amount, booked_date)\n"
+				+ "	VALUES (?, ?, ?, ?)";
+		try (PreparedStatement ps = con.prepareStatement(sql)) {
+			ps.setString(1, cart.getUserId());
+			ps.setInt(2, cart.getItemId());
+			ps.setInt(3, cart.getAmount());
+			ps.setObject(4, cart.getBookedDate());
+
+			return ps.executeUpdate();
+		}
+	}
+
+	// データの更新 
+	public int update(CartDTO cart) throws SQLException {
+		String sql = "UPDATE public.items_in_cart\n"
+				+ "	SET amount=?\n"
+				+ " WHERE user_id = ? AND item_id = ?";
+		try (PreparedStatement ps = con.prepareStatement(sql)) {
+			ps.setInt(1, cart.getAmount());
+			ps.setString(2, cart.getUserId());
+			ps.setInt(3, cart.getItemId());
+
+			return ps.executeUpdate();
+		}
+	}
+
+	// 特定のユーザーが、特定の化商品をすでにカートに入れているか検索する
+	public CartDTO findByUserAndItem(String userId, int itemId) throws SQLException {
+		String sql = "SELECT user_id, item_id, amount, booked_date "
+				+ "FROM public.items_in_cart "
+				+ "WHERE user_id = ? AND item_id = ?";
+
+		try (PreparedStatement ps = con.prepareStatement(sql)) {
+			ps.setString(1, userId);
+			ps.setInt(2, itemId);
+
+			try (ResultSet rs = ps.executeQuery()) {
+				if (rs.next()) {
+					// すでにデータが存在した場合は、中身を詰めたDTOを返す
+					CartDTO cart = new CartDTO();
+					cart.setUserId(rs.getString("user_id"));
+					cart.setItemId(rs.getInt("item_id"));
+					cart.setAmount(rs.getInt("amount"));
+					cart.setBookedDate(rs.getObject("booked_date", LocalDate.class));
+
+					return cart;
+				}
+			}
+		}
+		return null;
+	}
+
 }

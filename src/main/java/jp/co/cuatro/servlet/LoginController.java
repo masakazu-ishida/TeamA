@@ -70,8 +70,17 @@ public class LoginController extends HttpServlet {
 					String redirectUrl = request.getContextPath() + "/cartAdd?itemId=" + itemId + "&amount=" + amount;
 					response.sendRedirect(redirectUrl);
 
-				} else { // その他の場合はメイン画面に遷移　エラー
-					response.sendRedirect(request.getContextPath() + "/main");
+				} else if (path.equals("/cartDisplay")) { // メイン画面からカートを見るを押されたとき
+
+					response.sendRedirect(request.getContextPath() + "/cartDisplay");
+				} else if (path.equals("/purchases/completion")) { // 商品購入画面から購入ボタンが押されたとき
+
+					response.sendRedirect(request.getContextPath() + "/purchases/completion");
+				} else if (path.equals("/ItemsInCartController")) { // 商品購入画面から購入ボタンが押されたとき
+
+					response.sendRedirect(request.getContextPath() + "/ItemsInCartController");
+				} else { // その他の場合はエラー画面に遷移
+					response.sendRedirect(request.getContextPath() + "/error");
 				}
 
 			} else { // ログイン情報がDBと一致しなかった場合
@@ -81,7 +90,7 @@ public class LoginController extends HttpServlet {
 				request.setAttribute("itemId", itemId);
 				request.setAttribute("amount", amount);
 
-				String jspPath = "/WEB-INF/login.jsp";
+				String jspPath = "/WEB-INF/error.jsp";
 				request.getRequestDispatcher(jspPath).forward(request, response);
 			}
 

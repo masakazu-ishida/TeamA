@@ -37,7 +37,7 @@ class ItemDAOTest extends TestBase {
 	void testFindByCondition() {
 		try (Connection conn = ConnectionUtil.getConnection(null)) {
 			ItemDAO dao = new ItemDAO(conn);
-			for (int categoryId = 1; categoryId < 4; categoryId++) {
+			for (int categoryId = 0; categoryId < 3; categoryId++) {
 				if (categoryId == 1) {
 					String name1 = "";
 					List<ItemDTO> itemsList = dao.findByCondition(categoryId, name1);
@@ -94,7 +94,7 @@ class ItemDAOTest extends TestBase {
 					assertNotNull(itemsList);
 					assertEquals(0, itemsList.size());
 				}
-				if (categoryId == 3) {
+				if (categoryId == 0) {
 					String name1 = "";
 					List<ItemDTO> itemsList = dao.findByCondition(categoryId, name1);
 					assertNotNull(itemsList);
