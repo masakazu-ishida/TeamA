@@ -7,6 +7,16 @@ public class PurchasesDTO {
 	private String destination;
 	private boolean cancel;
 
+	private PurchaseDetailsDTO purchaseDetailsDTO;
+
+	public PurchaseDetailsDTO getPurchaseDetailsDTO() {
+		return purchaseDetailsDTO;
+	}
+
+	public void setPurchaseDetailsDTO(PurchaseDetailsDTO purchaseDetailsDTO) {
+		this.purchaseDetailsDTO = purchaseDetailsDTO;
+	}
+
 	public int getPurchaseId() {
 		return purchaseId;
 

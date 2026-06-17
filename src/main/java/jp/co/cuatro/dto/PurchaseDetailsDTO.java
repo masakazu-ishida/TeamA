@@ -6,6 +6,16 @@ public class PurchaseDetailsDTO {
 	private int itemId;
 	private int amount;
 
+	private ItemDTO itemDTO;
+
+	public ItemDTO getItemDTO() {
+		return itemDTO;
+	}
+
+	public void setItemDTO(ItemDTO itemDTO) {
+		this.itemDTO = itemDTO;
+	}
+
 	public int getPurchaseDetailId() {
 		return purchaseDetailId;
 	}
