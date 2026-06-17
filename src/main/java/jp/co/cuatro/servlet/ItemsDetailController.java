@@ -42,7 +42,7 @@ public class ItemsDetailController extends HttpServlet {
 
 		request.setAttribute("itemsDetail", itemsDetail);
 
-		String path = "/itemsDetailResult.jsp";
+		String path = "/WEB-INF/itemsDetailResult.jsp";
 		RequestDispatcher rd = request.getRequestDispatcher(path);
 		rd.forward(request, response);
 	}
