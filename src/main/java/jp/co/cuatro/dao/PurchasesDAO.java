@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 package jp.co.cuatro.dao;
 
 import java.sql.Connection;
@@ -60,7 +59,7 @@ public class PurchasesDAO {
 		return list;
 	}
 }
-=======
+
 //package jp.co.cuatro.dao;
 //
 //import java.sql.Connection;
@@ -143,4 +142,3 @@ public class PurchasesDAO {
 //		}
 //	}
 //}
->>>>>>> branch 'master' of https://github.com/masakazu-ishida/TeamA.git
