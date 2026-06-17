@@ -32,7 +32,7 @@
 				<td>${itemsDetail.stock}</td>
 			</tr>
 		</table>
-		<form action='${pageContext.request.contextPath}/cartAll' method='POST'>
+		<form action='${pageContext.request.contextPath}/cartAdd' method='POST'>
 			数量
 			<select name='amount'>
 				<option selected value='1'>1</option>

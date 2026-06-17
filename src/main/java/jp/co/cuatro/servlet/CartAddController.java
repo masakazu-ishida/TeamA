@@ -18,7 +18,7 @@ import jp.co.cuatro.service.CartAddService;
 /**
  * Servlet implementation class CartAddController
  */
-@WebServlet("/CartAdd")
+@WebServlet("/cartAdd")
 public class CartAddController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
