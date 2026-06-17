@@ -1,5 +1,8 @@
 package jp.co.cuatro.dto;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class PurchasesDTO {
 	private int purchaseId;
 	private String purchasedUser;
@@ -7,14 +10,14 @@ public class PurchasesDTO {
 	private String destination;
 	private boolean cancel;
 
-	private PurchaseDetailsDTO purchaseDetailsDTO;
+	private List<PurchaseDetailsDTO> detailsList = new ArrayList<>();
 
-	public PurchaseDetailsDTO getPurchaseDetailsDTO() {
-		return purchaseDetailsDTO;
+	public List<PurchaseDetailsDTO> getDetailsList() {
+		return detailsList;
 	}
 
-	public void setPurchaseDetailsDTO(PurchaseDetailsDTO purchaseDetailsDTO) {
-		this.purchaseDetailsDTO = purchaseDetailsDTO;
+	public void setDetailsList(List<PurchaseDetailsDTO> detailsList) {
+		this.detailsList = detailsList;
 	}
 
 	public int getPurchaseId() {
