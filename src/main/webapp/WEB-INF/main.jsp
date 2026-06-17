@@ -22,9 +22,9 @@
 			<input type='text' name="name" /><br />
 			カテゴリ<br />
 			<select name="categoryId">
-				<option selected value='1'>すべて</option>
-				<option value='2'>帽子</option>
-				<option value='3'>鞄</option>
+				<option selected value='0'>すべて</option>
+				<option value='1'>帽子</option>
+				<option value='2'>鞄</option>
 			</select><br/>
 			<input type='submit' value='検索' /><br/>
 		</form>
