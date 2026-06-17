@@ -35,25 +35,35 @@ class PurchasesDAOTest extends TestBase {
 	}
 
 	@Test
-	void testFindPurchaseHistoryByUserId() {
+	void testFindByUserId() {
 		try (Connection conn = ConnectionUtil.getConnection(null)) {
 			PurchasesDAO dao = new PurchasesDAO(conn);
 
 			String testUserId = "user1";
 
-			List<PurchasesDTO> resultList = dao.findPurchaseHistoryByUserId(testUserId);
+			List<PurchasesDTO> resultList = dao.findByUserId(testUserId);
 
 			assertNotNull(resultList);
 			assertEquals(3, resultList.size());
 
 			PurchasesDTO Purchase = resultList.get(0);
+			assertEquals(1, Purchase.getPurchaseId());
+			assertEquals("user1", Purchase.getPurchasedUser());
 			assertEquals("2026-06-17", Purchase.getPurchasedDate());
-			assertEquals("ハンチング帽", Purchase.getPurchaseDetailsDTO().getItemDTO().getItemName());
-			assertEquals("黄色", Purchase.getPurchaseDetailsDTO().getItemDTO().getColor());
-			assertEquals(1980, Purchase.getPurchaseDetailsDTO().getItemDTO().getPrice());
-			assertEquals(4, Purchase.getPurchaseDetailsDTO().getAmount());
 			assertEquals(null, Purchase.getDestination());
 			assertEquals(false, Purchase.isCancel());
+			assertEquals(1, Purchase.getPurchaseDetailsDTO().getPurchaseDetailId());
+			assertEquals(1, Purchase.getPurchaseDetailsDTO().getPurchaseId());
+			assertEquals(7, Purchase.getPurchaseDetailsDTO().getItemId());
+			assertEquals(4, Purchase.getPurchaseDetailsDTO().getAmount());
+			assertEquals(7, Purchase.getPurchaseDetailsDTO().getItemDTO().getItemId());
+			assertEquals("ハンチング帽", Purchase.getPurchaseDetailsDTO().getItemDTO().getItemName());
+			assertEquals("日本帽子製造", Purchase.getPurchaseDetailsDTO().getItemDTO().getManufacturer());
+			assertEquals(1, Purchase.getPurchaseDetailsDTO().getItemDTO().getCategoryId());
+			assertEquals("黄色", Purchase.getPurchaseDetailsDTO().getItemDTO().getColor());
+			assertEquals(1980, Purchase.getPurchaseDetailsDTO().getItemDTO().getPrice());
+			assertEquals(20, Purchase.getPurchaseDetailsDTO().getItemDTO().getStock());
+			assertEquals(false, Purchase.getPurchaseDetailsDTO().getItemDTO().isRecommended());
 
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -62,13 +72,13 @@ class PurchasesDAOTest extends TestBase {
 	}
 
 	@Test
-	void testFindPurchaseHistoryByNoUserId() {
+	void testFindByNoUserId() {
 		try (Connection conn = ConnectionUtil.getConnection(null)) {
 			PurchasesDAO dao = new PurchasesDAO(conn);
 
 			String testUserId = "user0";
 
-			List<PurchasesDTO> resultList = dao.findPurchaseHistoryByUserId(testUserId);
+			List<PurchasesDTO> resultList = dao.findByUserId(testUserId);
 
 			assertNotNull(resultList);
 			assertEquals(0, resultList.size());

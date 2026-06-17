@@ -18,9 +18,11 @@ public class PurchasesDAO {
 		this.con = con;
 	}
 
-	public List<PurchasesDTO> findPurchaseHistoryByUserId(String userId) throws SQLException {
-		String sql = "SELECT p.purchased_date, i.name, i.color, i.manufacturer, i.price, d.amount, p.destination, p.cancel "
-				+ "FROM purchases p "
+	public List<PurchasesDTO> findByUserId(String userId) throws SQLException {
+		String sql = "SELECT p.purchase_id, p.purchased_user, p.purchased_date,  p.destination, p.cancel,"
+				+ "d.purchase_detail_id,  d.purchase_id,  d.item_id,  d.amount,"
+				+ "i.item_id, i.name, i.manufacturer, i.category_id, i.color, i.price, i.stock, i.recommended"
+				+ " FROM purchases p "
 				+ "INNER JOIN purchase_details d ON p.purchase_id = d.purchase_id "
 				+ "INNER JOIN items i ON d.item_id = i.item_id "
 				+ "WHERE p.purchased_user = ? "
@@ -37,16 +39,25 @@ public class PurchasesDAO {
 					PurchaseDetailsDTO purchasesDetails = new PurchaseDetailsDTO();
 					ItemDTO item = new ItemDTO();
 
+					purchases.setPurchaseId(rs.getInt("purchase_id"));
+					purchases.setPurchasedUser(rs.getString("purchased_user"));
 					purchases.setPurchasedDate(rs.getString("purchased_date"));
 					purchases.setDestination(rs.getString("destination"));
 					purchases.setCancel(rs.getBoolean("cancel"));
 
-					item.setItemName(rs.getString("name"));
-					item.setColor(rs.getString("color"));
-					item.setManufacturer(rs.getString("manufacturer"));
-					item.setPrice(rs.getInt("price"));
-
+					purchasesDetails.setPurchaseDetailId(rs.getInt("purchase_detail_id"));
+					purchasesDetails.setPurchaseId(rs.getInt("purchase_id"));
+					purchasesDetails.setItemId(rs.getInt("item_id"));
 					purchasesDetails.setAmount(rs.getInt("amount"));
+
+					item.setItemId(rs.getInt("item_id"));
+					item.setItemName(rs.getString("name"));
+					item.setManufacturer(rs.getString("manufacturer"));
+					item.setCategoryId(rs.getInt("category_id"));
+					item.setColor(rs.getString("color"));
+					item.setPrice(rs.getInt("price"));
+					item.setStock(rs.getInt("stock"));
+					item.setRecommended(rs.getBoolean("recommended"));
 
 					purchasesDetails.setItemDTO(item);
 					purchases.setPurchaseDetailsDTO(purchasesDetails);
