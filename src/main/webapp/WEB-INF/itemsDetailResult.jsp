@@ -32,7 +32,7 @@
 				<td>${itemsDetail.stock}</td>
 			</tr>
 		</table>
-		<form action='/TeamA/jp.co.cuatro/servlet/cartAll' method='POST'>
+		<form action='${pageContext.request.contextPath}/cartAll' method='POST'>
 			数量
 			<select name='amount'>
 				<option selected value='1'>1</option>
@@ -44,7 +44,7 @@
 			<input type='hidden' name='itemId' value='${itemsDetail.itemId}' />
 			<input type='submit' value='ショッピングカートに入れる' /><br />
 		</form>
-		<a href='main.jsp'>商品検索</a>へ<br />
+		<a href='${pageContext.request.contextPath}/main'>商品検索</a>へ<br />
 
 </body>
 </html>

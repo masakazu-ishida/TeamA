@@ -25,12 +25,12 @@
         <tr>
             <td>
                 <a href="${pageContext.request.contextPath}/itemsDetail?itemId=${item.itemId}">
-                    <c:out value="${item.itemName}" />
-                    <c:if test="${item.recommended == true}">
-  					<h6 style="color: red;">オススメ！</h6>
-					</c:if>
-                    
-                </a>
+    <c:out value="${item.itemName}" />
+    
+    <c:if test="${item.recommended == true}">
+        <span style="color: red; font-size: 0.8rem; font-weight: bold; margin-left: 5px;">オススメ！</span>
+    </c:if>
+</a>
             </td>
             <td><c:out value="${item.color}" /></td>
             <td><c:out value="${item.manufacturer}" /></td>
