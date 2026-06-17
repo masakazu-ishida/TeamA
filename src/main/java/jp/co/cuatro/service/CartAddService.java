@@ -17,12 +17,13 @@ public class CartAddService {
 			//Connectionをコンストラクタに渡す
 			CartDAO dao = new CartDAO(conn);
 
-			CartDTO serchCart = dao.findByUserAndItem(inputCart.getUserId(), inputCart.getItemId());
+			CartDTO searchCart = dao.findByUserAndItem(inputCart.getUserId(), inputCart.getItemId());
 
-			if (serchCart != null) {
-				int newAmount = serchCart.getAmount() + inputCart.getAmount();
+			if (searchCart != null) {
+				int newAmount = searchCart.getAmount() + inputCart.getAmount();
 
 				inputCart.setAmount(newAmount);
+				inputCart.setBookedDate(searchCart.getBookedDate());
 
 				dao.update(inputCart);
 			} else {
