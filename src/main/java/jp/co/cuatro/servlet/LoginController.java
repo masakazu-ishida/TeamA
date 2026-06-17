@@ -73,6 +73,9 @@ public class LoginController extends HttpServlet {
 				} else if (path.equals("/cartDisplay")) { // メイン画面からカートを見るを押されたとき
 
 					response.sendRedirect(request.getContextPath() + "/cartDisplay");
+				} else if (path.equals("/purchases/completion")) { // 商品購入画面から購入ボタンが押されたとき
+
+					response.sendRedirect(request.getContextPath() + "/purchases/completion");
 				} else { // その他の場合はメイン画面に遷移　エラー
 					response.sendRedirect(request.getContextPath() + "/main");
 				}
