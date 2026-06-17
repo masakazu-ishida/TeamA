@@ -53,7 +53,7 @@ public class CartAddController extends HttpServlet {
 
 			HttpSession session = request.getSession(false);
 
-			// ログイン情報があるとき
+			// ログイン情報がある場合
 			if (session != null && session.getAttribute("loginUser") != null) {
 
 				UsersDTO user = (UsersDTO) session.getAttribute("loginUser");
