@@ -8,7 +8,9 @@
 <title>検索結果</title>
 </head>
 <body>
-<h3>キーワード "<c:out value="${name}" />" カテゴリ "<c:out value="${categoryId}" />" の検索結果</h3>
+<h3>キーワード "<c:out value="${name}" />" カテゴリ "<c:if test="${categoryId == 0}">すべて</c:if>
+													<c:if test="${categoryId == 1}">帽子</c:if>
+													<c:if test="${categoryId == 2}">鞄</c:if>" の検索結果</h3>
 <br />
 <table border="1">
     <tr style="background-color: rgb(128, 128, 255); color: white;">
