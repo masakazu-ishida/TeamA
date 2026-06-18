@@ -46,10 +46,10 @@ public class ItemsInCartController extends HttpServlet {
 			throws ServletException, IOException {
 
 		request.setCharacterEncoding("UTF-8");
-
+		//現在アクセスしているユーザー専用の「箱（セッション）」を用意
 		HttpSession session = request.getSession();
 		UsersDTO loginUser = (UsersDTO) session.getAttribute("loginUser");
-
+		//箱の中から、loginUser という名前のデータを取り出す
 		if (loginUser == null) {
 			request.setAttribute("src", "/ItemsInCartController");
 			RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/login.jsp");
