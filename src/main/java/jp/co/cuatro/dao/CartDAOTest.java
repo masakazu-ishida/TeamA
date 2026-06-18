@@ -194,4 +194,33 @@ class CartDAOTest extends TestBase {
 
 	}
 
+	/**
+	 * データの削除のテスト
+	 */
+	@Test
+	void testDelete() {
+		//JUnitテストでは引数はNULLでよい。
+		try (Connection conn = ConnectionUtil.getConnection(null)) {
+			CartDAO dao = new CartDAO(conn);
+
+			CartDTO checkedCart = dao.findByUserAndItem("user1", 1);
+
+			assertNotNull(checkedCart);
+			assertEquals("user1", checkedCart.getUserId());
+			assertEquals(1, checkedCart.getItemId());
+			assertEquals(1, checkedCart.getAmount());
+			assertEquals(LocalDate.of(2026, 6, 15), checkedCart.getBookedDate());
+
+			int result = dao.delete(checkedCart);
+			assertEquals(1, result);
+
+			CartDTO deletedCart = dao.findByUserAndItem("user1", 1);
+			assertNull(deletedCart);
+
+		} catch (Exception e) {
+			e.printStackTrace();
+			fail(e);
+		}
+	}
+
 }
