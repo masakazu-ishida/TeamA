@@ -16,7 +16,11 @@
 		<c:out value="${confirmCart.item.manufacturer}" /><br />
 		<fmt:formatNumber value="${confirmCart.item.price}" />円<br />
 		数量<c:out value="${confirmCart.amount}" />個<br />
-		<input type='button' value='削除する'onclick = "location.href = '${pageContext.request.contextPath}/CartDeleteController'"><br />
+		
+		<form action='${pageContext.request.contextPath}/CartDeleteController' method='POST'>
+			<input type='hidden' name='itemId' value= "${confirmCart.item.itemId}" />
+			<input type='submit' value='削除する' /><br />
+		</form>
 	    <a href="${pageContext.request.contextPath}/main">商品検索</a>へ<br />	
 
 </body>

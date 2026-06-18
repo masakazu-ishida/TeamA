@@ -163,4 +163,35 @@ class CartDAOTest extends TestBase {
 			fail(e);
 		}
 	}
+
+	/**
+	 * ユーザーIDと商品IDをもとに情報を持ってくる場合のテスト
+	 */
+	@Test
+	void testFindByUserIdAndItem() {
+
+		try (Connection conn = ConnectionUtil.getConnection(null)) {
+			CartDAO dao = new CartDAO(conn);
+			CartDTO cart = dao.findByUserAndItem("user1", 1);
+
+			assertNotNull(cart);
+
+			assertEquals("麦わら帽子", cart.getItem().getItemName());
+			assertEquals("日本帽子製造", cart.getItem().getManufacturer());
+			assertEquals(4980, cart.getItem().getPrice());
+			assertEquals(1, cart.getAmount());
+			assertEquals("user1", cart.getUserId());
+			assertEquals(1, cart.getItemId());
+			assertEquals(1, cart.getItem().getItemId());
+			assertEquals(1, cart.getAmount());
+			assertEquals(LocalDate.of(2026, 6, 15), cart.getBookedDate());
+			//先頭だけDTOの中身をチェック
+
+		} catch (Exception e) {
+			e.printStackTrace();
+			fail(e);
+		}
+
+	}
+
 }
