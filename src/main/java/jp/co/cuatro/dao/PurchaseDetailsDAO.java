@@ -27,9 +27,10 @@ public class PurchaseDetailsDAO {
 		List<PurchaseDetailsDTO> detailList = new ArrayList<>();
 
 		// purchase_detailsテーブルから指定されたpurchase_idのデータを取得するSQL
-		String sql = "SELECT purchase_detail_id, purchase_id, item_id, amount "
-				+ "FROM purchase_details WHERE purchase_id = ? "
-				+ "ORDER BY purchase_detail_id ASC";
+		String sql = """
+				SELECT purchase_detail_id, purchase_id, item_id, amount \
+				FROM purchase_details WHERE purchase_id = ? \
+				ORDER BY purchase_detail_id ASC""";
 
 		try (PreparedStatement ps = con.prepareStatement(sql)) {
 			ps.setInt(1, purchaseId);
@@ -47,5 +48,22 @@ public class PurchaseDetailsDAO {
 			}
 		}
 		return detailList;
+	}
+
+	// 中瀬が作っている最中です
+	public void insert(Connection conn, PurchaseDetailsDTO purchaseDetailsDTO) throws SQLException {
+
+		String sql = "INSERT INTO purchase_details (purchase_id, item_id, amount) "
+				+ "VALUES (?, ?, ?)";
+
+		try (PreparedStatement ps = conn.prepareStatement(sql)) {
+
+			ps.setInt(1, purchaseDetailsDTO.getPurchaseId()); // 紐付ける注文ID
+			ps.setInt(2, purchaseDetailsDTO.getItemId()); // 商品ID
+			ps.setInt(3, purchaseDetailsDTO.getAmount()); // 数量
+
+			// SQLの実行
+			ps.executeUpdate();
+		}
 	}
 }
