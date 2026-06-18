@@ -2,15 +2,13 @@ package jp.co.cuatro.service;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-import java.util.List;
-
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import jp.co.cuatro.dto.PurchasesDTO;
 import jp.co.cuatro.util.TestBase;
 
-class HistoryPurchasesServiceTest extends TestBase {
+class PurchasesCancelConfirmationServiceTest extends TestBase {
 
 	@BeforeEach
 	void setUp() throws Exception {
@@ -21,22 +19,20 @@ class HistoryPurchasesServiceTest extends TestBase {
 	@Test
 	void testExecute() throws Exception {
 
-		HistoryPurchasesService historyPurchases = new HistoryPurchasesService();
+		PurchasesCancelConfirmationService cancelConfirmation = new PurchasesCancelConfirmationService();
 
-		List<PurchasesDTO> List = historyPurchases.execute("user1");
-		assertNotNull(List);
-		assertEquals(1, List.size());
+		PurchasesDTO result = cancelConfirmation.execute(1);
+		assertNotNull(result);
 
 	}
 
 	@Test
 	void testExecute_NotId() throws Exception {
 
-		HistoryPurchasesService historyPurchases = new HistoryPurchasesService();
+		PurchasesCancelConfirmationService cancelConfirmation = new PurchasesCancelConfirmationService();
 
-		List<PurchasesDTO> List = historyPurchases.execute("user0");
-		assertNotNull(List);
-		assertEquals(0, List.size());
+		PurchasesDTO result = cancelConfirmation.execute(4);
+		assertNull(result);
 
 	}
 

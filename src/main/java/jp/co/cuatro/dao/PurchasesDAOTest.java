@@ -99,4 +99,63 @@ class PurchasesDAOTest extends TestBase {
 		}
 	}
 
+	@Test
+	void testFindPurchaseForCancel() {
+		try (Connection conn = ConnectionUtil.getConnection(null)) {
+			PurchasesDAO dao = new PurchasesDAO(conn);
+
+			int testPurchaseId = 1;
+
+			PurchasesDTO result = dao.findPurchaseForCancel(testPurchaseId);
+
+			assertNotNull(result);
+			assertEquals("user1", result.getPurchasedUser());
+			assertEquals("2026-06-18", result.getPurchasedDate());
+			assertEquals(null, result.getDestination());
+			assertEquals(false, result.isCancel());
+
+			assertNotNull(result.getDetailsList());
+			assertEquals(3, result.getDetailsList().size());
+
+			PurchaseDetailsDTO Detail = result.getDetailsList().get(0);
+
+			assertEquals(1, Detail.getPurchaseDetailId());
+			assertEquals(1, Detail.getPurchaseId());
+			assertEquals(7, Detail.getItemId());
+			assertEquals(4, Detail.getAmount());
+
+			ItemDTO item = Detail.getItemDTO();
+			assertNotNull(item);
+			assertEquals(7, item.getItemId());
+			assertEquals("ハンチング帽", item.getItemName());
+			assertEquals("日本帽子製造", item.getManufacturer());
+			assertEquals(1, item.getCategoryId());
+			assertEquals("黄色", item.getColor());
+			assertEquals(1980, item.getPrice());
+			assertEquals(20, item.getStock());
+			assertEquals(false, item.isRecommended());
+
+		} catch (Exception e) {
+			e.printStackTrace();
+			fail(e.getMessage());
+		}
+	}
+
+	@Test
+	void testFindPurchaseForCancel_NoId() {
+		try (Connection conn = ConnectionUtil.getConnection(null)) {
+			PurchasesDAO dao = new PurchasesDAO(conn);
+
+			int testPurchaseId = 4;
+
+			PurchasesDTO result = dao.findPurchaseForCancel(testPurchaseId);
+
+			assertNull(result);
+
+		} catch (Exception e) {
+			e.printStackTrace();
+			fail(e.getMessage());
+		}
+	}
+
 }
