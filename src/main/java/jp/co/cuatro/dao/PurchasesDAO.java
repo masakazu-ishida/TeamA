@@ -81,20 +81,20 @@ public class PurchasesDAO {
 		return list;
 	}
 
-	public List<PurchasesDTO> purchasesCancelConfirmationFindByUserId(String userId) throws SQLException {
+	public List<PurchasesDTO> purchasesCancelConfirmationFindByPurchaseId(int purchaseId) throws SQLException {
 		String sql = "SELECT p.purchase_id, p.purchased_user, p.purchased_date,  p.destination, p.cancel,"
 				+ "d.purchase_detail_id,  d.purchase_id,  d.item_id,  d.amount,"
 				+ "i.item_id, i.name, i.manufacturer, i.category_id, i.color, i.price, i.stock, i.recommended"
 				+ " FROM purchases p "
 				+ "INNER JOIN purchase_details d ON p.purchase_id = d.purchase_id "
 				+ "INNER JOIN items i ON d.item_id = i.item_id "
-				+ "WHERE p.purchased_user = ? "
+				+ "WHERE p.purchase_id = ? "
 				+ "ORDER BY p.purchased_date DESC, p.purchase_id DESC";
 
 		List<PurchasesDTO> list = new ArrayList<PurchasesDTO>();
 
 		try (PreparedStatement ps = con.prepareStatement(sql)) {
-			ps.setString(1, userId);
+			ps.setInt(1, purchaseId);
 
 			try (ResultSet rs = ps.executeQuery()) {
 				while (rs.next()) {
