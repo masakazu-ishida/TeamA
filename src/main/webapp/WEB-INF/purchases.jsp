@@ -30,7 +30,7 @@
         <c:set var="grandTota" value="${grandTota + cart.total}" />
 </c:forEach> </table> 
  	<p>合計<c:out value="${grandTota}" />円</p>
-    <form action="${pageContext.request.contextPath}/PurchasesCompletionController" method="post">
+    <form action="${pageContext.request.contextPath}/purchases/completion" method="post">
         
         <p>清算方法</p>
         <select name="paymentMethod">
