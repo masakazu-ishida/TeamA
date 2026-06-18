@@ -43,14 +43,14 @@ class PurchasesDAOTest extends TestBase {
 
 			String testUserId = "user1";
 
-			List<PurchasesDTO> resultList = dao.historyPurchasesFindByUserId(testUserId);
+			List<PurchasesDTO> resultList = dao.findByUserId(testUserId);
 
 			assertNotNull(resultList);
 			assertEquals(1, resultList.size());
 			PurchasesDTO purchase = resultList.get(0);
 			assertEquals(1, purchase.getPurchaseId());
 			assertEquals("user1", purchase.getPurchasedUser());
-			assertEquals("2026-06-17", purchase.getPurchasedDate());
+			assertEquals("2026-06-18", purchase.getPurchasedDate());
 			assertEquals(null, purchase.getDestination());
 			assertEquals(false, purchase.isCancel());
 
@@ -88,7 +88,7 @@ class PurchasesDAOTest extends TestBase {
 
 			String testUserId = "user0";
 
-			List<PurchasesDTO> resultList = dao.historyPurchasesFindByUserId(testUserId);
+			List<PurchasesDTO> resultList = dao.findByUserId(testUserId);
 
 			assertNotNull(resultList);
 			assertEquals(0, resultList.size());

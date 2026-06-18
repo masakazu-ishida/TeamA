@@ -18,7 +18,7 @@ public class PurchasesDAO {
 		this.con = con;
 	}
 
-	public List<PurchasesDTO> historyPurchasesFindByUserId(String userId) throws SQLException {
+	public List<PurchasesDTO> findByUserId(String userId) throws SQLException {
 		String sql = "SELECT p.purchase_id, p.purchased_user, p.purchased_date, p.destination, p.cancel, "
 				+ "d.purchase_detail_id, d.purchase_id, d.item_id, d.amount, "
 				+ "i.item_id, i.name, i.manufacturer, i.category_id, i.color, i.price, i.stock, i.recommended "
