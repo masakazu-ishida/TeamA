@@ -9,52 +9,45 @@
 <body>
 <h3>以下の注文をキャンセルしてよろしいですか？</h3>
 		<br />
-		<table>
-			<tr>
-				<th>注文日</th>
-				<td>2014/3/15</td>
-			</tr>
-			<tr>
-				<th>購入商品</th>
-				<td>
-					<table>
-						<tr>
-							<th>商品名</th>
-							<th>色</th>
-							<th>メーカー</th>
-							<th>単価</th>
-							<th>数量</th>
-						</tr>
-						<tr>
-							<td>麦わら帽子</td>
-							<td>黄色</td>
-							<td>日本帽子製造</td>
-							<td>4980円</td>
-							<td>2 個</td>
-						</tr>
-						<tr>
-							<td>子ども用麦わら帽子</td>
-							<td>赤</td>
-							<td>東京帽子店</td>
-							<td>2980円</td>
-							<td>3 個</td>
-						</tr>
-					</table>
-				</td>
-			</tr>
-			<tr>
-				<th>配送先</th>
-				<td>自宅</td>
-			</tr>
-			<tr>
-				<td colspan='2'>
-					<form action='purchaseCancelCommit.html' method='POST'>
-						<input type='hidden' name='purchaseId' value='1234' />
-						<input type='submit' value='キャンセル' /><br />
-					</form>
-				</td>
-			</tr>
-		</table>
-		<a href='main.html'>商品検索</a>へ<br />
+			<table border="1">
+    <tr>
+        <th>注文日</th>
+        <td><c:out value="${result.purchasedDate}" /></td>
+    </tr>
+    <tr>
+        <th>購入商品</th>
+        <td>
+            <table border="1">
+                <tr>
+                    <th>商品名</th>
+                    <th>色</th>
+                    <th>メーカー</th>
+                    <th>単価</th>
+                    <th>数量</th>
+                </tr>
+                <c:forEach items="${result.detailsList}" var="detail">
+                <tr>
+                    <td><c:out value="${detail.itemDTO.itemName}" /></td>
+                    <td><c:out value="${detail.itemDTO.color}" /></td>
+                    <td><c:out value="${detail.itemDTO.manufacturer}" /></td>
+                    <td><c:out value="${detail.itemDTO.price}" />円</td>
+                    <td><c:out value="${detail.amount}" />個</td>
+                </tr>
+                </c:forEach>
+            </table>
+        </td>
+    </tr>
+    <tr>
+        <th>配送先</th>
+        <td>
+            <c:out value="${result.destination == null ? '自宅' : result.destination}" />
+        </td>
+    </tr>
+</table>
+
+<form action="${pageContext.request.contextPath}/executeCancel" method="post">
+    <input type="hidden" name="purchaseId" value="${result.purchaseId}">
+    <input type="submit" value="キャンセル">
+</form>
 </body>
 </html>

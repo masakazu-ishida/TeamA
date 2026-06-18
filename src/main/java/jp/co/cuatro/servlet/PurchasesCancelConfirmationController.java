@@ -8,8 +8,10 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
 
 import jp.co.cuatro.dto.PurchasesDTO;
+import jp.co.cuatro.dto.UsersDTO;
 import jp.co.cuatro.service.PurchasesCancelConfirmationService;
 
 /**
@@ -34,13 +36,24 @@ public class PurchasesCancelConfirmationController extends HttpServlet {
 			throws ServletException, IOException {
 		request.setCharacterEncoding("UTF-8");
 
+		HttpSession session = request.getSession();
+		UsersDTO loginUser = (UsersDTO) session.getAttribute("loginUser");
+		//箱の中から、loginUser という名前のデータを取り出す
+		if (loginUser == null) {
+			RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/error.jsp");
+			dispatcher.forward(request, response);
+
+			return;
+
+		}
+
 		PurchasesCancelConfirmationService cancelConfirmation = new PurchasesCancelConfirmationService();
 		int purchasesId = Integer.parseInt(request.getParameter("purchasesId"));
 		PurchasesDTO result = cancelConfirmation.execute(purchasesId);
 
 		request.setAttribute("result", result);
 
-		String path = "/WEB-INF/historyPurchases.jsp";
+		String path = "/WEB-INF/purchasesCanselConfirmation.jsp";
 		RequestDispatcher rd = request.getRequestDispatcher(path);
 		rd.forward(request, response);
 
