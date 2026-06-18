@@ -23,7 +23,7 @@ public class CartDAO {
 		this.con = con;
 	}
 
-	// 主キーによる検索 
+	// ユーザーIDによる検索 
 	public List<CartDTO> findByUserId(String userId) throws SQLException {
 		String sql = "select user_id, name, color, manufacturer, price, amount, booked_date, i.item_id from items i inner join items_in_cart ic on i.item_id = ic.item_id WHERE ic.user_id = ?";
 		//結果を格納するListオブジェクトを用意
@@ -93,7 +93,7 @@ public class CartDAO {
 		}
 	}
 
-	// 特定のユーザーが、特定の化商品をすでにカートに入れているか検索する
+	// 特定のユーザーが、特定の商品をすでにカートに入れているか検索する
 	public CartDTO findByUserAndItem(String userId, int itemId) throws SQLException {
 		String sql = "SELECT user_id, item_id, amount, booked_date "
 				+ "FROM public.items_in_cart "
@@ -119,4 +119,15 @@ public class CartDAO {
 		return null;
 	}
 
+	// データの削除
+	public int delete(CartDTO cart) throws SQLException {
+		String sql = "DELETE FROM public.items_in_cart\n"
+				+ "	WHERE user_id = ? AND item_id = ?";
+		try (PreparedStatement ps = con.prepareStatement(sql)) {
+			ps.setString(1, cart.getUserId());
+			ps.setInt(2, cart.getItemId());
+
+			return ps.executeUpdate();
+		}
+	}
 }
