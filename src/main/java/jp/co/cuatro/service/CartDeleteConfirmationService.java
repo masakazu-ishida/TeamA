@@ -20,14 +20,7 @@ public class CartDeleteConfirmationService {
 
 			CartDTO searchCart = dao.findByUserAndItem(confirmCart.getUserId(), confirmCart.getItemId());
 
-			if (searchCart != null) {
-				confirmCart.setUserId(searchCart.getUserId());
-				confirmCart.setItemId(searchCart.getItemId());
-				confirmCart.setAmount(searchCart.getAmount());
-				confirmCart.setBookedDate(searchCart.getBookedDate());
-			}
-
-			return confirmCart;
+			return searchCart;
 		}
 
 		catch (Exception e) {

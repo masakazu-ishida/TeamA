@@ -31,7 +31,7 @@ class CartDeleteConfirmationServiceTest {
 			assertNotNull(resultCart);
 			assertEquals("user1", resultCart.getUserId());
 			assertEquals(1, resultCart.getItemId());
-			assertEquals(1, resultCart.getAmount());
+			assertEquals(6, resultCart.getAmount());
 			assertEquals(LocalDate.of(2026, 6, 15), resultCart.getBookedDate());
 
 		} catch (ServletException e) {

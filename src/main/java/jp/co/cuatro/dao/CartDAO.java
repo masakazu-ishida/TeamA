@@ -97,10 +97,11 @@ public class CartDAO {
 
 	// 特定のユーザーが、特定の商品をすでにカートに入れているか検索する
 	public CartDTO findByUserAndItem(String userId, int itemId) throws SQLException {
-		String sql = """
-				SELECT user_id, item_id, amount, booked_date \
-				FROM public.items_in_cart \
-				WHERE user_id = ? AND item_id = ?""";
+		String sql = "SELECT c.user_id, c.item_id, c.amount, c.booked_date, i.name, i.manufacturer, i.price\n"
+				+ "FROM public.items_in_cart c \n"
+				+ "INNER JOIN public.items i ON c.item_id = i.item_id \n"
+				+ "WHERE c.user_id = ? AND c.item_id = ?";
+		;
 
 		try (PreparedStatement ps = con.prepareStatement(sql)) {
 			ps.setString(1, userId);
@@ -109,13 +110,21 @@ public class CartDAO {
 			try (ResultSet rs = ps.executeQuery()) {
 				if (rs.next()) {
 					// すでにデータが存在した場合は、中身を詰めたDTOを返す
-					CartDTO cart = new CartDTO();
-					cart.setUserId(rs.getString("user_id"));
-					cart.setItemId(rs.getInt("item_id"));
-					cart.setAmount(rs.getInt("amount"));
-					cart.setBookedDate(rs.getObject("booked_date", LocalDate.class));
+					CartDTO cartDto = new CartDTO();
+					ItemDTO itemDto = new ItemDTO();
 
-					return cart;
+					itemDto.setItemName(rs.getString("name"));
+					itemDto.setManufacturer(rs.getString("manufacturer"));
+					itemDto.setPrice(rs.getInt("price"));
+					itemDto.setItemId(rs.getInt("item_id"));
+
+					cartDto.setUserId(rs.getString("user_id"));
+					cartDto.setItemId(rs.getInt("item_id"));
+					cartDto.setAmount(rs.getInt("amount"));
+					cartDto.setBookedDate(rs.getObject("booked_date", LocalDate.class));
+					cartDto.setItem(itemDto);
+
+					return cartDto;
 				}
 			}
 		}
