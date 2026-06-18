@@ -13,7 +13,7 @@ import jakarta.servlet.http.HttpSession;
 
 import jp.co.cuatro.dto.CartDTO;
 import jp.co.cuatro.dto.UsersDTO;
-import jp.co.cuatro.service.ConfirmationService;
+import jp.co.cuatro.service.CartAllService;
 
 /**
  * Servlet implementation class ItemsInCartController
@@ -56,9 +56,12 @@ public class ItemsInCartController extends HttpServlet {
 			dispatcher.forward(request, response);
 
 		} else {
-			ConfirmationService userService = new ConfirmationService();
+			//			ConfirmationService userService = new ConfirmationService();
+			//
+			//			List<CartDTO> cartList = userService.findUserId(loginUser.getUserId());
 
-			List<CartDTO> cartList = userService.findUserId(loginUser.getUserId());
+			CartAllService cartService = new CartAllService();
+			List<CartDTO> cartList = cartService.execute(loginUser.getUserId());
 
 			request.setAttribute("cartList", cartList);
 

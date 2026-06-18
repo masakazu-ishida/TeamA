@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -17,10 +18,7 @@
             <th>単価</th>
             <th>数量</th>
         </tr>
-        
-        <c:set var="grandTotal" value="0" />
-
-
+      
 <c:forEach items="${cartList}" var="cart">
         <tr>
             <td><c:out value="${cart.item.itemName}" /></td>
@@ -28,10 +26,10 @@
             <td><c:out value="${cart.item.manufacturer}" /></td>
             <td><c:out value="${cart.item.price}" />円</td>
             <td><c:out value="${cart.amount}" />個</td>
-            <td>
-    </table>
-
-    <p>合計 ${grandTotal} 円</p>
+        </tr>
+        <c:set var="grandTotal" value="${grandTotal + cart.total}" />
+</c:forEach> </table> 
+ 	<p>合計<c:out value="${grandTotal}" />円</p>
     <form action="${pageContext.request.contextPath}/PurchasesCompletionController" method="post">
         
         <p>清算方法</p>
