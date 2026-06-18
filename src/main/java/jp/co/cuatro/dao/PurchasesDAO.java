@@ -19,16 +19,14 @@ public class PurchasesDAO {
 	}
 
 	public List<PurchasesDTO> historyPurchasesFindByUserId(String userId) throws SQLException {
-		String sql = """
-				SELECT p.purchase_id, p.purchased_user, p.purchased_date,  p.destination, p.cancel,\
-				d.purchase_detail_id,  d.purchase_id,  d.item_id,  d.amount,\
-				i.item_id, i.name, i.manufacturer, i.category_id, i.color, i.price, i.stock, i.recommended\
-				 FROM purchases p \
-				INNER JOIN purchase_details d ON p.purchase_id = d.purchase_id \
-				INNER JOIN items i ON d.item_id = i.item_id \
-				WHERE p.purchased_user = ? \
-				ORDER BY p.purchased_date DESC, p.purchase_id DESC""";
-
+		String sql = "SELECT p.purchase_id, p.purchased_user, p.purchased_date, p.destination, p.cancel, "
+				+ "d.purchase_detail_id, d.purchase_id, d.item_id, d.amount, "
+				+ "i.item_id, i.name, i.manufacturer, i.category_id, i.color, i.price, i.stock, i.recommended "
+				+ "FROM purchases p "
+				+ "INNER JOIN purchase_details d ON p.purchase_id = d.purchase_id "
+				+ "INNER JOIN items i ON d.item_id = i.item_id "
+				+ "WHERE p.purchased_user = ? "
+				+ "ORDER BY p.purchased_date DESC, p.purchase_id DESC";
 		List<PurchasesDTO> list = new ArrayList<>();
 
 		try (PreparedStatement ps = con.prepareStatement(sql)) {
@@ -82,33 +80,23 @@ public class PurchasesDAO {
 		return list;
 	}
 
-	public List<PurchasesDTO> purchasesCancelConfirmationFindByPurchaseId(int purchaseId) throws SQLException {
-		String sql = """
-				SELECT p.purchase_id, p.purchased_user, p.purchased_date,  p.destination, p.cancel,\
-				d.purchase_detail_id,  d.purchase_id,  d.item_id,  d.amount,\
-				i.item_id, i.name, i.manufacturer, i.category_id, i.color, i.price, i.stock, i.recommended\
-				 FROM purchases p \
-				INNER JOIN purchase_details d ON p.purchase_id = d.purchase_id \
-				INNER JOIN items i ON d.item_id = i.item_id \
-				WHERE p.purchase_id = ? \
-				ORDER BY p.purchased_date DESC, p.purchase_id DESC""";
+	public PurchasesDTO findPurchaseForCancel(int purchaseId) throws SQLException {
+		String sql = "SELECT p.purchase_id, p.purchased_user, p.purchased_date, p.destination, p.cancel, "
+				+ "d.purchase_detail_id, d.purchase_id, d.item_id, d.amount, "
+				+ "i.item_id, i.name, i.manufacturer, i.category_id, i.color, i.price, i.stock, i.recommended "
+				+ "FROM purchases p "
+				+ "INNER JOIN purchase_details d ON p.purchase_id = d.purchase_id "
+				+ "INNER JOIN items i ON d.item_id = i.item_id "
+				+ "WHERE p.purchase_id = ? "
+				+ "ORDER BY d.purchase_detail_id ASC";
 
-		List<PurchasesDTO> list = new ArrayList<>();
+		PurchasesDTO purchases = null;
 
 		try (PreparedStatement ps = con.prepareStatement(sql)) {
 			ps.setInt(1, purchaseId);
 
 			try (ResultSet rs = ps.executeQuery()) {
 				while (rs.next()) {
-					int nowPurchaseId = rs.getInt("purchase_id");
-
-					PurchasesDTO purchases = null;
-					for (PurchasesDTO p : list) {
-						if (p.getPurchaseId() == nowPurchaseId) {
-							purchases = p;
-							break;
-						}
-					}
 
 					if (purchases == null) {
 						purchases = new PurchasesDTO();
@@ -117,8 +105,6 @@ public class PurchasesDAO {
 						purchases.setPurchasedDate(rs.getString("purchased_date"));
 						purchases.setDestination(rs.getString("destination"));
 						purchases.setCancel(rs.getBoolean("cancel"));
-
-						list.add(purchases);
 					}
 
 					PurchaseDetailsDTO purchasesDetails = new PurchaseDetailsDTO();
@@ -142,8 +128,7 @@ public class PurchasesDAO {
 				}
 			}
 		}
-
-		return list;
+		return purchases;
 	}
 
 	// 中瀬が作っている最中です
