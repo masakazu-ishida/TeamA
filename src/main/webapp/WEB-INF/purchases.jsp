@@ -39,10 +39,10 @@
 
         <p>配送先</p>
         <label>
-            <input type="radio" name="deliveryLocation" value="ご自宅" checked> ご自宅
+            <input type="radio" name="destination" value="registered" checked> ご自宅
         </label><br/>
         <label>
-            <input type="radio" name="deliveryLocation" value="配送先を指定"> 配送先を指定
+            <input type="radio" name="destination" value="other"> 配送先を指定
         </label><br/>
         <p>ご住所</p>
         <input type="text" name="address" class="text"><br/>
