@@ -186,7 +186,7 @@ class ItemDAOTest extends TestBase {
 	 * 在庫(stock)が更新されているか
 	 */
 	@Test
-	void testUpdateStock() {
+	void testUpdateMinusStock() {
 
 		try (Connection conn = ConnectionUtil.getConnection(null)) {
 			ItemDAO dao = new ItemDAO(conn);
@@ -207,6 +207,32 @@ class ItemDAOTest extends TestBase {
 		} catch (Exception e) {
 			e.printStackTrace();
 			fail(e);
+		}
+	}
+
+	@Test
+	void testUpdatePlusStock() {
+		try (Connection conn = ConnectionUtil.getConnection(null)) {
+			ItemDAO dao = new ItemDAO(conn);
+
+			int testItemId = 7;
+			int plusAmount = 5;
+
+			ItemDTO beforeItem = dao.findById(testItemId);
+			assertNotNull(beforeItem);
+			int beforeStock = beforeItem.getStock();
+
+			dao.updatePlusStock(testItemId, plusAmount);
+
+			ItemDTO afterItem = dao.findById(testItemId);
+			assertNotNull(afterItem);
+			int afterStock = afterItem.getStock();
+
+			assertEquals(beforeStock + plusAmount, afterStock);
+
+		} catch (Exception e) {
+			e.printStackTrace();
+			fail(e.getMessage());
 		}
 	}
 
