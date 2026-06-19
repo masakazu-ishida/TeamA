@@ -31,6 +31,7 @@ class PurchasesCancelServiceTest extends TestBase {
 		} catch (Exception e) {
 			e.printStackTrace();
 			fail("キャンセル処理中にエラーが発生しました: " + e.getMessage());
+
 		}
 	}
 
