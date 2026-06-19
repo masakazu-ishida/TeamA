@@ -10,7 +10,7 @@
         <link rel='stylesheet' type='text/css' href='style.css' />
 </head>
 <body>
-        <h1>ショッピングカート内の商品一覧</h1>
+        <h3>ショッピングカート内の商品一覧</h3>
         <br/>
 <table border="1">
     <tr style="background-color: rgb(128, 128, 255); color: white;">
