@@ -101,10 +101,8 @@ public class ItemDAO {
 		String sql = "UPDATE items SET stock = stock - ? WHERE item_id = ?";
 
 		try (PreparedStatement ps = conn.prepareStatement(sql)) {
-
-			ps.setInt(1, amount); // 引く数量
-			ps.setInt(2, itemId); // 対象の商品ID
-
+			ps.setInt(1, amount);
+			ps.setInt(2, itemId);
 			ps.executeUpdate();
 		}
 	}

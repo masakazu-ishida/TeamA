@@ -1,6 +1,7 @@
 package jp.co.cuatro.servlet;
 
 import java.io.IOException;
+import java.sql.Connection;
 import java.util.List;
 
 import jakarta.servlet.ServletException;
@@ -10,6 +11,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 
+import jp.co.cuatro.dao.CartDAO;
 import jp.co.cuatro.dto.CartDTO;
 import jp.co.cuatro.dto.UsersDTO;
 import jp.co.cuatro.service.PurchaseDetailsService;
@@ -50,19 +52,28 @@ public class PurchasesCompletionController extends HttpServlet {
 		try {
 			HttpSession session = request.getSession(false);
 
-			// セッションが無いorログイン情報が無い場合、ログイン画面へ遷移
+			// セッションチェック
 			if (session == null || session.getAttribute("loginUser") == null) {
 				response.sendRedirect(request.getContextPath() + "/login");
+				return;
 			}
 
 			UsersDTO user = (UsersDTO) session.getAttribute("loginUser");
-			List<CartDTO> cartList = (List<CartDTO>) session.getAttribute("cartList");
 
-			// カートが空なら、メイン画面にリダイレクト
-			//			if (cartList == null || cartList.isEmpty()) {
-			//				response.sendRedirect(request.getContextPath() + "/main");
-			//				return;
-			//			}
+			List<CartDTO> cartList = null;
+			String jndiName = "java:comp/env/jdbc/ecsite";
+
+			// トランザクション管理のServiceに渡すのとは別に、ここで一度コネクションを開いて検索する
+			try (Connection conn = jp.co.cuatro.util.ConnectionUtil.getConnection(jndiName)) {
+				CartDAO selectCartDao = new CartDAO(conn);
+				cartList = selectCartDao.findByUserId(user.getUserId());
+			}
+
+			//	        // カートが空の場合はメイン画面へ遷移
+			//	        if (cartList == null || cartList.isEmpty()) {
+			//	            response.sendRedirect(request.getContextPath() + "/main");
+			//	            return;
+			//	        }
 
 			// 配送先の住所を画面から取得
 			String destination = request.getParameter("destination");
@@ -70,7 +81,7 @@ public class PurchasesCompletionController extends HttpServlet {
 
 			String shippingAddress = "";
 
-			// 配送先が会員情報に登録された自宅の場合
+			// 配送先判定
 			if ("registered".equals(destination)) {
 				shippingAddress = null;
 			} else {
@@ -81,11 +92,18 @@ public class PurchasesCompletionController extends HttpServlet {
 			boolean success = pds.execute(user.getUserId(), cartList, shippingAddress);
 
 			if (success) {
-				// 成功時は購入完了表示画面へリダイレクト
-				response.sendRedirect(request.getContextPath() + "/purchases/success");
+				// JSPで表示するために、購入した内容をリクエストに詰める
+				request.setAttribute("cartList", cartList);
+				request.setAttribute("paymentMethod", request.getParameter("paymentMethod"));
+				request.setAttribute("destination", request.getParameter("destination"));
+				request.setAttribute("address", request.getParameter("address"));
+
+				// 成功時は購入完了表示画面へフォワード
+				request.getRequestDispatcher("/WEB-INF/purchasesSuccess.jsp").forward(request, response);
 			} else {
-				// 在庫不足などで失敗した場合は、購入確認画面へフォワード
-				request.getRequestDispatcher("/WEB-INF/purchaseSuccess.jsp").forward(request, response);
+				// 失敗時は理由を添えて購入確認画面へフォワード
+				request.setAttribute("errorMsg", "購入処理に失敗しました。在庫数などを確認してください。");
+				request.getRequestDispatcher("/WEB-INF/purchases.jsp").forward(request, response);
 			}
 
 		} catch (Exception e) {

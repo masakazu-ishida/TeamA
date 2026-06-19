@@ -133,73 +133,25 @@ public class PurchasesDAO {
 		return purchases;
 	}
 
-	public PurchasesDTO purchasesCancel(int purchaseId) throws SQLException {
-		String sql = """
-				SELECT p.purchase_id, p.purchased_user, p.purchased_date, p.destination, p.cancel, \
-				d.purchase_detail_id, d.purchase_id, d.item_id, d.amount, \
-				i.item_id, i.name, i.manufacturer, i.category_id, i.color, i.price, i.stock, i.recommended \
-				FROM purchases p \
-				INNER JOIN purchase_details d ON p.purchase_id = d.purchase_id \
-				INNER JOIN items i ON d.item_id = i.item_id \
-				WHERE p.purchase_id = ? \
-				ORDER BY d.purchase_detail_id ASC""";
-
-		PurchasesDTO purchases = null;
-
-		try (PreparedStatement ps = con.prepareStatement(sql)) {
-			ps.setInt(1, purchaseId);
-
-			try (ResultSet rs = ps.executeQuery()) {
-				while (rs.next()) {
-
-					if (purchases == null) {
-						purchases = new PurchasesDTO();
-						purchases.setPurchaseId(rs.getInt("purchase_id"));
-						purchases.setPurchasedUser(rs.getString("purchased_user"));
-						purchases.setPurchasedDate(rs.getString("purchased_date"));
-						purchases.setDestination(rs.getString("destination"));
-						purchases.setCancel(rs.getBoolean("cancel"));
-					}
-
-					PurchaseDetailsDTO purchasesDetails = new PurchaseDetailsDTO();
-					purchasesDetails.setPurchaseDetailId(rs.getInt("purchase_detail_id"));
-					purchasesDetails.setPurchaseId(rs.getInt("purchase_id"));
-					purchasesDetails.setItemId(rs.getInt("item_id"));
-					purchasesDetails.setAmount(rs.getInt("amount"));
-
-					ItemDTO item = new ItemDTO();
-					item.setItemId(rs.getInt("item_id"));
-					item.setItemName(rs.getString("name"));
-					item.setManufacturer(rs.getString("manufacturer"));
-					item.setCategoryId(rs.getInt("category_id"));
-					item.setColor(rs.getString("color"));
-					item.setPrice(rs.getInt("price"));
-					item.setStock(rs.getInt("stock"));
-					item.setRecommended(rs.getBoolean("recommended"));
-
-					purchasesDetails.setItemDTO(item);
-					purchases.getDetailsList().add(purchasesDetails);
-				}
-			}
-		}
-		return purchases;
-	}
-
 	// 中瀬が作っている最中です
 	public int insert(Connection conn, PurchasesDTO purchaseDTO) throws SQLException {
 		String sql = "INSERT INTO purchases (purchased_user, purchased_date, destination, cancel) "
 				+ "VALUES (?, CURRENT_DATE, ?, false)";
 
-		try (PreparedStatement ps = con.prepareStatement(sql, PreparedStatement.RETURN_GENERATED_KEYS)) {
-			int id = 0;
-			PurchasesDTO purchasesDTO = new PurchasesDTO();
-			ps.setString(1, purchasesDTO.getPurchasedUser()); // 注文者ID
-			ps.setString(2, purchasesDTO.getDestination()); // 配送先住所
+		try (PreparedStatement ps = conn.prepareStatement(sql, PreparedStatement.RETURN_GENERATED_KEYS)) {
 
-			// 4. SQLを実行（この瞬間にDB側のシーケンスがガチャンと動いてIDが自動採番される）
+			ps.setString(1, purchaseDTO.getPurchasedUser()); // 注文者ID
+			ps.setString(2, purchaseDTO.getDestination()); // 配送先住所
+
 			ps.executeUpdate();
-			return id;
+
+			try (ResultSet rs = ps.getGeneratedKeys()) {
+				if (rs.next()) {
+					return rs.getInt(1); // シーケンスされたIDをそのままリターン
+				}
+			}
 		}
+		return 0; // 万が一取得できなかった場合は0を返す
 	}
 }
 

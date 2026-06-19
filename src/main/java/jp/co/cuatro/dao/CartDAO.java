@@ -97,11 +97,11 @@ public class CartDAO {
 
 	// 特定のユーザーが、特定の商品をすでにカートに入れているか検索する
 	public CartDTO findByUserAndItem(String userId, int itemId) throws SQLException {
-		String sql = "SELECT c.user_id, c.item_id, c.amount, c.booked_date, i.name, i.manufacturer, i.price\n"
-				+ "FROM public.items_in_cart c \n"
-				+ "INNER JOIN public.items i ON c.item_id = i.item_id \n"
-				+ "WHERE c.user_id = ? AND c.item_id = ?";
-		;
+		String sql = """
+				SELECT c.user_id, c.item_id, c.amount, c.booked_date, i.name, i.manufacturer, i.price
+				FROM public.items_in_cart c\s
+				INNER JOIN public.items i ON c.item_id = i.item_id\s
+				WHERE c.user_id = ? AND c.item_id = ?""";
 
 		try (PreparedStatement ps = con.prepareStatement(sql)) {
 			ps.setString(1, userId);
@@ -149,10 +149,8 @@ public class CartDAO {
 		String sql = "DELETE FROM items_in_cart WHERE user_id = ? AND item_id = ?";
 
 		try (PreparedStatement ps = conn.prepareStatement(sql)) {
-
-			ps.setString(1, userId); // ユーザーID
-			ps.setInt(2, itemId); // 商品ID
-
+			ps.setString(1, userId);
+			ps.setInt(2, itemId);
 			ps.executeUpdate();
 		}
 	}
