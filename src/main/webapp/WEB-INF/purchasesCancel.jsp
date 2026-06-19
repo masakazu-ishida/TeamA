@@ -5,8 +5,9 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
+<meta http-equiv='Content-Type' content='text/html; charset=UTF-8' />
+<title>注文のキャンセル完了</title>
+ <link rel='stylesheet' type='text/css' href='style.css' />
 </head>
 <body>
 <h3>以下の注文をキャンセルしました。</h3>

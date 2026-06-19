@@ -5,8 +5,9 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
+<meta http-equiv='Content-Type' content='text/html; charset=UTF-8' />
 <title>ショッピングカート内の商品を削除</title>
+ <link rel='stylesheet' type='text/css' href='style.css' />
 </head>
 <body>
 

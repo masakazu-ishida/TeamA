@@ -4,7 +4,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <meta charset="UTF-8">
+    <meta http-equiv='Content-Type' content='text/html; charset=UTF-8' />
     <title>商品の購入完了</title>
     <link rel='stylesheet' type='text/css' href='${pageContext.request.contextPath}/style.css' />
 </head>
