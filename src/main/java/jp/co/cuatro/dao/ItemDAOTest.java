@@ -181,4 +181,33 @@ class ItemDAOTest extends TestBase {
 		}
 	}
 
+	/**
+	 * 購入処理
+	 * 在庫(stock)が更新されているか
+	 */
+	@Test
+	void testUpdateStock() {
+
+		try (Connection conn = ConnectionUtil.getConnection(null)) {
+			ItemDAO dao = new ItemDAO(conn);
+
+			// 現在の在庫数を取得
+			ItemDTO beforeItem = dao.findById(1);
+			assertNotNull(beforeItem);
+			int beforeStock = beforeItem.getStock();
+
+			// 3個購入
+			dao.updateMinusStock(conn, 1, 3);
+
+			// 元の在庫数数-3されているかチェック
+			ItemDTO afterItem = dao.findById(1);
+			assertNotNull(afterItem);
+			assertEquals(beforeStock - 3, afterItem.getStock());
+
+		} catch (Exception e) {
+			e.printStackTrace();
+			fail(e);
+		}
+	}
+
 }

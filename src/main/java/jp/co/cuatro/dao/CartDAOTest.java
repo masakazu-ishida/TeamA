@@ -223,4 +223,30 @@ class CartDAOTest extends TestBase {
 		}
 	}
 
+	/**
+	 * 購入処理
+	 * カートの中身が削除できているか
+	 */
+	@Test
+	void testDeleteCartItem() {
+
+		try (Connection conn = ConnectionUtil.getConnection(null)) {
+			CartDAO dao = new CartDAO(conn);
+
+			// 削除する前に、対象のデータ(user_id：user1、item_id：1)が存在するかチェック
+			CartDTO checkedCart = dao.findByUserAndItem("user1", 1);
+			assertNotNull(checkedCart);
+
+			dao.deleteCartItem(conn, "user1", 1);
+
+			// 削除したはずのデータをもう一度検索し、nullになっているかチェック
+			CartDTO deletedCart = dao.findByUserAndItem("user1", 1);
+			assertNull(deletedCart);
+
+		} catch (Exception e) {
+			e.printStackTrace();
+			fail(e);
+		}
+	}
+
 }
