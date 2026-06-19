@@ -45,12 +45,12 @@ public class PurchasesCancelConfirmationController extends HttpServlet {
 		}
 
 		PurchasesCancelConfirmationService cancelConfirmation = new PurchasesCancelConfirmationService();
-		int purchasesId = Integer.parseInt(request.getParameter("purchasesId"));
+		int purchasesId = Integer.parseInt(request.getParameter("purchaseId"));
 		PurchasesDTO result = cancelConfirmation.execute(purchasesId);
 
 		request.setAttribute("result", result);
 
-		String path = "/WEB-INF/purchasesCanselConfirmation.jsp";
+		String path = "/WEB-INF/purchasesCancelConfirmation.jsp";
 		RequestDispatcher rd = request.getRequestDispatcher(path);
 		rd.forward(request, response);
 
