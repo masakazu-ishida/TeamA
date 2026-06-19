@@ -21,46 +21,35 @@ public class PurchaseDetailsService {
 
 		try (Connection conn = ConnectionUtil.getConnection(jndiName)) {
 
-			try {
-				// トランザクション開始
-				conn.setAutoCommit(false);
+			// トランザクション開始
+			conn.setAutoCommit(false);
 
-				PurchasesDTO purchaseDTO = new PurchasesDTO();
-				purchaseDTO.setPurchasedUser(userId); // 注文者ID
-				purchaseDTO.setDestination(shippingAddress); // 配送先住所
+			PurchasesDTO purchaseDTO = new PurchasesDTO();
+			purchaseDTO.setPurchasedUser(userId); // 注文者ID
+			purchaseDTO.setDestination(shippingAddress); // 配送先住所
 
-				PurchasesDAO purchasesDAO = new PurchasesDAO(conn);
-				int purchaseId = purchasesDAO.insert(conn, purchaseDTO); // 注文親情報の登録
+			PurchasesDAO purchasesDAO = new PurchasesDAO(conn);
+			int purchaseId = purchasesDAO.insert(conn, purchaseDTO); // 注文親情報の登録、戻り値にシーケンス購入IDを返す
 
-				PurchaseDetailsDAO purchaseDetailsDAO = new PurchaseDetailsDAO(conn);
-				ItemDAO itemDAO = new ItemDAO(conn);
-				CartDAO cartDAO = new CartDAO(conn);
+			PurchaseDetailsDAO purchaseDetailsDAO = new PurchaseDetailsDAO(conn);
+			ItemDAO itemDAO = new ItemDAO(conn);
+			CartDAO cartDAO = new CartDAO(conn);
 
-				// カートに入っている数だけループして注文詳細に追加＆在庫更新
-				for (CartDTO item : cartList) {
-					PurchaseDetailsDTO purchaseDetailsDTO = new PurchaseDetailsDTO();
-					// 注文詳細に登録
-					purchaseDetailsDTO.setPurchaseId(purchaseId);
-					purchaseDetailsDTO.setItemId(item.getItemId());
-					purchaseDetailsDTO.setAmount(item.getAmount());
-					purchaseDetailsDAO.insert(conn, purchaseDetailsDTO);
-
-					// 在庫の更新
-					itemDAO.updateMinusStock(conn, item.getItemId(), item.getAmount());
-
-					// カートの削除
-					cartDAO.deleteCartItem(conn, userId, item.getItemId());
-				}
-
-				// すべて成功したら、コミット
-				conn.commit();
-				success = true; // 戻り値を成功：trueに
-
-			} catch (Exception e) {
-				e.printStackTrace();
-				// 失敗したら、ロールバックの実行
-				conn.rollback();
+			// カートに入っている数だけループして注文詳細に追加＆在庫更新
+			for (CartDTO item : cartList) {
+				PurchaseDetailsDTO purchaseDetailsDTO = new PurchaseDetailsDTO();
+				purchaseDetailsDTO.setPurchaseId(purchaseId);
+				purchaseDetailsDTO.setItemId(item.getItemId());
+				purchaseDetailsDTO.setAmount(item.getAmount());
+				purchaseDetailsDAO.insert(conn, purchaseDetailsDTO);
+				itemDAO.updateMinusStock(conn, item.getItemId(), item.getAmount());
+				cartDAO.deleteCartItem(conn, userId, item.getItemId());
 			}
+
+			// すべて成功したら、コミット
+			conn.commit();
+			success = true; // 戻り値を成功：trueに
+
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
