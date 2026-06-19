@@ -25,7 +25,9 @@ public class CartDAO {
 
 	// ユーザーIDによる検索
 	public List<CartDTO> findByUserId(String userId) throws SQLException {
-		String sql = "select user_id, name, color, manufacturer, price, amount, booked_date, i.item_id from items i inner join items_in_cart ic on i.item_id = ic.item_id WHERE ic.user_id = ?";
+		String sql = "select i.item_id,  i.name, i.manufacturer, i.category_id, i.color, i.price, i.stock, i.recommended, \r\n"
+				+ "c.user_id, c.item_id, c.amount, c.booked_date\r\n"
+				+ "from items i inner join items_in_cart c on i.item_id = c.item_id WHERE c.user_id = ?";
 		//結果を格納するListオブジェクトを用意
 		List<CartDTO> list = new ArrayList<>();
 		//データベースの接続と切断
@@ -43,17 +45,20 @@ public class CartDAO {
 				//カーソルが指す行の各列の値を取得し、
 				//変数dtoに設定
 				ItemDTO itemDto = new ItemDTO();
-				itemDto.setItemName(rs.getString("name"));
-				itemDto.setColor(rs.getString("color"));
-				itemDto.setManufacturer(rs.getString("manufacturer"));
-				itemDto.setPrice(rs.getInt("price"));
 				itemDto.setItemId(rs.getInt("item_id"));
+				itemDto.setItemName(rs.getString("name"));
+				itemDto.setManufacturer(rs.getString("manufacturer"));
+				itemDto.setCategoryId(rs.getInt("category_id"));
+				itemDto.setColor(rs.getString("color"));
+				itemDto.setPrice(rs.getInt("price"));
+				itemDto.setStock(rs.getInt("stock"));
+				itemDto.setRecommended(rs.getBoolean("recommended"));
 
-				cartDto.setAmount(rs.getInt("amount"));
-				cartDto.setItemId(rs.getInt("item_id"));
 				cartDto.setUserId(rs.getString("user_id"));
-				cartDto.setItem(itemDto);
+				cartDto.setItemId(rs.getInt("item_id"));
+				cartDto.setAmount(rs.getInt("amount"));
 				cartDto.setBookedDate(rs.getObject("booked_date", LocalDate.class));
+				cartDto.setItem(itemDto);
 				//すべての列の値を設定した変数をListオブジェクトに格納
 				list.add(cartDto);
 			}
@@ -98,9 +103,11 @@ public class CartDAO {
 	// 特定のユーザーが、特定の商品をすでにカートに入れているか検索する
 	public CartDTO findByUserAndItem(String userId, int itemId) throws SQLException {
 		String sql = """
-				SELECT c.user_id, c.item_id, c.amount, c.booked_date, i.name, i.manufacturer, i.price
-				FROM public.items_in_cart c\s
-				INNER JOIN public.items i ON c.item_id = i.item_id\s
+
+				SELECT i.item_id,  i.name, i.manufacturer, i.category_id, i.color, i.price, i.stock, i.recommended,
+				c.user_id, c.item_id, c.amount, c.booked_date
+				FROM public.items_in_cart c
+				INNER JOIN public.items i ON c.item_id = i.item_id
 				WHERE c.user_id = ? AND c.item_id = ?""";
 
 		try (PreparedStatement ps = con.prepareStatement(sql)) {
@@ -113,10 +120,14 @@ public class CartDAO {
 					CartDTO cartDto = new CartDTO();
 					ItemDTO itemDto = new ItemDTO();
 
+					itemDto.setItemId(rs.getInt("item_id"));
 					itemDto.setItemName(rs.getString("name"));
 					itemDto.setManufacturer(rs.getString("manufacturer"));
+					itemDto.setCategoryId(rs.getInt("category_id"));
+					itemDto.setColor(rs.getString("color"));
 					itemDto.setPrice(rs.getInt("price"));
-					itemDto.setItemId(rs.getInt("item_id"));
+					itemDto.setStock(rs.getInt("stock"));
+					itemDto.setRecommended(rs.getBoolean("recommended"));
 
 					cartDto.setUserId(rs.getString("user_id"));
 					cartDto.setItemId(rs.getInt("item_id"));
