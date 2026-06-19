@@ -4,25 +4,37 @@ import java.sql.Connection;
 
 import jakarta.servlet.ServletException;
 
+import jp.co.cuatro.dao.ItemDAO;
 import jp.co.cuatro.dao.PurchasesDAO;
+import jp.co.cuatro.dto.PurchaseDetailsDTO;
 import jp.co.cuatro.dto.PurchasesDTO;
 import jp.co.cuatro.util.ConnectionUtil;
 
 public class PurchasesCancelService {
 	public PurchasesDTO execute(int purchasesId) throws ServletException {
 		String jndiName = "java:comp/env/jdbc/ecsite";
+
 		try (Connection conn = ConnectionUtil.getConnection(jndiName)) {
 
-			PurchasesDAO dao = new PurchasesDAO(conn);
+			PurchasesDAO pDao = new PurchasesDAO(conn);
+			ItemDAO iDao = new ItemDAO(conn);
 
-			PurchasesDTO result = dao.findPurchaseForCancel(purchasesId);
+			PurchasesDTO result = pDao.findById(purchasesId);
+
+			pDao.updatePurchaseCancel(purchasesId);
+
+			for (PurchaseDetailsDTO p : result.getDetailsList()) {
+
+				int itemId = p.getItemDTO().getItemId();
+				int amount = p.getAmount();
+				iDao.updatePlusStock(itemId, amount);
+			}
 
 			return result;
 
 		} catch (Exception e) {
-			throw new ServletException(e.getCause());
+			e.printStackTrace();
+			throw new ServletException(e);
 		}
-
 	}
-
 }

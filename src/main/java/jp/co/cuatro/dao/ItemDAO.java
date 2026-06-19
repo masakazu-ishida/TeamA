@@ -94,7 +94,7 @@ public class ItemDAO {
 
 	}
 
-	public void updatePlusStock(Connection conn, int itemId, int amount) throws SQLException {
+	public void updatePlusStock(int itemId, int amount) throws SQLException {
 
 		String sql = "UPDATE items SET stock = stock + ? WHERE item_id = ?";
 

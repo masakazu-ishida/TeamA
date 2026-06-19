@@ -106,7 +106,7 @@ class PurchasesDAOTest extends TestBase {
 
 			int testPurchaseId = 1;
 
-			PurchasesDTO result = dao.findPurchaseForCancel(testPurchaseId);
+			PurchasesDTO result = dao.findById(testPurchaseId);
 
 			assertNotNull(result);
 			assertEquals("user1", result.getPurchasedUser());
@@ -148,7 +148,7 @@ class PurchasesDAOTest extends TestBase {
 
 			int testPurchaseId = 4;
 
-			PurchasesDTO result = dao.findPurchaseForCancel(testPurchaseId);
+			PurchasesDTO result = dao.findById(testPurchaseId);
 
 			assertNull(result);
 

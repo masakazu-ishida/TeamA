@@ -15,7 +15,7 @@ public class PurchasesCancelConfirmationService {
 
 			PurchasesDAO dao = new PurchasesDAO(conn);
 
-			PurchasesDTO result = dao.findPurchaseForCancel(purchasesId);
+			PurchasesDTO result = dao.findById(purchasesId);
 
 			return result;
 

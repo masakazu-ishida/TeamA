@@ -81,7 +81,7 @@ public class PurchasesDAO {
 		return list;
 	}
 
-	public PurchasesDTO findPurchaseForCancel(int purchaseId) throws SQLException {
+	public PurchasesDTO findById(int purchaseId) throws SQLException {
 		String sql = """
 				SELECT p.purchase_id, p.purchased_user, p.purchased_date, p.destination, p.cancel, \
 				d.purchase_detail_id, d.purchase_id, d.item_id, d.amount, \
