@@ -26,7 +26,7 @@ public class CartDeleteService {
 
 			}
 
-			return deleteCart;
+			return searchCart;
 		} catch (Exception e) {
 			throw new ServletException(e.getCause());
 		}

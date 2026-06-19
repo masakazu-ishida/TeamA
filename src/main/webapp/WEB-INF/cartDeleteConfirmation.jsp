@@ -17,7 +17,7 @@
 		<fmt:formatNumber value="${confirmCart.item.price}" />円<br />
 		数量<c:out value="${confirmCart.amount}" />個<br />
 		
-		<form action='${pageContext.request.contextPath}/CartDeleteController' method='POST'>
+		<form action='${pageContext.request.contextPath}/cartDelete' method='POST'>
 			<input type='hidden' name='itemId' value= "${confirmCart.item.itemId}" />
 			<input type='submit' value='削除する' /><br />
 		</form>

@@ -1,0 +1,23 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="jakarta.tags.core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>ショッピングカート内の商品を削除</title>
+</head>
+<body>
+
+	<h3>以下の商品をショッピングカートから削除しました。</h3>
+	<br />
+		<c:out value="${searchCart.item.itemName}" /><br />
+		<c:out value="${searchCart.item.manufacturer}" /><br />
+		<fmt:formatNumber value="${searchCart.item.price}" />円<br />
+		数量<c:out value="${searchCart.amount}" />個<br />
+		
+	    <a href="${pageContext.request.contextPath}/main">商品検索</a>へ<br />	
+
+</body>
+</html>
