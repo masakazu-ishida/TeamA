@@ -27,7 +27,7 @@ public class PurchasesDAO {
 				INNER JOIN purchase_details d ON p.purchase_id = d.purchase_id \
 				INNER JOIN items i ON d.item_id = i.item_id \
 				WHERE p.purchased_user = ? \
-				ORDER BY p.purchased_date DESC, p.purchase_id DESC""";
+				ORDER BY p.purchase_id DESC""";
 		List<PurchasesDTO> list = new ArrayList<>();
 
 		try (PreparedStatement ps = con.prepareStatement(sql)) {
@@ -154,17 +154,19 @@ public class PurchasesDAO {
 
 		try (PreparedStatement ps = conn.prepareStatement(sql, PreparedStatement.RETURN_GENERATED_KEYS)) {
 
-			ps.setString(1, purchaseDTO.getPurchasedUser()); // 注文者ID
-			ps.setString(2, purchaseDTO.getDestination()); // 配送先住所
+			ps.setString(1, purchaseDTO.getPurchasedUser());
+			ps.setString(2, purchaseDTO.getDestination());
 
-			int update = ps.executeUpdate();
+			ps.executeUpdate();
 
 			try (ResultSet rs = ps.getGeneratedKeys()) {
 				if (rs.next()) {
-					purchaseDTO.setPurchaseId(rs.getInt(1));
+					int generatedId = rs.getInt(1);
+					purchaseDTO.setPurchaseId(generatedId);
+					return generatedId;
 				}
 			}
-			return update;
+			return 0;
 		}
 	}
 }

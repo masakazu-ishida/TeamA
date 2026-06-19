@@ -20,12 +20,15 @@
     </tr>
     
     <c:forEach items="${List}" var="history">
+    
+ 
+    <c:if test="${!history.cancel}">
     <tr>
         <td><c:out value="${history.purchasedDate}" /></td>
         
         <td>
             <table border="1">
-                <t>
+                <tr>
                     <th>商品名</th>
                     <th>色</th>
                     <th>メーカー</th>
@@ -45,12 +48,12 @@
         </td>
         
         <td><c:out value="${history.destination == null ? '自宅' : history.destination}" /></td>
-        <td><c:if test="${history.cancel == false}"><a href="${pageContext.request.contextPath}/cancelConfirmation?purchaseId=${history.purchaseId}">キャンセル</a></c:if>
-        <c:if test="${history.cancel == true}">　　　</c:if>
+        <td>
+            <a href="${pageContext.request.contextPath}/cancelConfirmation?purchaseId=${history.purchaseId}">キャンセル</a>
         </td>
-        
     </tr>
-    </c:forEach>
+    </c:if> 
+    </c:forEach> 
 </table>
 <br /><br />
 <a href='${pageContext.request.contextPath}/main'>商品検索へ戻る</a>
