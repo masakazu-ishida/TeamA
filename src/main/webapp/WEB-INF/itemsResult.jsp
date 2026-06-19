@@ -15,7 +15,7 @@
 													<c:if test="${categoryId == 2}">鞄</c:if>" の検索結果</h3>
 <br />
 <table border="1">
-    <tr style="background-color: rgb(128, 128, 255); color: white;">
+    <tr>
     <th>商品名</th>
     <th>商品の色</th>
     <th>メーカー名</th>
@@ -30,7 +30,7 @@
     <c:out value="${item.itemName}" />
     
     <c:if test="${item.recommended == true}">
-        <span style="color: red; font-size: 0.8rem; font-weight: bold; margin-left: 5px;">オススメ！</span>
+        <span>オススメ！</span>
     </c:if>
 </a>
             </td>

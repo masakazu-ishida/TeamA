@@ -46,12 +46,16 @@
         </td>
     </tr>
  <tr>
+ <td>
+ 　　　
 <form action="${pageContext.request.contextPath}/cancel" method="post">
     <input type="hidden" name="purchaseId" value="${result.purchaseId}">
     <input type="submit" value="キャンセル">
 </form>
+</td>
 </tr>
 </table>
+<br />
 <a href='${pageContext.request.contextPath}/main'>商品検索</a>へ<br />
 </body>
 </html>
