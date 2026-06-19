@@ -21,20 +21,29 @@ public class PurchasesCancelService {
 
 			PurchasesDTO result = pDao.findById(purchasesId);
 
-			pDao.updatePurchaseCancel(purchasesId);
+			conn.setAutoCommit(false);
+			try {
 
-			for (PurchaseDetailsDTO p : result.getDetailsList()) {
+				pDao.updatePurchaseCancel(purchasesId);
 
-				int itemId = p.getItemDTO().getItemId();
-				int amount = p.getAmount();
-				iDao.updatePlusStock(itemId, amount);
+				for (PurchaseDetailsDTO p : result.getDetailsList()) {
+
+					int itemId = p.getItemDTO().getItemId();
+					int amount = p.getAmount();
+					iDao.updatePlusStock(itemId, amount);
+				}
+			} catch (Exception e) {
+				e.printStackTrace();
+				conn.rollback();
 			}
 
+			conn.commit();
 			return result;
 
 		} catch (Exception e) {
 			e.printStackTrace();
 			throw new ServletException(e);
 		}
+
 	}
 }
