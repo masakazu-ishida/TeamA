@@ -90,7 +90,7 @@ public class LoginController extends HttpServlet {
 				request.setAttribute("itemId", itemId);
 				request.setAttribute("amount", amount);
 
-				String jspPath = "/WEB-INF/error.jsp";
+				String jspPath = "/WEB-INF/login.jsp";
 				request.getRequestDispatcher(jspPath).forward(request, response);
 			}
 
