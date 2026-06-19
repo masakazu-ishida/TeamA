@@ -150,22 +150,22 @@ public class PurchasesDAO {
 	// 中瀬が作っている最中です
 	public int insert(Connection conn, PurchasesDTO purchaseDTO) throws SQLException {
 		String sql = "INSERT INTO purchases (purchased_user, purchased_date, destination, cancel) "
-				+ "VALUES (?, CURRENT_DATE, ?, false)";
+				+ "VALUES (?, ?, ?, false)";
 
 		try (PreparedStatement ps = conn.prepareStatement(sql, PreparedStatement.RETURN_GENERATED_KEYS)) {
 
 			ps.setString(1, purchaseDTO.getPurchasedUser()); // 注文者ID
 			ps.setString(2, purchaseDTO.getDestination()); // 配送先住所
 
-			ps.executeUpdate();
+			int update = ps.executeUpdate();
 
 			try (ResultSet rs = ps.getGeneratedKeys()) {
 				if (rs.next()) {
-					return rs.getInt(1); // シーケンスされたIDをそのままリターン
+					purchaseDTO.setPurchaseId(rs.getInt(1));
 				}
 			}
+			return update;
 		}
-		return 0; // 万が一取得できなかった場合は0を返す
 	}
 }
 

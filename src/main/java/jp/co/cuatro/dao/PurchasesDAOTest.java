@@ -173,22 +173,24 @@ class PurchasesDAOTest extends TestBase {
 			PurchasesDTO newPurchase = new PurchasesDTO();
 			newPurchase.setPurchasedUser("user1");
 			newPurchase.setDestination("鳥取県鳥取市賀露町");
+			newPurchase.setPurchasedDate("2026-06-19");
 
 			// 注文親情報の登録
 			int generatedId = dao.insert(conn, newPurchase);
 
-			// シーケンス番号のチェック、現在あるものより大きいか
-			assertTrue(generatedId > 3);
+			// 登録数チェック
+			assertEquals(1, generatedId);
 
 			String spl = "SELECT purchased_user, destination, cancel FROM purchases WHERE purchase_id = ?";
 
 			try (PreparedStatement ps = conn.prepareStatement(spl)) {
-				ps.setInt(1, generatedId);
+				ps.setInt(1, newPurchase.getPurchaseId());
 
 				try (ResultSet rs = ps.executeQuery()) {
 					assertTrue(rs.next());
 					assertEquals("user1", rs.getString("purchased_user"));
 					assertEquals("鳥取県鳥取市賀露町", rs.getString("destination"));
+					assertEquals("2026-06-19", rs.getString(""));
 					assertFalse(rs.getBoolean("cancel"));
 				}
 			}

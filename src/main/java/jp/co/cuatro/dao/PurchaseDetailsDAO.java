@@ -51,7 +51,7 @@ public class PurchaseDetailsDAO {
 	}
 
 	// 中瀬が作っている最中です
-	public void insert(Connection conn, PurchaseDetailsDTO purchaseDetailsDTO) throws SQLException {
+	public int insert(Connection conn, PurchaseDetailsDTO purchaseDetailsDTO) throws SQLException {
 
 		String sql = "INSERT INTO purchase_details (purchase_id, item_id, amount) "
 				+ "VALUES (?, ?, ?)";
@@ -63,7 +63,8 @@ public class PurchaseDetailsDAO {
 			ps.setInt(3, purchaseDetailsDTO.getAmount()); // 数量
 
 			// SQLの実行
-			ps.executeUpdate();
+			return ps.executeUpdate();
+
 		}
 	}
 }

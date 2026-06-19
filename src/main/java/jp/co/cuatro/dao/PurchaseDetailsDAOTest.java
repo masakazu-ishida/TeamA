@@ -70,21 +70,22 @@ public class PurchaseDetailsDAOTest extends TestBase {
 			// 追加前の前提件数が3件であることをチェック
 			List<PurchaseDetailsDTO> beforeList = dao.findByPurchaseId(1);
 			assertNotNull(beforeList);
-			assertEquals(3, beforeList.size());
+			assertEquals(4, beforeList.size());
 
 			PurchaseDetailsDTO newDetail = new PurchaseDetailsDTO();
 			newDetail.setPurchaseId(1); // 注文ID：1
 			newDetail.setItemId(1); // 商品ID：1
 			newDetail.setAmount(5); // 数量：5個
 
-			dao.insert(conn, newDetail);
+			int num = dao.insert(conn, newDetail);
+			assertEquals(1, num);
 
 			// 明細一覧を取得
 			List<PurchaseDetailsDTO> afterList = dao.findByPurchaseId(1);
 			assertNotNull(afterList);
 
 			// 明細が1件増えているか
-			assertEquals(4, afterList.size());
+			assertEquals(5, afterList.size());
 
 			// 4件目に追加された明細が正しいか
 			PurchaseDetailsDTO insertedDetail = afterList.get(3);
