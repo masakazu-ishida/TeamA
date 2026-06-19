@@ -9,7 +9,7 @@
 <title>ショッピングカート内の商品を削除</title>
  <link rel='stylesheet' type='text/css' href='style.css' />
 </head>
-<body>
+<body class="cart-delete-page">
 	<h3>以下の商品をショッピングカートから削除してよろしいですか？</h3>
 	<br />
 		<c:out value="${confirmCart.item.itemName}" /><br />
@@ -21,7 +21,7 @@
 			<input type='hidden' name='itemId' value= "${confirmCart.item.itemId}" />
 			<input type='submit' value='削除する' /><br />
 		</form>
-	    <a href="${pageContext.request.contextPath}/main">商品検索</a>へ<br />	
+	    <a href="${pageContext.request.contextPath}/main">商品検索へ</a><br />	
 
 </body>
 </html>

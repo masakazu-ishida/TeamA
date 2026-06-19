@@ -9,7 +9,7 @@
         <title>ショッピングカート</title>
         <link rel='stylesheet' type='text/css' href='style.css' />
 </head>
-<body>
+<body class="cart-page">
         <h3>ショッピングカート内の商品一覧</h3>
         <br/>
 <table border="1">
