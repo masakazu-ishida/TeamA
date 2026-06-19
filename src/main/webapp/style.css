@@ -674,16 +674,15 @@ body.detail-page form .amount-label {
 /* 3. 数量セレクトボックスの微調整 */
 body.detail-page select[name='amount'] {
     margin-bottom: 0 !important;          /* 縦並び用の下マージンをリセット */
-    width: 90px !important;               /* 横並び用にスマートな横幅に調整 */
-    height: 48px !important;              /* カートボタン（高50px）と高さをほぼ揃える */
-    background-position: right 8px center !important; /* 矢印の位置を微調整 */
+    width: 90px !important;               
+    height: 48px !important;           
+    background-position: right 8px center !important; 
 }
 
-/* 4. 「ショッピングカートに入れる」ボタンのサイズ微調整 */
 body.detail-page input[type="submit"] {
-    margin-top: 0 !important;             /* 余計な上マージンをカット */
-    max-width: 280px !important;          /* 数量と横並びにするため、ボタン幅を少しタイトに調整 */
-    height: 48px !important;              /* セレクトボックスと綺麗に高さを同期 */
+    margin-top: 0 !important;          
+    max-width: 280px !important;          
+    height: 48px !important;              
 }
 
 body.cart-page {
@@ -693,18 +692,16 @@ body.cart-page {
     padding: 50px 40px;
     display: flex;
     flex-direction: column;
-    align-items: center; /* コンテンツを中央寄せ */
+    align-items: center; 
     min-height: 100vh;
     box-sizing: border-box;
     color: #333333;
 }
 
-/* 不要な標準の改行(br)を非表示にしてモダンに制御 */
 body.cart-page br {
     display: none !important;
 }
 
-/* タイトル（ショッピングカート） */
 body.cart-page h3 {
     font-size: 24px;
     font-weight: bold;
@@ -714,12 +711,11 @@ body.cart-page h3 {
     letter-spacing: 0.5px;
 }
 
-/* 2. カートテーブルをフラットでクリーンなデザインへ上書き */
 body.cart-page table {
     width: 100%;
     max-width: 800px;
     margin: 0 auto 24px auto;
-    border-collapse: separate !important; /* 丸角表現のため */
+    border-collapse: separate !important; 
     border: none !important;
     background-color: #ffffff !important;
     border-radius: 16px;
@@ -727,7 +723,6 @@ body.cart-page table {
     overflow: hidden;
 }
 
-/* テーブルヘッダー行(tr)の直書きされた青背景を美しいグラデーションへ上書き */
 body.cart-page table tr[style*="background-color"],
 body.cart-page th {
     background: linear-gradient(to right, #5c5edc 0%, #6a11cb 100%) !important;
@@ -739,7 +734,6 @@ body.cart-page th {
     border: none !important;
 }
 
-/* 数量列と価格列だけは右寄せ（数値が見やすくなる王道デザイン） */
 body.cart-page th:nth-child(4),
 body.cart-page th:nth-child(5),
 body.cart-page td:nth-child(4),
@@ -747,7 +741,6 @@ body.cart-page td:nth-child(5) {
     text-align: right !important;
 }
 
-/* データセル(td) */
 body.cart-page td {
     padding: 16px 20px !important;
     font-size: 14px !important;
@@ -757,17 +750,14 @@ body.cart-page td {
     border-bottom: 1px solid #f0f4f8 !important;
 }
 
-/* 1行おきに背景色をほんのり変える（ストライプ効果） */
 body.cart-page tr:nth-child(even) td {
     background-color: #fafbfc !important;
 }
 
-/* 一番下のセルの境界線を消して丸角にフィットさせる */
 body.cart-page tr:last-child td {
     border-bottom: none !important;
 }
 
-/* 3. 合計金額のスタイリッシュな表示エリア */
 body.cart-page .total-price-box {
     width: 100%;
     max-width: 800px;
@@ -780,14 +770,12 @@ body.cart-page .total-price-box {
     box-sizing: border-box;
 }
 
-/* 金額の数字だけ大きく強調 */
 body.cart-page .total-price-box span {
     font-size: 24px;
     color: #5c5edc;
     margin: 0 4px;
 }
 
-/* 4. ボタンやリンクを配置するボトムエリア */
 body.cart-page .action-area {
     display: flex;
     flex-direction: row;
@@ -798,7 +786,6 @@ body.cart-page .action-area {
     max-width: 800px;
 }
 
-/* 5. 「購入手続きへ」ボタン（メイングラデーションと同期） */
 body.cart-page .action-area form {
     margin: 0;
 }
@@ -823,7 +810,6 @@ body.cart-page input[type="submit"]:hover {
     box-shadow: 0 8px 24px rgba(92, 94, 220, 0.35);
 }
 
-/* 6. 「商品検索へ」戻るボタン（白半透明カプセル型） */
 body.cart-page .action-area > a {
     display: flex;
     align-items: center;
@@ -849,13 +835,11 @@ body.cart-page .action-area > a:hover {
     transform: translateY(-1px);
 }
 
-/* 戻るボタンの左矢印アイコン */
 body.cart-page .action-area > a::before {
     content: "←  ";
     font-size: 14px;
 }
 
-/* 画面が狭いときのレスポンシブ対応 */
 @media (max-width: 600px) {
     body.cart-page .action-area {
         flex-direction: column;
@@ -875,20 +859,18 @@ body.cart-delete-page {
     padding: 60px 20px;
     display: flex;
     flex-direction: column;
-    align-items: center; /* 中央集約型レイアウト */
+    align-items: center; 
     min-height: 100vh;
     box-sizing: border-box;
     color: #333333;
     text-align: center;
 }
 
-/* 不要な標準の改行(br)を非表示にしてスタイリッシュな余白をコントロール */
 body.cart-delete-page br,
 body.cart-delete-page form br {
     display: none !important;
 }
 
-/* タイトル見出し */
 body.cart-delete-page h3 {
     font-size: 20px;
     font-weight: bold;
@@ -897,41 +879,33 @@ body.cart-delete-page h3 {
     line-height: 1.4;
 }
 
-/* 2. 剥き出しの商品テキスト情報を美しく包む「確認用ホワイトカード」 */
 body.cart-delete-page {
-    /* 特殊な擬似要素によるテキストの装飾アプローチ */
     line-height: 2.2;
     font-size: 16px;
 }
 
-/* 商品情報をカードのように見せるため、formまでのテキストの流れをスタイリング */
-/* テキストが直接並んでいる部分を疑似的なカードとして見せるためのコンテナ的調整 */
 body.cart-delete-page {
     display: flex;
     flex-direction: column;
     align-items: center;
 }
 
-/* 削除対象商品の詳細を囲むブロックをCSSで疑似生成（JSPを汚さずカード化） */
 body.cart-delete-page {
     --card-bg: #ffffff;
 }
 
-/* JSPのテキスト要素群を中央に綺麗に並べるための、フォーム周囲の余白コントロール */
 body.cart-delete-page form {
     margin-top: 30px !important;
     width: 100%;
     max-width: 320px;
 }
 
-/* 3. 「削除する」ボタン（警告色かつリッチなグラデーション仕様に） */
 body.cart-delete-page input[type="submit"] {
     width: 100%;
     height: 50px;
     font-size: 16px;
     font-weight: bold;
     color: #ffffff !important;
-    /* 削除ボタンなので、テーマの紫から警告を想起させるリッチな朱色・ピンクレッド系へのグラデーション */
     background: linear-gradient(to right, #ff4757 0%, #ff6b81 100%) !important;
     border: none !important;
     border-radius: 25px !important; /* 押し心地の良い丸角カプセル */
@@ -947,7 +921,6 @@ body.cart-delete-page input[type="submit"]:hover {
     box-shadow: 0 8px 24px rgba(255, 71, 87, 0.35);
 }
 
-/* 4. 下部「商品検索へ」リンク（他の画面の白半透明カプセルボタンと完全同期） */
 body.cart-delete-page > a {
     display: flex;
     align-items: center;
@@ -975,9 +948,71 @@ body.cart-delete-page > a:hover {
     transform: translateY(-1px);
 }
 
-/* 戻るボタンの左矢印アイコン */
 body.cart-delete-page > a::before {
     content: "←  ";
     font-size: 14px;
 }
 
+body.cart-deleted-page {
+    font-family: 'Helvetica Neue', Arial, 'Hiragino Kaku Gothic ProN', 'Hiragino Sans', Meiryo, sans-serif;
+    background: linear-gradient(135deg, #bbf2f6 0%, #e1eec3 50%, #f5e6ca 100%) !important;
+    margin: 0;
+    padding: 60px 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center; 
+    min-height: 100vh;
+    box-sizing: border-box;
+    color: #333333;
+    text-align: center;
+    line-height: 2.4; 
+    font-size: 16px;
+}
+
+body.cart-deleted-page br {
+    display: none !important;
+}
+
+body.cart-deleted-page h3 {
+    font-size: 20px;
+    font-weight: bold;
+    color: #2c3e50;
+    margin: 0 0 35px 0;
+    line-height: 1.4;
+}
+
+body.cart-deleted-page {
+    font-weight: 500;
+}
+
+body.cart-deleted-page > a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    max-width: 200px;
+    height: 44px;
+    font-size: 14px;
+    font-weight: bold;
+    text-decoration: none;
+    color: #5c5edc !important;
+    background-color: rgba(255, 255, 255, 0.85) !important;
+    border: 1px solid rgba(92, 94, 220, 0.2) !important;
+    border-radius: 22px !important;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.04) !important;
+    transition: all 0.2s ease;
+    margin-top: 40px !important;
+    white-space: nowrap !important;
+}
+
+body.cart-deleted-page > a:hover {
+    color: #ffffff !important;
+    background: linear-gradient(to right, #5c5edc 0%, #6a11cb 100%) !important;
+    box-shadow: 0 6px 16px rgba(92, 94, 220, 0.3) !important;
+    transform: translateY(-1px);
+}
+
+body.cart-deleted-page > a::before {
+    content: "←  ";
+    font-size: 14px;
+}
