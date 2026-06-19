@@ -3,6 +3,8 @@ package jp.co.cuatro.dao;
 import static org.junit.jupiter.api.Assertions.*;
 
 import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
 
@@ -158,4 +160,42 @@ class PurchasesDAOTest extends TestBase {
 		}
 	}
 
+	/**
+	 * 購入処理
+	 * 注文情報の登録ができているかテスト
+	 */
+	@Test
+	void testInsert() {
+		try (Connection conn = ConnectionUtil.getConnection(null)) {
+			PurchasesDAO dao = new PurchasesDAO(conn);
+
+			// テスト用のデータを追加
+			PurchasesDTO newPurchase = new PurchasesDTO();
+			newPurchase.setPurchasedUser("user1");
+			newPurchase.setDestination("鳥取県鳥取市賀露町");
+
+			// 注文親情報の登録
+			int generatedId = dao.insert(conn, newPurchase);
+
+			// シーケンス番号のチェック、現在あるものより大きいか
+			assertTrue(generatedId > 3);
+
+			String spl = "SELECT purchased_user, destination, cancel FROM purchases WHERE purchase_id = ?";
+
+			try (PreparedStatement ps = conn.prepareStatement(spl)) {
+				ps.setInt(1, generatedId);
+
+				try (ResultSet rs = ps.executeQuery()) {
+					assertTrue(rs.next());
+					assertEquals("user1", rs.getString("purchased_user"));
+					assertEquals("鳥取県鳥取市賀露町", rs.getString("destination"));
+					assertFalse(rs.getBoolean("cancel"));
+				}
+			}
+
+		} catch (Exception e) {
+			e.printStackTrace();
+			fail(e.getMessage());
+		}
+	}
 }

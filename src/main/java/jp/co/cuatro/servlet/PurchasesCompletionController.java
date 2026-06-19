@@ -50,10 +50,12 @@ public class PurchasesCompletionController extends HttpServlet {
 		request.setCharacterEncoding("UTF-8");
 
 		try {
+
 			HttpSession session = request.getSession(false);
 
 			// セッションチェック
 			if (session == null || session.getAttribute("loginUser") == null) {
+				// ログインセッションがない場合、メイン画面へ遷移
 				response.sendRedirect(request.getContextPath() + "/login");
 				return;
 			}
