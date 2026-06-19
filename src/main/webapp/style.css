@@ -1,4 +1,5 @@
 @charset "UTF-8";
+/*ここからすべてのページの共通部分*/
 table {
 	border: 1px #7f7f7f solid;
 	border-collapse: collapse;
@@ -39,4 +40,649 @@ input.password {
 	float: left;
 	width: 200px;
 	ime-mode: disabled;
+}
+/*ここより下はloginjspに適用するデザイン*/
+body.login-page {
+    font-family: 'Helvetica Neue', Arial, 'Hiragino Kaku Gothic ProN', 'Hiragino Sans', Meiryo, sans-serif;
+    background: linear-gradient(135deg, #bbf2f6 0%, #e1eec3 50%, #f5e6ca 100%) !important;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    box-sizing: border-box;
+}
+/*ここまでがすべてのページの共通部分*/
+body.login-page > br {
+    display: none;
+}
+
+/* 2. ログイン画面のタイトルのデザイン */
+.login-page h3 {
+    color: #1a1a1a;
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+/* 3. ログイン画面のフォーム全体を白いカード風にする */
+.login-page form {
+    background-color: #ffffff;
+    padding: 40px;
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+    width: 100%;
+    max-width: 400px;
+    box-sizing: border-box;
+}
+
+/* 4. ログイン画面内のテーブル構造のみを強制リセット */
+.login-page table, 
+.login-page tbody, 
+.login-page tr, 
+.login-page th, 
+.login-page td {
+    display: block !important;
+    width: 100% !important;
+    border: none !important;      /* 元の共通テーブル枠線を消去 */
+    background: none !important;  /* 元の共通背景色を消去 */
+    padding: 0 !important;
+    margin: 0 !important;
+    box-sizing: border-box;
+}
+
+.login-page tr {
+    margin-bottom: 20px !important;
+}
+
+/* 5. 項目のラベル（会員ID、パスワード） */
+.login-page th {
+    text-align: left !important;
+    font-size: 14px;
+    color: #4a4a4a;
+    margin-bottom: 8px;
+    font-weight: 600;
+}
+
+/* 6. 入力欄（ID、パスワード）のデザイン */
+.login-page input.id, 
+.login-page input.password {
+    float: none !important;       /* 元の float: left を無効化 */
+    width: 100% !important;       /* 横幅いっぱいに変更 */
+    padding: 14px 16px !important;
+    font-size: 16px !important;
+    background-color: #f0f2ff !important;
+    border: 1px solid #e2e8f0 !important;
+    border-radius: 10px !important;
+    box-sizing: border-box;
+    transition: all 0.3s ease;
+    color: #333;
+}
+
+.login-page input.id:focus, 
+.login-page input.password:focus {
+    outline: none;
+    border-color: #5c5edc !important;
+    background-color: #ffffff !important;
+    box-shadow: 0 0 0 3px rgba(92, 94, 220, 0.15);
+}
+
+/* 7. ログインボタンのデザイン */
+.login-page input[type='submit'] {
+    width: 100% !important;
+    padding: 14px !important;
+    font-size: 16px !important;
+    font-weight: bold !important;
+    color: #ffffff !important;
+    background: linear-gradient(to right, #5c5edc 0%, #6a11cb 100%) !important;
+    border: none !important;
+    border-radius: 25px !important;
+    cursor: pointer;
+    box-shadow: 0 4px 12px rgba(92, 94, 220, 0.3);
+    transition: all 0.3s ease;
+}
+
+.login-page input[type='submit']:hover {
+    opacity: 0.9;
+    transform: translateY(-1px);
+    box-shadow: 0 6px 16px rgba(92, 94, 220, 0.4);
+}
+/*ここまでがloginjspに適用するデザイン*/
+
+/* ==========================================================================
+   3. メイン画面のタイトルのデザイン
+   ========================================================================== */
+body.main-page {
+    font-family: 'Helvetica Neue', Arial, 'Hiragino Kaku Gothic ProN', 'Hiragino Sans', Meiryo, sans-serif;
+    background: linear-gradient(135deg, #bbf2f6 0%, #e1eec3 50%, #f5e6ca 100%) !important;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center; 
+    min-height: 100vh;
+    box-sizing: border-box;
+    color: #333333;
+}
+
+/* 不要な改行を非表示にしてレイアウトを整える */
+body.main-page > br,
+body.main-page form > br {
+    display: none;
+}
+
+/* 2. ヘッダーエリア（ユーザーへのウェルカムメッセージとロゴ） */
+body.main-page h2 {
+    font-size: 20px;
+    font-weight: bold;
+    margin: 0 0 10px 0;
+    text-align: center;
+    color: #2c3e50;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* 丸い「よんくみ」エンブレムロゴ */
+body.main-page h2::after {
+    content: "よん\Aくみ";
+    white-space: pre;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    font-size: 14px;
+    line-height: 1.3;
+    font-weight: bold;
+    color: #ffffff;
+    letter-spacing: 1px;
+    width: 72px;
+    height: 72px;
+    margin-top: 20px;
+    border-radius: 50%;
+    background: linear-gradient(to right, #5c5edc 0%, #6a11cb 100%);
+    box-shadow: 
+        inset 0 3px 5px rgba(255,255,255,0.3),
+        0 6px 15px rgba(92, 94, 220, 0.2);
+}
+
+/* 3. タイトル（商品の検索を行います。） */
+body.main-page h3 {
+    font-size: 22px;
+    font-weight: 600;
+    margin: 10px 0 30px 0;
+    text-align: center;
+    color: #2c3e50;
+}
+
+/* 4. 検索フォームのコンテナ（中央配置のカード） */
+body.main-page form {
+    width: 100%;
+    max-width: 480px;
+    padding: 30px;
+    background-color: #ffffff;
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    margin: 0 auto;
+}
+
+/* 5. 入力項目のラベル（キーワード、カテゴリ） */
+body.main-page form {
+    font-size: 14px;
+    color: #4a4a4a;
+    font-weight: 600;
+}
+
+/* 【★解決策】キーワード入力欄の直後の「見えない改行」を利用して、ボタンの配置基準のブロックを作る */
+body.main-page form input[name="name"] {
+    display: inline-block;
+    width: 100%;
+    height: 46px;
+    padding: 10px 95px 10px 16px; /* 右側にボタンが収まるスペース */
+    font-size: 15px;
+    background-color: #f0f2ff;
+    border: 1px solid #e2e8f0;
+    border-radius: 10px;
+    color: #333333;
+    box-sizing: border-box;
+    margin-top: 8px;
+    margin-bottom: 20px;
+}
+
+/* フォーム自体を相対配置の基準にして、位置を正確に計算する */
+body.main-page form {
+    position: relative;
+}
+
+/* 【★修正】検索ボタンを入力欄の内側右端（完全に上下中央）に固定 */
+body.main-page input[type="submit"] {
+    position: absolute;
+    right: 36px;       /* 白いカードの内側からの距離 */
+    top: 64px;         /* 【修正】キーワード入力欄(高46px)の縦の中心にピタッと合わせる数値 */
+    height: 34px;      /* 入力欄より少し細身にしてきれいに内包させる */
+    padding: 0 18px;
+    font-size: 14px;
+    font-weight: bold;
+    color: #ffffff;
+    background: linear-gradient(to right, #5c5edc 0%, #6a11cb 100%);
+    border: none;
+    border-radius: 17px;
+    cursor: pointer;
+    box-shadow: 0 4px 10px rgba(92, 94, 220, 0.2);
+    transition: all 0.2s ease;
+    z-index: 10;       /* 入力欄の下に隠れないように前面へ */
+}
+
+body.main-page input[type="submit"]:hover {
+    opacity: 0.9;
+    transform: translateY(-0.5px);
+    box-shadow: 0 6px 14px rgba(92, 94, 220, 0.3);
+}
+
+/* 7. カテゴリ選択（ドロップダウン） */
+body.main-page select[name="categoryId"] {
+    width: 100%;
+    height: 46px;
+    padding: 10px 16px;
+    font-size: 15px;
+    background-color: #f0f2ff;
+    border: 1px solid #e2e8f0;
+    border-radius: 10px;
+    color: #333333;
+    box-sizing: border-box;
+    margin-top: 8px;
+    margin-bottom: 0px;
+    cursor: pointer;
+    appearance: none;
+    background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='%234a4a4a' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 16px center;
+    background-size: 16px;
+}
+
+/* ==========================================================================
+   8. 下部のナビゲーションリンク（【★修正】左下に移動）
+   ========================================================================== */
+body.main-page a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    max-width: 480px;      /* 検索カードの横幅に合わせる */
+    height: 48px;
+    font-size: 15px;
+    font-weight: bold;
+    text-decoration: none;
+    color: #5c5edc;
+    background-color: rgba(255, 255, 255, 0.75);
+    border: 1px solid rgba(92, 94, 220, 0.2);
+    border-radius: 30px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.04);
+    transition: all 0.2s ease;
+    box-sizing: border-box;
+    
+    /* 【修正】中央揃えを解除し、左側に寄せる設定 */
+    margin: 12px auto 0 40px; /* 左側に40pxの余白を作り、全体を左下に寄せます */
+    align-self: flex-start;   /* flex内での中央配置を無視して左寄せに強制 */
+}
+
+/* フォームカードとショッピングカートボタンとの間の大きな余白 */
+body.main-page form + a {
+    margin-top: 80px; 
+}
+
+body.main-page a:hover {
+    color: #ffffff;
+    background: linear-gradient(to right, #5c5edc 0%, #6a11cb 100%);
+    box-shadow: 0 6px 16px rgba(92, 94, 220, 0.3);
+    transform: translateY(-1px);
+}
+
+/* アイコン（絵文字）の設定 */
+body.main-page a[href*="cartDisplay"]::before {
+    content: "\1F6D2  ";
+    font-size: 16px;
+}
+body.main-page a[href*="history"]::before,
+body.main-page a[href*="login"]::before {
+    content: "\21BB  ";
+    font-size: 16px;
+}
+/*ここまでがメイン画面のデザイン*/
+
+/*ここからが商品検索画面のデザイン*/
+body.result-page {
+    font-family: 'Helvetica Neue', Arial, 'Hiragino Kaku Gothic ProN', 'Hiragino Sans', Meiryo, sans-serif;
+    background: linear-gradient(135deg, #bbf2f6 0%, #e1eec3 50%, #f5e6ca 100%) !important;
+    margin: 0;
+    padding: 40px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start; /* 全体を左寄せに配置 */
+    min-height: 100vh;
+    box-sizing: border-box;
+}
+
+/* タイトル見出しを左寄せ・太字に変更 */
+body.result-page h3 {
+    font-size: 18px;
+    font-weight: bold;
+    color: #000000;
+    margin: 0 0 24px 40px; /* 左ボタンの位置（40px）と垂直ラインを揃える */
+}
+
+/* 不要な改行を非表示にする */
+body.result-page > br {
+    display: none;
+}
+
+/* 2. テーブル（検索結果リスト）をフラットで清潔感のあるデザインに */
+body.result-page table {
+    width: calc(100% - 80px); /* 左右に40pxずつの余白 */
+    max-width: 1200px;
+    margin: 0 auto 30px 40px; /* 左側にしっかり寄せる */
+    border-collapse: collapse !important;
+    border: none !important;
+    background-color: #ffffff;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.02); /* 極めて薄い上品な影 */
+}
+
+/* 3. テーブルヘッダー(th)：直書きの青背景を上書きし、画像の淡いブルーへ変更 */
+body.result-page table tr[style*="background-color"],
+body.result-page th {
+    background: #eef2ff !important; /* 画像に合わせた、優しく淡い青紫色 */
+    color: #4a5568 !important;       /* 濃いグレーで読みやすく */
+    font-weight: bold !important;
+    text-align: left !important;     /* テキストを左揃えに変更 */
+    padding: 14px 20px !important;
+    font-size: 14px !important;
+    border: none !important;
+    border-bottom: 2px solid #e2e8f0 !important; /* ヘッダー下の区切り線 */
+}
+
+/* 4. データセル(td)：テキストを左揃えにし、薄い境界線を配置 */
+body.result-page td {
+    text-align: left !important;     /* テキストを左揃えに変更 */
+    padding: 14px 20px !important;
+    font-size: 14px !important;
+    color: #2d3748 !important;
+    background-color: #ffffff !important;
+    border: none !important;
+    border-bottom: 1px solid #f7fafc !important; /* 細く薄い境界線 */
+}
+
+/* 1行おきに背景色をほんのり変える（ストライプ効果でさらに見やすく） */
+body.result-page tr:nth-child(even) td {
+    background-color: #fafbfc !important;
+}
+
+/* 5. 商品名リンクの色 */
+body.result-page td a {
+    color: #1a0dab; /* 標準的な綺麗なリンクブルー */
+    text-decoration: underline;
+}
+body.result-page td a:hover {
+    color: #3182ce;
+}
+
+/* 6. オススメ！バッジ：淡いピンクのカプセル風デザイン（画像仕様） */
+body.result-page td a span[style*="color: red"] {
+    background-color: #fff5f5 !important; /* 淡いピンク背景 */
+    color: #e53e3e !important;             /* 優しい赤文字 */
+    padding: 2px 10px !important;
+    border-radius: 12px !important;        /* 角丸カプセル */
+    font-size: 11px !important;
+    font-weight: bold !important;
+    margin-left: 8px !important;
+    border: 1px solid #fed7d7 !important;
+    display: inline-block !important;
+}
+
+/* 7. 下部「商品検索へ戻る」リンク：メイン画面の下部ボタンと完全に同じテイストに */
+body.result-page > a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    max-width: 240px;
+    height: 46px;
+    font-size: 14px;
+    font-weight: bold;
+    text-decoration: none;
+    color: #5c5edc !important;
+    background-color: rgba(255, 255, 255, 0.85) !important;
+    border: 1px solid rgba(92, 94, 220, 0.2) !important;
+    border-radius: 30px !important;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.04) !important;
+    transition: all 0.2s ease;
+    margin: 10px 0 0 40px !important; /* 左下配置を維持 */
+}
+
+body.result-page > a:hover {
+    color: #ffffff !important;
+    background: linear-gradient(to right, #5c5edc 0%, #6a11cb 100%) !important;
+    box-shadow: 0 6px 16px rgba(92, 94, 220, 0.3) !important;
+    transform: translateY(-1px);
+}
+
+/* 「戻る」ボタンの前に可愛い左矢印アイコンを付与 */
+body.result-page > a::before {
+    content: "←  ";
+    font-size: 14px;
+}
+/*ここまでが商品検索画面のデザイン*/
+
+body.detail-page {
+    font-family: 'Helvetica Neue', Arial, 'Hiragino Kaku Gothic ProN', 'Hiragino Sans', Meiryo, sans-serif;
+    background: linear-gradient(135deg, #bbf2f6 0%, #e1eec3 50%, #f5e6ca 100%) !important;
+    margin: 0;
+    padding: 50px 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* コンテンツを中央に集めて美しく配置 */
+    min-height: 100vh;
+    box-sizing: border-box;
+    color: #333333;
+}
+
+/* 不要な標準の改行(br)を非表示にして余白をモダンに制御 */
+body.detail-page br,
+body.detail-page form br {
+    display: none !important;
+}
+
+/* タイトル（商品の詳細表示） */
+body.detail-page h3 {
+    font-size: 24px;
+    font-weight: bold;
+    color: #2c3e50;
+    margin: 0 0 30px 0;
+    text-align: center;
+    letter-spacing: 0.5px;
+}
+
+/* 2. 詳細テーブルをクリーンな「丸角ホワイトカード」化 */
+body.detail-page table {
+    width: 100%;
+    max-width: 480px; /* 見やすくてスマートな横幅 */
+    background-color: #ffffff !important;
+    border-collapse: separate !important; /* 丸角を滑らかに表現するためにcollapseから変更 */
+    border: none !important;
+    border-radius: 18px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05); /* 柔らかく高級感のある影 */
+    overflow: hidden;
+    margin: 0 auto 24px auto;
+}
+
+/* 3. 縦並びテーブルセルの洗練化 */
+/* 左側列：項目ヘッダー（商品名、価格など） */
+body.detail-page th {
+    width: 35%;
+    background-color: #eef2ff !important; /* 検索結果画面と同期した、上品で淡いブルー */
+    color: #4a5568 !important;
+    font-weight: bold !important;
+    text-align: right !important; /* 項目名は右に寄せて可読性アップ */
+    padding: 16px 20px !important;
+    font-size: 14px !important;
+    border: none !important;
+    border-bottom: 1px solid #e2e8f0 !important;
+}
+
+/* 右側列：実際の値データ */
+body.detail-page td {
+    width: 65%;
+    background-color: #ffffff !important;
+    color: #2d3748 !important;
+    text-align: left !important; /* データは左揃えでスマートに */
+    padding: 16px 20px !important;
+    font-size: 15px !important;
+    border: none !important;
+    border-bottom: 1px solid #f7fafc !important;
+}
+
+/* 価格データのテキストだけ色を変えてリッチに強調 */
+body.detail-page tr:nth-child(4) td {
+    font-weight: bold;
+    color: #5c5edc; 
+    font-size: 16px;
+}
+
+/* 一番下のセルの境界線を消して、カード全体の丸角にフィットさせる */
+body.detail-page tr:last-child th,
+body.detail-page tr:last-child td {
+    border-bottom: none !important;
+}
+
+/* 4. 数量・ボタンを包むフォームエリア */
+body.detail-page form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    max-width: 480px;
+    box-sizing: border-box;
+    margin-bottom: 20px;
+}
+
+/* 数量選択のブロックレイアウト */
+body.detail-page form .amount-label {
+    font-size: 14px;
+    font-weight: bold;
+    color: #4a4a4a;
+    margin-bottom: 8px;
+}
+
+/* 数量セレクトボックス（メイン画面のインプットと統一感を出したデザイン） */
+body.detail-page select[name='amount'] {
+    width: 120px;
+    height: 42px;
+    padding: 0 16px;
+    font-size: 15px;
+    font-weight: bold;
+    background-color: #f0f2ff;
+    border: 1px solid #e2e8f0;
+    border-radius: 10px;
+    color: #333333;
+    margin-bottom: 24px;
+    cursor: pointer;
+    text-align: center;
+    appearance: none; /* デフォルトの矢印を消してスタイリッシュに */
+    background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='%234a4a4a' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 12px center;
+    background-size: 14px;
+}
+
+/* 5. 「ショッピングカートに入れる」購入ボタン（検索ボタンなどのメイングラデーションと完全同期） */
+body.detail-page input[type="submit"] {
+    width: 100%;
+    max-width: 320px;
+    height: 50px;
+    font-size: 16px;
+    font-weight: bold;
+    color: #ffffff !important;
+    background: linear-gradient(to right, #5c5edc 0%, #6a11cb 100%) !important; /* 紫から深く鮮やかな紫への極上グラデーション */
+    border: none !important;
+    border-radius: 25px !important; /* 押し心地の良いカプセル型 */
+    cursor: pointer;
+    box-shadow: 0 6px 20px rgba(92, 94, 220, 0.25);
+    transition: all 0.2s ease;
+}
+
+body.detail-page input[type="submit"]:hover {
+    opacity: 0.92;
+    transform: translateY(-1px);
+    box-shadow: 0 8px 24px rgba(92, 94, 220, 0.35);
+}
+
+/* 6. 下部「商品検索へ」戻るボタン（他の画面の白半透明ボタンと完璧にテイストを統一） */
+body.detail-page > a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    max-width: 200px;
+    height: 44px;
+    font-size: 14px;
+    font-weight: bold;
+    text-decoration: none;
+    color: #5c5edc !important;
+    background-color: rgba(255, 255, 255, 0.85) !important;
+    border: 1px solid rgba(92, 94, 220, 0.2) !important;
+    border-radius: 22px !important;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.04) !important;
+    transition: all 0.2s ease;
+    margin-top: 10px !important;
+}
+
+body.detail-page > a:hover {
+    color: #ffffff !important;
+    background: linear-gradient(to right, #5c5edc 0%, #6a11cb 100%) !important;
+    box-shadow: 0 6px 16px rgba(92, 94, 220, 0.3) !important;
+    transform: translateY(-1px);
+}
+
+/* 戻るボタンに上品な左向き矢印を自動付与 */
+body.detail-page > a::before {
+    content: "←  ";
+    font-size: 14px;
+}
+
+body.detail-page form {
+    flex-direction: row !important;      /* 縦並びから横並びに変更 */
+    justify-content: center !important;   /* 中央に寄せる */
+    align-items: center !important;       /* 上下の中央を揃える */
+    flex-wrap: wrap !important;          /* 画面幅が狭いときの崩れ防止 */
+    gap: 12px !important;                 /* パーツごとの適切な隙間を確保 */
+    max-width: 600px !important;          /* 横並び用に少しゆったりした幅を確保 */
+    margin-bottom: 30px !important;
+}
+
+/* 2. 「数量」テキストのレイアウト微調整（ボタンの左隣へ） */
+body.detail-page form .amount-label {
+    margin-bottom: 0 !important;          /* 縦並び用の下マージンをリセット */
+    font-size: 15px !important;
+    color: #4a5568 !important;
+}
+
+/* 3. 数量セレクトボックスの微調整 */
+body.detail-page select[name='amount'] {
+    margin-bottom: 0 !important;          /* 縦並び用の下マージンをリセット */
+    width: 90px !important;               /* 横並び用にスマートな横幅に調整 */
+    height: 48px !important;              /* カートボタン（高50px）と高さをほぼ揃える */
+    background-position: right 8px center !important; /* 矢印の位置を微調整 */
+}
+
+/* 4. 「ショッピングカートに入れる」ボタンのサイズ微調整 */
+body.detail-page input[type="submit"] {
+    margin-top: 0 !important;             /* 余計な上マージンをカット */
+    max-width: 280px !important;          /* 数量と横並びにするため、ボタン幅を少しタイトに調整 */
+    height: 48px !important;              /* セレクトボックスと綺麗に高さを同期 */
 }

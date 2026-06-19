@@ -4,10 +4,11 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
+<meta http-equiv='Content-Type' content='text/html; charset=UTF-8' />
 <title>検索結果</title>
+<link rel='stylesheet' type='text/css' href='style.css' />
 </head>
-<body>
+<body class="result-page">
 <h3>キーワード "<c:out value="${name}" />" カテゴリ "<c:if test="${categoryId == 0}">すべて</c:if>
 													<c:if test="${categoryId == 1}">帽子</c:if>
 													<c:if test="${categoryId == 2}">鞄</c:if>" の検索結果</h3>

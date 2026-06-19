@@ -4,10 +4,11 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
+	<meta http-equiv='Content-Type' content='text/html; charset=UTF-8' />
+	<title>Insert title here</title>
+	<link rel='stylesheet' type='text/css' href='style.css' />
 </head>
-<body>
+<body class="detail-page">
 <h3>商品の詳細表示</h3>
 		<br />
 		<table border="1">
@@ -44,7 +45,7 @@
 			<input type='hidden' name='itemId' value='${itemsDetail.itemId}' />
 			<input type='submit' value='ショッピングカートに入れる' /><br />
 		</form>
-		<a href='${pageContext.request.contextPath}/main'>商品検索</a>へ<br />
+		<a href='${pageContext.request.contextPath}/main'>商品検索へ</a><br />
 
 </body>
 </html>

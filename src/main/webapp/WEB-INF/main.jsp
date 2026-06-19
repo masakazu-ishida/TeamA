@@ -9,7 +9,7 @@
 		<title>商品検索</title>
 		<link rel='stylesheet' type='text/css' href='style.css' />
 	</head>
-	<body>
+	<body class="main-page">
 		<%-- ログイン済の場合（セッションのloginUserが存在するとき） --%>
 		<c:if test="${not empty sessionScope.loginUser}">
 			<h2>ようこそ！${sessionScope.loginUser.name}さん</h2>

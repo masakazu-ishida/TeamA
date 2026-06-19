@@ -8,7 +8,7 @@
 		<title>会員ログイン</title>
 		<link rel='stylesheet' type='text/css' href='style.css' />
 	</head>
-	<body>
+	<body class="login-page">
 		<h3>ログインしてください。</h3>
 		<br />
 		<form action="${pageContext.request.contextPath}/login" method="POST">
