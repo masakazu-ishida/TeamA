@@ -8,6 +8,7 @@ import jp.co.cuatro.dao.ItemDAO;
 import jp.co.cuatro.dao.PurchaseDetailsDAO;
 import jp.co.cuatro.dao.PurchasesDAO;
 import jp.co.cuatro.dto.CartDTO;
+import jp.co.cuatro.dto.ItemDTO;
 import jp.co.cuatro.dto.PurchaseDetailsDTO;
 import jp.co.cuatro.dto.PurchasesDTO;
 import jp.co.cuatro.util.ConnectionUtil;
@@ -36,14 +37,22 @@ public class PurchaseDetailsService {
 			CartDAO cartDAO = new CartDAO(conn);
 
 			// カートに入っている数だけループして注文詳細に追加＆在庫更新
-			for (CartDTO item : cartList) {
+			for (CartDTO items : cartList) {
+
+				ItemDTO product = itemDAO.findById(items.getItemId());
+				// 在庫がカートに追加している数量より少なければ購入不可
+				if (product == null || product.getStock() < items.getAmount()) {
+					conn.rollback();
+					return false;
+				}
+
 				PurchaseDetailsDTO purchaseDetailsDTO = new PurchaseDetailsDTO();
 				purchaseDetailsDTO.setPurchaseId(purchaseId);
-				purchaseDetailsDTO.setItemId(item.getItemId());
-				purchaseDetailsDTO.setAmount(item.getAmount());
+				purchaseDetailsDTO.setItemId(items.getItemId());
+				purchaseDetailsDTO.setAmount(items.getAmount());
 				purchaseDetailsDAO.insert(conn, purchaseDetailsDTO);
-				itemDAO.updateMinusStock(conn, item.getItemId(), item.getAmount());
-				cartDAO.deleteCartItem(conn, userId, item.getItemId());
+				itemDAO.updateMinusStock(conn, items.getItemId(), items.getAmount());
+				cartDAO.deleteCartItem(conn, userId, items.getItemId());
 			}
 
 			// すべて成功したら、コミット
