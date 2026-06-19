@@ -133,6 +133,20 @@ public class PurchasesDAO {
 		return purchases;
 	}
 
+	public int updatePurchaseCancel(int purchaseId) throws SQLException {
+		String sql = "UPDATE purchases SET cancel = true WHERE purchase_id = ?";
+
+		int result = 0;
+
+		try (PreparedStatement ps = con.prepareStatement(sql)) {
+			ps.setInt(1, purchaseId);
+
+			result = ps.executeUpdate();
+		}
+
+		return result;
+	}
+
 	// 中瀬が作っている最中です
 	public int insert(Connection conn, PurchasesDTO purchaseDTO) throws SQLException {
 		String sql = "INSERT INTO purchases (purchased_user, purchased_date, destination, cancel) "

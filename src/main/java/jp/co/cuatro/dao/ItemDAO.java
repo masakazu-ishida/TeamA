@@ -94,8 +94,19 @@ public class ItemDAO {
 
 	}
 
+	public void updatePlusStock(Connection conn, int itemId, int amount) throws SQLException {
+
+		String sql = "UPDATE items SET stock = stock + ? WHERE item_id = ?";
+
+		try (PreparedStatement ps = conn.prepareStatement(sql)) {
+			ps.setInt(1, amount);
+			ps.setInt(2, itemId);
+			ps.executeUpdate();
+		}
+	}
+
 	// 中瀬が作っている最中です
-	public void updateStock(Connection conn, int itemId, int amount) throws SQLException {
+	public void updateMinusStock(Connection conn, int itemId, int amount) throws SQLException {
 
 		// 在庫から購入数を引き算するSQL
 		String sql = "UPDATE items SET stock = stock - ? WHERE item_id = ?";

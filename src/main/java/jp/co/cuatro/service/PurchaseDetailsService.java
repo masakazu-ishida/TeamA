@@ -42,7 +42,7 @@ public class PurchaseDetailsService {
 				purchaseDetailsDTO.setItemId(item.getItemId());
 				purchaseDetailsDTO.setAmount(item.getAmount());
 				purchaseDetailsDAO.insert(conn, purchaseDetailsDTO);
-				itemDAO.updateStock(conn, item.getItemId(), item.getAmount());
+				itemDAO.updateMinusStock(conn, item.getItemId(), item.getAmount());
 				cartDAO.deleteCartItem(conn, userId, item.getItemId());
 			}
 
