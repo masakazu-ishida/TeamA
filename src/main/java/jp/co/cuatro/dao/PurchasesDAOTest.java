@@ -102,7 +102,7 @@ class PurchasesDAOTest extends TestBase {
 	}
 
 	@Test
-	void testFindPurchaseForCancel() {
+	void testFindById() {
 		try (Connection conn = ConnectionUtil.getConnection(null)) {
 			PurchasesDAO dao = new PurchasesDAO(conn);
 
@@ -144,7 +144,7 @@ class PurchasesDAOTest extends TestBase {
 	}
 
 	@Test
-	void testFindPurchaseForCancel_NoId() {
+	void testFindByNoId() {
 		try (Connection conn = ConnectionUtil.getConnection(null)) {
 			PurchasesDAO dao = new PurchasesDAO(conn);
 
@@ -153,6 +153,28 @@ class PurchasesDAOTest extends TestBase {
 			PurchasesDTO result = dao.findById(testPurchaseId);
 
 			assertNull(result);
+
+		} catch (Exception e) {
+			e.printStackTrace();
+			fail(e.getMessage());
+		}
+	}
+
+	@Test
+	void testUpdatePurchaseCancel() {
+		try (Connection conn = ConnectionUtil.getConnection(null)) {
+			PurchasesDAO dao = new PurchasesDAO(conn);
+
+			int testPurchaseId = 1;
+
+			PurchasesDTO beforePurchase = dao.findById(testPurchaseId);
+			assertNotNull(beforePurchase);
+
+			int result = dao.updatePurchaseCancel(testPurchaseId);
+			assertEquals(1, result);
+
+			PurchasesDTO afterPurchase = dao.findById(testPurchaseId);
+			assertNotNull(afterPurchase);
 
 		} catch (Exception e) {
 			e.printStackTrace();

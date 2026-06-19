@@ -32,14 +32,13 @@ public class PurchasesCancelService {
 					int amount = p.getAmount();
 					iDao.updatePlusStock(itemId, amount);
 				}
+				conn.commit();
+
 			} catch (Exception e) {
 				e.printStackTrace();
 				conn.rollback();
 			}
-
-			conn.commit();
 			return result;
-
 		} catch (Exception e) {
 			e.printStackTrace();
 			throw new ServletException(e);
