@@ -38,13 +38,10 @@ public class PurchasesCancelConfirmationController extends HttpServlet {
 
 		HttpSession session = request.getSession();
 		UsersDTO loginUser = (UsersDTO) session.getAttribute("loginUser");
-		//箱の中から、loginUser という名前のデータを取り出す
 		if (loginUser == null) {
 			RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/error.jsp");
 			dispatcher.forward(request, response);
-
 			return;
-
 		}
 
 		PurchasesCancelConfirmationService cancelConfirmation = new PurchasesCancelConfirmationService();

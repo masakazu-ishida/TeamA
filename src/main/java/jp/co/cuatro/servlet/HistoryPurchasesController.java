@@ -42,6 +42,11 @@ public class HistoryPurchasesController extends HttpServlet {
 			HttpSession session = request.getSession(false);
 
 			UsersDTO user = (UsersDTO) session.getAttribute("loginUser");
+			if (user == null) {
+				RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/error.jsp");
+				dispatcher.forward(request, response);
+				return;
+			}
 			String userId = user.getUserId();
 
 			HistoryPurchasesService historyPurchases = new HistoryPurchasesService();
