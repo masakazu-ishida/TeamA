@@ -43,7 +43,9 @@
         </td>
         
         <td><c:out value="${history.destination == null ? '自宅' : history.destination}" /></td>
-        <td><c:if test="${history.cancel == false}"><a href="${pageContext.request.contextPath}/cancelConfirmation?purchaseId=${history.purchaseId}">キャンセル</a></c:if></td>
+        <td><c:if test="${history.cancel == false}"><a href="${pageContext.request.contextPath}/cancelConfirmation?purchaseId=${history.purchaseId}">キャンセル</a></c:if>
+        <c:if test="${history.cancel == true}">　　　</c:if>
+        </td>
         
     </tr>
     </c:forEach>

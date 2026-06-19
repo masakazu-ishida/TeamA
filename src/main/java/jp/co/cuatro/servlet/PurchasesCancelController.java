@@ -17,7 +17,7 @@ import jp.co.cuatro.service.PurchasesCancelService;
 /**
  * Servlet implementation class PurchasesCancelController
  */
-@WebServlet("/Cancel")
+@WebServlet("/cancel")
 public class PurchasesCancelController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
@@ -34,6 +34,14 @@ public class PurchasesCancelController extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+
+	}
+
+	/**
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 */
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		request.setCharacterEncoding("UTF-8");
 
 		HttpSession session = request.getSession();
@@ -45,23 +53,14 @@ public class PurchasesCancelController extends HttpServlet {
 		}
 
 		PurchasesCancelService cancel = new PurchasesCancelService();
-		int purchasesId = Integer.parseInt(request.getParameter("purchasesId"));
-		PurchasesDTO result = cancel.execute(purchasesId);
+		int purchaseId = Integer.parseInt(request.getParameter("purchaseId"));
+		PurchasesDTO result = cancel.execute(purchaseId);
 
 		request.setAttribute("result", result);
 
-		String path = "/WEB-INF/purchasesCansel.jsp";
+		String path = "/WEB-INF/purchasesCancel.jsp";
 		RequestDispatcher rd = request.getRequestDispatcher(path);
 		rd.forward(request, response);
-	}
-
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		doGet(request, response);
 	}
 
 }

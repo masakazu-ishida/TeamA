@@ -45,8 +45,8 @@ public class PurchasesCancelConfirmationController extends HttpServlet {
 		}
 
 		PurchasesCancelConfirmationService cancelConfirmation = new PurchasesCancelConfirmationService();
-		int purchasesId = Integer.parseInt(request.getParameter("purchaseId"));
-		PurchasesDTO result = cancelConfirmation.execute(purchasesId);
+		int purchaseId = Integer.parseInt(request.getParameter("purchaseId"));
+		PurchasesDTO result = cancelConfirmation.execute(purchaseId);
 
 		request.setAttribute("result", result);
 

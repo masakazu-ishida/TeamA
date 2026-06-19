@@ -9,13 +9,13 @@ import jp.co.cuatro.dto.PurchasesDTO;
 import jp.co.cuatro.util.ConnectionUtil;
 
 public class PurchasesCancelConfirmationService {
-	public PurchasesDTO execute(int purchasesId) throws ServletException {
+	public PurchasesDTO execute(int purchaseId) throws ServletException {
 		String jndiName = "java:comp/env/jdbc/ecsite";
 		try (Connection conn = ConnectionUtil.getConnection(jndiName)) {
 
 			PurchasesDAO dao = new PurchasesDAO(conn);
 
-			PurchasesDTO result = dao.findById(purchasesId);
+			PurchasesDTO result = dao.findById(purchaseId);
 
 			return result;
 

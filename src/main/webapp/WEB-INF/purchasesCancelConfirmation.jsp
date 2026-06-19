@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+        <%@ taglib prefix="c" uri="jakarta.tags.core" %> 
 <!DOCTYPE html>
 <html>
 <head>
@@ -44,12 +45,12 @@
         </td>
     </tr>
  <tr>
-<form action="${pageContext.request.contextPath}/executeCancel" method="post">
+<form action="${pageContext.request.contextPath}/cancel" method="post">
     <input type="hidden" name="purchaseId" value="${result.purchaseId}">
     <input type="submit" value="キャンセル">
 </form>
 </tr>
 </table>
-<a href='main.jsp'>商品検索</a>へ<br />
+<a href='${pageContext.request.contextPath}/main'>商品検索</a>へ<br />
 </body>
 </html>
