@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     <%@ taglib prefix="c" uri="jakarta.tags.core" %> 
+    <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -26,11 +27,11 @@
 			</tr>
 			<tr>
 				<th>価格</th>
-				<td>${itemsDetail.price}</td>
+				<td><fmt:formatNumber value="${itemsDetail.price}"/>円</td>
 			</tr>
 			<tr>
 				<th>在庫数</th>
-				<td>${itemsDetail.stock}</td>
+				<td>${itemsDetail.stock}個</td>
 			</tr>
 		</table>
 		<form action='${pageContext.request.contextPath}/cartAdd' method='POST'>

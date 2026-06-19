@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="jakarta.tags.core" %> 
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -35,7 +36,7 @@
             </td>
             <td><c:out value="${item.color}" /></td>
             <td><c:out value="${item.manufacturer}" /></td>
-            <td><c:out value="${item.price}" />円</td>
+            <td><fmt:formatNumber value="${item.price}" />円</td>
         </tr>
     </c:forEach>
 </table>
