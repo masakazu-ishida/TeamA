@@ -98,6 +98,11 @@ public class PurchasesCompletionController extends HttpServlet {
 				request.getRequestDispatcher("/WEB-INF/purchasesSuccess.jsp").forward(request, response);
 			} else {
 				// 失敗時は理由を添えて購入確認画面へフォワード
+				request.setAttribute("cartList", cartList);
+				request.setAttribute("paymentMethod", request.getParameter("paymentMethod"));
+				request.setAttribute("destination", request.getParameter("destination"));
+				request.setAttribute("address", request.getParameter("address"));
+
 				request.setAttribute("errorMsg", "購入処理に失敗しました。在庫数などを確認してください。");
 				request.getRequestDispatcher("/WEB-INF/purchases.jsp").forward(request, response);
 			}

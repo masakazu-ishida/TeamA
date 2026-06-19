@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-        <%@ taglib prefix="c" uri="jakarta.tags.core" %> 
+<%@ taglib prefix="c" uri="jakarta.tags.core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %> 
 <!DOCTYPE html>
 <html>
 <head>
@@ -31,7 +32,7 @@
                     <td><c:out value="${detail.itemDTO.itemName}" /></td>
                     <td><c:out value="${detail.itemDTO.color}" /></td>
                     <td><c:out value="${detail.itemDTO.manufacturer}" /></td>
-                    <td><c:out value="${detail.itemDTO.price}" />円</td>
+                    <td><fmt:formatNumber value="${detail.itemDTO.price}" />円</td>
                     <td><c:out value="${detail.amount}" />個</td>
                 </tr>
                 </c:forEach>
@@ -45,12 +46,16 @@
         </td>
     </tr>
  <tr>
+ <td>
+ 　　　
 <form action="${pageContext.request.contextPath}/cancel" method="post">
     <input type="hidden" name="purchaseId" value="${result.purchaseId}">
     <input type="submit" value="キャンセル">
 </form>
+</td>
 </tr>
 </table>
+<br />
 <a href='${pageContext.request.contextPath}/main'>商品検索</a>へ<br />
 </body>
 </html>
