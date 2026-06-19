@@ -37,7 +37,8 @@
 
 			<%-- ログイン済の場合（セッションのloginUserが存在するとき） --%>
 			<c:otherwise>
-				<a href='${pageContext.request.contextPath}/history'>購入履歴を表示</a><br />
+<!--				<a href='${pageContext.request.contextPath}/history'>購入履歴を表示</a><br />-->
+				<a href='${pageContext.request.contextPath}/MemberController'>会員情報の変更</a><br />
 			</c:otherwise>
 		</c:choose>
 	</body>
