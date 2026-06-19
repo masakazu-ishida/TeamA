@@ -85,7 +85,7 @@ public class PurchaseDetailsDAOTest extends TestBase {
 			assertNotNull(afterList);
 
 			// 明細が1件増えているか
-			assertEquals(5, afterList.size());
+			assertEquals(4, afterList.size());
 
 			// 4件目に追加された明細が正しいか
 			PurchaseDetailsDTO insertedDetail = afterList.get(3);

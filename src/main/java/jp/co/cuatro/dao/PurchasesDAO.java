@@ -150,7 +150,7 @@ public class PurchasesDAO {
 	// 中瀬が作っている最中です
 	public int insert(Connection conn, PurchasesDTO purchaseDTO) throws SQLException {
 		String sql = "INSERT INTO purchases (purchased_user, purchased_date, destination, cancel) "
-				+ "VALUES (?, ?, ?, false)";
+				+ "VALUES (?, CURRENT_DATE, ?, false)";
 
 		try (PreparedStatement ps = conn.prepareStatement(sql, PreparedStatement.RETURN_GENERATED_KEYS)) {
 

@@ -195,7 +195,6 @@ class PurchasesDAOTest extends TestBase {
 			PurchasesDTO newPurchase = new PurchasesDTO();
 			newPurchase.setPurchasedUser("user1");
 			newPurchase.setDestination("鳥取県鳥取市賀露町");
-			newPurchase.setPurchasedDate("2026-06-19");
 
 			// 注文親情報の登録
 			int generatedId = dao.insert(conn, newPurchase);
@@ -212,7 +211,6 @@ class PurchasesDAOTest extends TestBase {
 					assertTrue(rs.next());
 					assertEquals("user1", rs.getString("purchased_user"));
 					assertEquals("鳥取県鳥取市賀露町", rs.getString("destination"));
-					assertEquals("2026-06-19", rs.getString(""));
 					assertFalse(rs.getBoolean("cancel"));
 				}
 			}

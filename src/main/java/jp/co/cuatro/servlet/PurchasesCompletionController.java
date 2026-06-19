@@ -71,12 +71,6 @@ public class PurchasesCompletionController extends HttpServlet {
 				cartList = selectCartDao.findByUserId(user.getUserId());
 			}
 
-			//	        // カートが空の場合はメイン画面へ遷移
-			//	        if (cartList == null || cartList.isEmpty()) {
-			//	            response.sendRedirect(request.getContextPath() + "/main");
-			//	            return;
-			//	        }
-
 			// 配送先の住所を画面から取得
 			String destination = request.getParameter("destination");
 			String address = request.getParameter("address");
