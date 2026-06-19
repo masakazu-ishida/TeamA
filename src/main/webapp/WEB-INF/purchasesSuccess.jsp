@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -25,14 +26,14 @@
                 <td><c:out value="${cart.item.itemName}" /></td>
                 <td><c:out value="${cart.item.color}" /></td>
                 <td><c:out value="${cart.item.manufacturer}" /></td>
-                <td><c:out value="${cart.item.price}" />円</td>
+                <td><fmt:formatNumber value="${cart.item.price}" />円</td>
                 <td><c:out value="${cart.amount}" /> 個</td>
             </tr>
             <c:set var="grandTotal" value="${grandTotal + (cart.item.price * cart.amount)}" />
         </c:forEach>
     </table>
     
-    合計 <c:out value="${grandTotal}" /> 円<br /><br />
+    合計 <fmt:formatNumber value="${grandTotal}" /> 円<br /><br />
     
     清算方法 <c:out value="${paymentMethod}" /><br /><br />
     
