@@ -14,15 +14,20 @@ import jp.co.cuatro.util.ConnectionUtil;
 
 public class PurchaseDetailsService {
 
-	public boolean execute(String userId, List<CartDTO> cartList, String shippingAddress) {
+	public List<CartDTO> execute(String userId, String shippingAddress) {
 
-		boolean success = false;
 		String jndiName = "java:comp/env/jdbc/ecsite";
 
+		List<CartDTO> cartList = null;
 		try (Connection conn = ConnectionUtil.getConnection(jndiName)) {
 
 			// トランザクション開始
 			conn.setAutoCommit(false);
+
+			// トランザクション管理のServiceに渡すのとは別に、ここで一度コネクションを開いて検索する
+
+			CartDAO selectCartDao = new CartDAO(conn);
+			cartList = selectCartDao.findByUserId(userId);
 
 			PurchasesDTO purchaseDTO = new PurchasesDTO();
 			purchaseDTO.setPurchasedUser(userId); // 注文者ID
@@ -33,7 +38,6 @@ public class PurchaseDetailsService {
 
 			PurchaseDetailsDAO purchaseDetailsDAO = new PurchaseDetailsDAO(conn);
 			ItemDAO itemDAO = new ItemDAO(conn);
-			CartDAO cartDAO = new CartDAO(conn);
 
 			// カートに入っている数だけループして注文詳細に追加＆在庫更新
 			for (CartDTO item : cartList) {
@@ -43,17 +47,16 @@ public class PurchaseDetailsService {
 				purchaseDetailsDTO.setAmount(item.getAmount());
 				purchaseDetailsDAO.insert(conn, purchaseDetailsDTO);
 				itemDAO.updateMinusStock(conn, item.getItemId(), item.getAmount());
-				cartDAO.deleteCartItem(conn, userId, item.getItemId());
+				selectCartDao.deleteCartItem(conn, userId, item.getItemId());
 			}
 
 			// すべて成功したら、コミット
 			conn.commit();
-			success = true; // 戻り値を成功：trueに
 
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 
-		return success;
+		return cartList;
 	}
 }

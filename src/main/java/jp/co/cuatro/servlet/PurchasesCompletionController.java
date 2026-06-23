@@ -1,7 +1,6 @@
 package jp.co.cuatro.servlet;
 
 import java.io.IOException;
-import java.sql.Connection;
 import java.util.List;
 
 import jakarta.servlet.ServletException;
@@ -11,7 +10,6 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 
-import jp.co.cuatro.dao.CartDAO;
 import jp.co.cuatro.dto.CartDTO;
 import jp.co.cuatro.dto.UsersDTO;
 import jp.co.cuatro.service.PurchaseDetailsService;
@@ -63,14 +61,6 @@ public class PurchasesCompletionController extends HttpServlet {
 			UsersDTO user = (UsersDTO) session.getAttribute("loginUser");
 
 			List<CartDTO> cartList = null;
-			String jndiName = "java:comp/env/jdbc/ecsite";
-
-			// トランザクション管理のServiceに渡すのとは別に、ここで一度コネクションを開いて検索する
-			try (Connection conn = jp.co.cuatro.util.ConnectionUtil.getConnection(jndiName)) {
-				CartDAO selectCartDao = new CartDAO(conn);
-				cartList = selectCartDao.findByUserId(user.getUserId());
-			}
-
 			// 配送先の住所を画面から取得
 			String destination = request.getParameter("destination");
 			String address = request.getParameter("address");
@@ -85,9 +75,9 @@ public class PurchasesCompletionController extends HttpServlet {
 			}
 
 			PurchaseDetailsService pds = new PurchaseDetailsService();
-			boolean success = pds.execute(user.getUserId(), cartList, shippingAddress);
+			cartList = pds.execute(user.getUserId(), shippingAddress);
 
-			if (success) {
+			if (cartList.size() >= 1) {
 				// JSPで表示するために、購入した内容をリクエストに詰める
 				request.setAttribute("cartList", cartList);
 				request.setAttribute("paymentMethod", request.getParameter("paymentMethod"));

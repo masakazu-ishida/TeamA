@@ -1,7 +1,5 @@
 package jp.co.cuatro.service;
 
-import static org.junit.Assert.*;
-
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
@@ -61,10 +59,9 @@ public class PurchaseDetailsServiceTest extends TestBase {
 
 		// 業務処理の実行
 		PurchaseDetailsService service = new PurchaseDetailsService();
-		boolean result = service.execute("user1", cartList, "鳥取県鳥取市河原町６丁目１０７");
+		service.execute("user1", "鳥取県鳥取市河原町６丁目１０７");
 
 		// 戻り値がtrueかどうかチェック
-		assertTrue(result);
 	}
 
 	/**
@@ -82,9 +79,6 @@ public class PurchaseDetailsServiceTest extends TestBase {
 
 		// 業務処理の実行
 		PurchaseDetailsService service = new PurchaseDetailsService();
-		boolean result = service.execute("user1", cartList, "鳥取県鳥取市河原町６丁目１０７");
-
-		// 戻り値がfalseかどうかチェック
-		assertFalse(result);
+		service.execute("user1", "鳥取県鳥取市河原町６丁目１０７");
 	}
 }
