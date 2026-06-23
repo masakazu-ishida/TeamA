@@ -10,10 +10,17 @@
 	</head>
 	<body class="login-page">
 		<h3>ログインしてください。</h3>
-		<br />
+		
 		<form action="${pageContext.request.contextPath}/login" method="POST">
 		
-			<!-- 遷移元によって引き渡しが必要なデータ -->
+			<c:if test="${not empty errorMessage}">
+				<table>
+					<tr>
+						<c:out value="${errorMessage}" />
+					</tr>
+				</table>
+			</c:if>
+		
 			<input type="hidden" name="src" value="${src}" />
 			<input type="hidden" name="itemId" value="${itemId}" />
 			<input type="hidden" name="amount" value="${amount}" />
@@ -21,7 +28,7 @@
 			<table>
 				<tr>
 					<th>会員ID</th>
-					<td><input type='text' class='id' name='id' /></td>
+					<td><input type='text' class='id' name='id' value="<c:out value='${param.id}' />" /></td>
 				</tr>
 				<tr>
 					<th>パスワード</th>
