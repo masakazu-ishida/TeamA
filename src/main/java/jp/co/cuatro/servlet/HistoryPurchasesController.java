@@ -47,6 +47,7 @@ public class HistoryPurchasesController extends HttpServlet {
 				dispatcher.forward(request, response);
 				return;
 			}
+
 			String userId = user.getUserId();
 
 			HistoryPurchasesService historyPurchases = new HistoryPurchasesService();
