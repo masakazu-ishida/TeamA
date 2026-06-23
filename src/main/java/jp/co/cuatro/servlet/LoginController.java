@@ -84,7 +84,7 @@ public class LoginController extends HttpServlet {
 				}
 
 			} else { // ログイン情報がDBと一致しなかった場合
-				request.setAttribute("errorMessage", "ユーザID・パスワードが間違っています");
+				request.setAttribute("errorMessage", "会員ID・パスワードが間違っています");
 
 				request.setAttribute("src", path);
 				request.setAttribute("itemId", itemId);
