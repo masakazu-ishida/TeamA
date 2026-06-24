@@ -8,6 +8,7 @@ import jp.co.cuatro.dao.ItemDAO;
 import jp.co.cuatro.dao.PurchaseDetailsDAO;
 import jp.co.cuatro.dao.PurchasesDAO;
 import jp.co.cuatro.dto.CartDTO;
+import jp.co.cuatro.dto.ItemDTO;
 import jp.co.cuatro.dto.PurchaseDetailsDTO;
 import jp.co.cuatro.dto.PurchasesDTO;
 import jp.co.cuatro.util.ConnectionUtil;
@@ -41,6 +42,13 @@ public class PurchaseDetailsService {
 
 			// カートに入っている数だけループして注文詳細に追加＆在庫更新
 			for (CartDTO item : cartList) {
+
+				// 在庫確認
+				ItemDTO itemDTO = itemDAO.findById(item.getItemId());
+				if (itemDTO != null && item.getAmount() > itemDTO.getStock()) {
+					throw new Exception("在庫不足エラー: " + itemDTO.getItemName());
+				}
+
 				PurchaseDetailsDTO purchaseDetailsDTO = new PurchaseDetailsDTO();
 				purchaseDetailsDTO.setPurchaseId(purchaseId);
 				purchaseDetailsDTO.setItemId(item.getItemId());
@@ -55,6 +63,10 @@ public class PurchaseDetailsService {
 
 		} catch (Exception e) {
 			e.printStackTrace();
+
+			if (cartList != null) {
+				cartList.clear();
+			}
 		}
 
 		return cartList;

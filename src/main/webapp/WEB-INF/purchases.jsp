@@ -11,6 +11,15 @@
 </head>
 <body class="purchases-page">
 	<h1>以下の商品を購入しますか？</h1><br/>
+	
+	<c:if test="${not empty errorMsg}">
+		<div>
+			<p>
+				<c:out value="${errorMsg}" />
+			</p>
+		</div>
+	</c:if>
+	
 	<table>
 		<tr>
             <th>商品名</th>
@@ -30,7 +39,9 @@
         </tr>
         <c:set var="grandTotal" value="${grandTotal + cart.total}" />
 </c:forEach> </table> 
- 	<p>合計<fmt:formatNumber value="${grandTotal}" />円</p>
+ 	<c:if test="${not empty cartList && cartList.size() >= 1}">
+		<p>合計<fmt:formatNumber value="${grandTotal}" />円</p>
+	</c:if>
     <form action="${pageContext.request.contextPath}/purchases/completion" method="post">
         
         <p>清算方法</p>
