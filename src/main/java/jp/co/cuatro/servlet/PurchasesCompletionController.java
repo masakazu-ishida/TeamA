@@ -53,8 +53,8 @@ public class PurchasesCompletionController extends HttpServlet {
 
 			// セッションチェック
 			if (session == null || session.getAttribute("loginUser") == null) {
-				// ログインセッションがない場合、メイン画面へ遷移
-				response.sendRedirect(request.getContextPath() + "/login");
+				// ログインセッションがない場合、エラー画面へ遷移
+				response.sendRedirect(request.getContextPath() + "/error");
 				return;
 			}
 

@@ -13,10 +13,12 @@
 		
 		<form action="${pageContext.request.contextPath}/login" method="POST">
 		
-			<c:if test="${errorMessage != null && errorMessage != ''}">
+			<c:if test="${requestScope.errorMessage != null && requestScope.errorMessage != ''}">
 				<table>
 					<tr>
-						<c:out value="${errorMessage}" />
+						<th>
+							<c:out value="${errorMessage}" />
+						</th>
 					</tr>
 				</table>
 			</c:if>
