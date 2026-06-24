@@ -2113,3 +2113,128 @@ body.success-page a::before {
     content: "←  ";
     font-size: 14px;
 }
+
+body.cart-page .action-area {
+    gap: 40px !important; /* 元の20pxから40pxに広げてゆとりを持たせます */
+}
+
+/* スマホなどの画面幅が狭い時（縦並びになった時）の下マージンも調整 */
+@media (max-width: 600px) {
+    body.cart-page .action-area {
+        gap: 24px !important; /* 縦並びの時は適切な24pxの隙間に調整 */
+    }
+}
+
+body.cart-page input[type="button"][value="購入する"] {
+    display: block !important;    /* 縦並びを保証する */
+    margin: 0 auto 40px auto !important; /* 下側に40pxの大きな間隔を開け、中央に配置 */
+}
+
+/* 「商品検索へ戻る」リンクの位置を微調整 */
+body.cart-page > a {
+    display: flex !important;
+    margin: 0 auto !important;    /* ボタンの真下にきれいに中央配置 */
+}
+
+body.cart-page input[type="button"][value="購入する"] {
+    display: block !important;
+    margin: 0 auto 40px auto !important; /* 下側のリンクとの間隔（40px）は維持 */
+    
+    /* ボタンの大きさをアップ */
+    width: 240px !important;       /* 横幅を少し太く（200pxから240pxに） */
+    height: 50px !important;       /* 縦幅を少し高く（44pxから50pxに） */
+    font-size: 16px !important;    /* 文字の大きさも一回り大きく */
+    font-weight: bold !important;  /* 文字を太字に */
+    
+    /* 見栄えをさらに良くする調整（角丸や立体感） */
+    border-radius: 25px !important; /* 丸みを持たせてモダンなカプセル型に */
+    cursor: pointer !important;
+    transition: all 0.3s ease !important;
+}
+
+/* マウスカーソルを乗せたとき（ホバー時）の立体的なエフェクト */
+body.cart-page input[type="button"][value="購入する"]:hover {
+    transform: translateY(-2px) !important; /* わずかに上に浮き上がらせる */
+    box-shadow: 0 8px 20px rgba(92, 94, 220, 0.3) !important; /* 影を強調して押しやすく */
+}
+
+body.cart-page input[type="button"][value="購入する"] {
+    display: block !important;
+    margin: 0 auto 40px auto !important; /* 下側リンクとの間隔 */
+    
+    /* ボタンのサイズ */
+    width: 240px !important;
+    height: 50px !important;
+    font-size: 16px !important;
+    font-weight: bold !important;
+    color: #ffffff !important;            /* 文字色は白 */
+    
+    /* 通常時の背景色（紫色のグラデーション） */
+    background: linear-gradient(to right, #5c5edc 0%, #6a11cb 100%) !important;
+    border: none !important;
+    border-radius: 25px !important;       /* カプセル型 */
+    box-shadow: 0 4px 15px rgba(92, 94, 220, 0.2) !important;
+    cursor: pointer !important;
+    transition: all 0.3s ease !important; /* 色や影の変化を滑らかにする */
+}
+
+/* 2. カーソルを合わせたとき（ホバー時）の状態（グラデーションの色が鮮やかに変化） */
+body.cart-page input[type="button"][value="購入する"]:hover {
+    /* ホバー時にグラデーションの左右の色を入れ替え、より鮮やかに見せます */
+    background: linear-gradient(to right, #6a11cb 0%, #5c5edc 100%) !important;
+    
+    /* 上に少し浮き上がり、影を強くして立体感を出す */
+    transform: translateY(-2px) !important;
+    box-shadow: 0 8px 25px rgba(106, 17, 203, 0.4) !important;
+}
+
+body.cart-page input[type="button"][value="購入する"] {
+    display: block !important;
+    margin: 0 auto 40px auto !important; /* 下側リンクとの間隔 */
+    
+    /* ボタンのサイズ */
+    width: 240px !important;
+    height: 50px !important;
+    font-size: 16px !important;
+    font-weight: bold !important;
+    color: #ffffff !important;            /* 文字色は白 */
+    
+    /* 通常時の背景色（現在の紫グラデーション） */
+    background: linear-gradient(to right, #5c5edc 0%, #6a11cb 100%) !important;
+    border: none !important;
+    border-radius: 25px !important;       /* カプセル型 */
+    box-shadow: 0 4px 15px rgba(92, 94, 220, 0.2) !important;
+    cursor: pointer !important;
+    transition: all 0.2s ease !important; /* 変化を少しクイックにして分かりやすく */
+}
+
+/* 2. カーソルを合わせたとき（ホバー時）の状態：単色の「濃い紫色」にパッと変化！ */
+body.cart-page input[type="button"][value="購入する"]:hover {
+    /* グラデーションを解除し、一目で変化がわかる濃い紫色（ロイヤルパープル）に変更 */
+    background: #4a148c !important; 
+    
+    /* 上に少し浮き上がり、影を強くして立体感を出す */
+    transform: translateY(-2px) !important;
+    box-shadow: 0 8px 25px rgba(74, 20, 140, 0.4) !important;
+}
+
+body.cart-page input[type="button"][value="購入する"] {
+    display: block !important;
+    margin: 0 auto 40px auto !important; /* 下側リンクとの間隔 */
+    
+    /* ボタンのサイズ */
+    width: 240px !important;
+    height: 50px !important;
+    font-size: 16px !important;
+    font-weight: bold !important;
+    color: #ffffff !important;            /* 文字色は白 */
+    
+    /* 通常時の背景色（現在の紫グラデーション） */
+    background: linear-gradient(to right, #5c5edc 0%, #6a11cb 100%) !important;
+    border: none !important;
+    border-radius: 25px !important;       /* カプセル型 */
+    box-shadow: 0 4px 15px rgba(92, 94, 220, 0.2) !important;
+    cursor: pointer !important;
+    transition: all 0.2s ease !important; /* 変化を少しクイックにして分かりやすく */
+}
+
