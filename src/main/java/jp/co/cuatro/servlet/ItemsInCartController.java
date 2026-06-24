@@ -64,10 +64,6 @@ public class ItemsInCartController extends HttpServlet {
 			List<CartDTO> cartList = cartService.execute(loginUser.getUserId());
 
 			if (cartList == null || cartList.isEmpty()) {
-				// ログイン画面（login.jsp）へ遷移させる場合
-				request.setAttribute("src", "/ItemsInCartController");
-				// 必要に応じてエラーメッセージを表示させたい場合は以下を設定
-				request.setAttribute("errorMessage", "カートの中に商品がありません。");
 
 				RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/main.jsp");
 				dispatcher.forward(request, response);

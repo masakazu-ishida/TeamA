@@ -1738,3 +1738,159 @@ body.cancel-complete-page > a::before {
     content: "←  ";
     font-size: 14px;
 }
+
+body.success-page {
+    font-family: 'Helvetica Neue', Arial, 'Hiragino Kaku Gothic ProN', 'Hiragino Sans', Meiryo, sans-serif;
+    background: linear-gradient(135deg, #bbf2f6 0%, #e1eec3 50%, #f5e6ca 100%) !important;
+    margin: 0;
+    padding: 60px 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-height: 100vh;
+    box-sizing: border-box;
+    color: #333333;
+}
+
+/* 不要な改行をクリア */
+body.success-page br {
+    display: none !important;
+}
+
+/* タイトル見出し */
+body.success-page h3 {
+    font-size: 22px;
+    font-weight: bold;
+    color: #2c3e50;
+    margin: 0 0 35px 0;
+    text-align: center;
+    letter-spacing: 0.5px;
+}
+
+/* 全体を包み込む丸角・影付きのメインホワイトカード */
+body.success-page {
+    position: relative;
+}
+/* メインコンテンツを綺麗に配置するためのラッパー（テーブルやテキストを包む演出） */
+body.success-page > table,
+body.success-page > .summary-card {
+    width: 100%;
+    max-width: 600px;
+    background-color: #ffffff !important;
+    border: none !important;
+    border-collapse: separate !important;
+    border-spacing: 0;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05) !important;
+    margin: 0 auto 20px auto !important;
+    box-sizing: border-box;
+}
+
+/* 購入商品一覧テーブルのカード化 */
+body.success-page > table {
+    border-radius: 16px !important;
+    overflow: hidden;
+}
+
+/* 商品テーブルのヘッダー（古い紫背景を消し、淡いブルーグレーへ） */
+body.success-page > table th {
+    background: #eef2ff !important;
+    color: #4a5568 !important;
+    padding: 16px 12px !important;
+    font-size: 14px !important;
+    font-weight: bold !important;
+    border: none !important;
+    border-bottom: 2px solid #e2e8f0 !important;
+}
+
+/* 商品テーブルのデータセル */
+body.success-page > table td {
+    padding: 16px 12px !important;
+    border: none !important;
+    border-bottom: 1px solid #edf2f7 !important;
+    background-color: #ffffff !important;
+    color: #2d3748 !important;
+    font-size: 14px !important;
+    vertical-align: middle;
+}
+
+body.success-page > table tr:last-child td {
+    border-bottom: none !important;
+}
+
+/* 「合計 XXX 円」の表示エリアスタイリング（テーブルのすぐ下で目立たせる） */
+body.success-page {
+    font-size: 16px;
+}
+/* テキストとしての合計金額をモダンに装飾（もしプレーンテキストであれば以下が適用されます） */
+body.success-page {
+    text-align: center;
+}
+
+/* 清算方法・配送先情報エリア（summary-card）を美しいセカンドカードへ */
+body.success-page .summary-card {
+    border-radius: 16px !important;
+    padding: 25px 30px !important;
+    text-align: left;
+}
+
+body.success-page .summary-card p {
+    margin: 0 0 15px 0 !important;
+    font-size: 15px;
+    color: #4a5568;
+    line-height: 1.6;
+    border-bottom: 1px dashed #edf2f7;
+    padding-bottom: 12px;
+}
+
+body.success-page .summary-card p:last-child {
+    margin-bottom: 0 !important;
+    border-bottom: none;
+    padding-bottom: 0;
+}
+
+/* 「清算方法」「配送先」などのラベル（span）の強調表示 */
+body.success-page .summary-card p span {
+    display: inline-block;
+    width: 100px;
+    font-weight: bold;
+    color: #4a5568 !important;
+    background-color: #f0f4f8;
+    padding: 4px 12px;
+    border-radius: 12px;
+    margin-right: 15px;
+    font-size: 13px;
+    text-align: center;
+}
+
+/* ナビゲーションリンク（トップへ・商品検索へ戻るカプセルボタン） */
+body.success-page a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    max-width: 180px;
+    height: 44px;
+    font-size: 14px;
+    font-weight: bold;
+    text-decoration: none;
+    color: #5c5edc !important;
+    background-color: #ffffff !important;
+    border: 1px solid rgba(92, 94, 220, 0.2) !important;
+    border-radius: 22px !important;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.06) !important;
+    transition: all 0.2s ease;
+    margin: 20px auto 0 auto !important;
+}
+
+body.success-page a:hover {
+    color: #ffffff !important;
+    background: linear-gradient(to right, #5c5edc 0%, #6a11cb 100%) !important;
+    box-shadow: 0 6px 16px rgba(92, 94, 220, 0.3) !important;
+    transform: translateY(-1px);
+}
+
+/* 左矢印アイコンをボタンの前に自動付与 */
+body.success-page a::before {
+    content: "←  ";
+    font-size: 14px;
+}
