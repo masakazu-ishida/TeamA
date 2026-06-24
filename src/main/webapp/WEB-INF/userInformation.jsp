@@ -42,6 +42,8 @@
 		<a href=''>退会する</a><br />
 	<br />
 	<a href='${pageContext.request.contextPath}/history'>購入履歴を表示</a>
+	<br />
+	<a href='${pageContext.request.contextPath}/main'>商品検索へ</a>
 </body>
 
 </html>
