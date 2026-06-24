@@ -8,7 +8,7 @@
     <title>商品の購入完了</title>
     <link rel='stylesheet' type='text/css' href='${pageContext.request.contextPath}/style.css' />
 </head>
-<body class="purchases-completion-page">
+<body>
     <h3>以下の商品の購入を完了しました。</h3>
     <br />
     

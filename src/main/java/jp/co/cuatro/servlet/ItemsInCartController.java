@@ -63,11 +63,22 @@ public class ItemsInCartController extends HttpServlet {
 			CartAllService cartService = new CartAllService();
 			List<CartDTO> cartList = cartService.execute(loginUser.getUserId());
 
-			request.setAttribute("cartList", cartList);
+			if (cartList == null || cartList.isEmpty()) {
+				// ログイン画面（login.jsp）へ遷移させる場合
+				request.setAttribute("src", "/ItemsInCartController");
+				// 必要に応じてエラーメッセージを表示させたい場合は以下を設定
+				request.setAttribute("errorMessage", "カートの中に商品がありません。");
 
-			RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/purchases.jsp");
-			dispatcher.forward(request, response);
+				RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/main.jsp");
+				dispatcher.forward(request, response);
+
+			} else {
+				// ★カート内の商品が1件以上ある場合
+				request.setAttribute("cartList", cartList);
+
+				RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/purchases.jsp");
+				dispatcher.forward(request, response);
+			}
 		}
 	}
-
 }
