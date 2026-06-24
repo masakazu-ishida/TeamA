@@ -56,9 +56,6 @@ public class ItemsInCartController extends HttpServlet {
 			dispatcher.forward(request, response);
 
 		} else {
-			//			ConfirmationService userService = new ConfirmationService();
-			//
-			//			List<CartDTO> cartList = userService.findUserId(loginUser.getUserId());
 
 			CartAllService cartService = new CartAllService();
 			List<CartDTO> cartList = cartService.execute(loginUser.getUserId());
@@ -69,7 +66,7 @@ public class ItemsInCartController extends HttpServlet {
 				dispatcher.forward(request, response);
 
 			} else {
-				// ★カート内の商品が1件以上ある場合
+
 				request.setAttribute("cartList", cartList);
 
 				RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/purchases.jsp");

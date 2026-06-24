@@ -7,7 +7,7 @@
 <head>
 	<meta http-equiv='Content-Type' content='text/html; charset=UTF-8' />
 	<title>商品の購入確認</title>
-	<link rel='stylesheet' type='text/css' href='style.css' />
+	<link rel='stylesheet' type='text/css' href='${pageContext.request.contextPath}/style.css' />
 </head>
 <body class="purchases-page">
 	<h1>以下の商品を購入しますか？</h1><br/>
