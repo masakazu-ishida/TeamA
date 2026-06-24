@@ -75,6 +75,7 @@ public class PurchasesCompletionController extends HttpServlet {
 				if (address == "") {
 					request.setAttribute("errorMsg", "購入処理に失敗しました。配送先住所をもう一度ご確認ください。");
 					request.getRequestDispatcher("/WEB-INF/purchases.jsp").forward(request, response);
+					return;
 				}
 				shippingAddress = address;
 			}
