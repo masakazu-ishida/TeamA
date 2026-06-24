@@ -8,7 +8,7 @@
 <title>購入履歴一覧</title>
 <link rel='stylesheet' type='text/css' href='style.css' />
 </head>
-<body>
+<body class="history-page">
 <h3>購入履歴の一覧</h3>
 <br />
 <table border="1">
@@ -58,4 +58,5 @@
 <br /><br />
 <a href='${pageContext.request.contextPath}/main'>商品検索へ戻る</a>
 </body>
+
 </html>

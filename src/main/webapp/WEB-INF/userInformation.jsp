@@ -7,9 +7,10 @@
 		<title>会員情報変更</title>
 		<link rel='stylesheet' type='text/css' href='style.css' />
 </head>
-<body>
+<body class="member-info-page">
 	<h2>会員情報の変更画面</h2>
 	<br />
 	<a href='${pageContext.request.contextPath}/history'>購入履歴を表示</a>
 </body>
+
 </html>

@@ -9,7 +9,7 @@
 	<title>商品の購入確認</title>
 	<link rel='stylesheet' type='text/css' href='style.css' />
 </head>
-<body>
+<body class="purchases-page">
 	<h1>以下の商品を購入しますか？</h1><br/>
 	<table>
 		<tr>
@@ -54,4 +54,5 @@
     </form><br/>
     <a href="${pageContext.request.contextPath}/main">商品検索へ</a>
 </body>
+
 </html>

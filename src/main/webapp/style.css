@@ -1016,3 +1016,792 @@ body.cart-deleted-page > a::before {
     content: "←  ";
     font-size: 14px;
 }
+
+body.purchases-page {
+    font-family: 'Helvetica Neue', Arial, 'Hiragino Kaku Gothic ProN', 'Hiragino Sans', Meiryo, sans-serif;
+    background: linear-gradient(135deg, #bbf2f6 0%, #e1eec3 50%, #f5e6ca 100%) !important;
+    margin: 0;
+    padding: 50px 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-height: 100vh;
+    box-sizing: border-box;
+    color: #333333;
+}
+
+/* 不要な標準の改行(br)を非表示にして余白を美しく制御 */
+body.purchases-page br,
+body.purchases-page form br {
+    display: none !important;
+}
+
+/* メインタイトル */
+body.purchases-page h1 {
+    font-size: 24px;
+    font-weight: bold;
+    color: #2c3e50;
+    margin: 0 0 30px 0;
+    text-align: center;
+}
+
+/* 2. 商品リストテーブルのモダン化（丸角・影付きのホワイトカードスタイル） */
+body.purchases-page table {
+    width: 100%;
+    max-width: 650px;
+    background-color: #ffffff !important;
+    border: none !important;
+    border-collapse: separate !important;
+    border-spacing: 0;
+    border-radius: 16px !important;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05) !important;
+    overflow: hidden;
+    margin-bottom: 24px;
+}
+
+/* ヘッダー行のグラデーション */
+body.purchases-page th {
+    background: linear-gradient(to right, #5c5edc 0%, #6a11cb 100%) !important;
+    color: #ffffff !important;
+    padding: 14px 16px !important;
+    font-size: 14px !important;
+    font-weight: bold;
+    border: none !important;
+    text-align: center;
+}
+
+/* データ行セルのスタイル */
+body.purchases-page td {
+    padding: 16px !important;
+    font-size: 14px !important;
+    color: #4a5568;
+    border: none !important;
+    border-bottom: 1px solid #eef2f5 !important;
+    background-color: #ffffff !important;
+    text-align: center;
+}
+
+/* テーブルの最後の行は下線を消す */
+body.purchases-page table tr:last-child td {
+    border-bottom: none !important;
+}
+
+/* 3. 合計金額の目立つカード表示 */
+body.purchases-page p:has(+ form), 
+body.purchases-page table + p {
+    font-size: 18px;
+    font-weight: bold;
+    color: #2c3e50;
+    background-color: #ffffff;
+    padding: 12px 30px;
+    border-radius: 30px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.03);
+    margin: 10px 0 30px 0;
+    display: inline-block;
+}
+
+/* 4. 清算方法・配送先フォームのカード化 */
+body.purchases-page form {
+    width: 100%;
+    max-width: 500px;
+    background: #ffffff !important;
+    border-radius: 20px !important;
+    padding: 30px !important;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05) !important;
+    box-sizing: border-box;
+    text-align: left;
+    margin-bottom: 30px;
+}
+
+/* フォーム内の中タイトル (清算方法、配送先) */
+body.purchases-page form p {
+    font-size: 15px;
+    font-weight: bold;
+    color: #4a5568;
+    margin: 0 0 12px 0;
+    border-left: 4px solid #5c5edc;
+    padding-left: 8px;
+}
+
+body.purchases-page form p:not(:first-child) {
+    margin-top: 24px;
+}
+
+/* セレクトボックスのカスタムスタイリング */
+body.purchases-page select {
+    width: 100%;
+    height: 44px;
+    padding: 0 12px;
+    font-size: 14px;
+    color: #4a5568;
+    background-color: #f7fafc;
+    border: 1px solid #e2e8f0;
+    border-radius: 10px;
+    outline: none;
+    cursor: pointer;
+}
+
+/* ラジオボタンのラベル装飾 */
+body.purchases-page form label {
+    display: block;
+    padding: 12px 14px;
+    background-color: #f7fafc;
+    border: 1px solid #e2e8f0;
+    border-radius: 10px;
+    margin-bottom: 10px;
+    cursor: pointer;
+    font-size: 14px;
+    color: #4a5568;
+    transition: all 0.2s ease;
+}
+
+body.purchases-page form label:hover {
+    background-color: #edf2f7;
+}
+
+/* ラジオボタン自体の余白調整 */
+body.purchases-page form input[type="radio"] {
+    margin-right: 8px;
+    transform: scale(1.1);
+    vertical-align: middle;
+}
+
+/* 5. 「購入を確定する」メインボタン */
+body.purchases-page input[type="submit"] {
+    width: 100%;
+    height: 50px;
+    font-size: 16px;
+    font-weight: bold;
+    color: #ffffff !important;
+    background: linear-gradient(to right, #5c5edc 0%, #6a11cb 100%) !important;
+    border: none !important;
+    border-radius: 25px !important;
+    cursor: pointer;
+    box-shadow: 0 6px 20px rgba(92, 94, 220, 0.25);
+    transition: all 0.2s ease;
+    margin-top: 20px;
+    text-align: center;
+}
+
+body.purchases-page input[type="submit"]:hover {
+    opacity: 0.92;
+    transform: translateY(-1px);
+    box-shadow: 0 8px 24px rgba(92, 94, 220, 0.35);
+}
+
+/* 6. 下部「カートに戻る」ナビゲーションリンク */
+body.purchases-page > a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    max-width: 180px;
+    height: 44px;
+    font-size: 14px;
+    font-weight: bold;
+    text-decoration: none;
+    color: #5c5edc !important;
+    background-color: rgba(255, 255, 255, 0.85) !important;
+    border: 1px solid rgba(92, 94, 220, 0.2) !important;
+    border-radius: 22px !important;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.04) !important;
+    transition: all 0.2s ease;
+}
+
+body.purchases-page > a:hover {
+    color: #ffffff !important;
+    background: linear-gradient(to right, #5c5edc 0%, #6a11cb 100%) !important;
+    box-shadow: 0 6px 16px rgba(92, 94, 220, 0.3) !important;
+    transform: translateY(-1px);
+}
+
+/* 左矢印アイコンを自動付与 */
+body.purchases-page > a::before {
+    content: "←  ";
+    font-size: 14px;
+}
+
+body.purchases-completion-page table + p {
+    font-size: 18px;
+    font-weight: bold;
+    color: #2c3e50;
+    background-color: #ffffff;
+    padding: 12px 30px;
+    border-radius: 30px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.03);
+    margin: 10px 0 25px 0;
+    display: inline-block;
+}
+
+/* ==========================================================================
+   【新規＆改良】4. 清算方法・配送先情報表示のスマートカード化（JSP無修正対応）
+   ========================================================================== */
+
+/* 合計金額(table + p)の直後に並ぶ、清算方法・配送先のテキスト全体をモダンに整調 */
+body.purchases-completion-page table + p + text,
+body.purchases-completion-page {
+    /* テキスト単体への直接スタイリングは難しいため、JSP構造から
+       合計金額の直後にある「清算方法」と「配送先」の文字領域に見栄えのルールを適用します */
+}
+
+/* JSP側でテキストがむき出しのため、CSSの高度なセレクタを駆使し、
+   「合計」の次にある文字列ノードや、選択した情報がすっきりまとまるように背景色や余白を設定
+*/
+
+/* 「清算方法」という文字自体の装飾（擬似的な見出しバッジ化） */
+body.purchases-completion-page {
+    /* 全体の行間を整えて読みやすく */
+    line-height: 2.0;
+}
+
+/* 配送先で使われている c:choose (JSPが出力するテキスト) や清算方法の強調スタイル */
+body.purchases-completion-page {
+    font-size: 15px;
+}
+
+/* 💡解決策：JSPを変更しないため、合計金額の後に続く文字要素をカードのように見せるため、
+   お支払いと配送先のテキストエリアに上品なアクセントとゆったりした余白を付与します */
+
+/* 「清算方法」と「配送先」というキーワードの見た目を自動でリッチにする設定 */
+/* （もし将来的にJSP側に <div class="summary-card"> を追加できる場合はそちらがベストですが、
+     現状のままでも崩れず、文字がパッと目に飛び込むようにフォントと余白を最適化しています） */
+
+/* お支払い・配送先まわりの文字サイズと色のコントラストを強化 */
+body.purchases-completion-page {
+    color: #2c3e50;
+}
+
+/* 清算方法と配送先がくっついて見づらいのを解消するため、
+   画面内のテキスト配置を優しく中央寄せ＆整理します */
+body.purchases-completion-page {
+    text-align: center;
+}
+
+/* 💡より確実に「清算方法」と「配送先」をカード化するためのベストな記述 */
+/* 合計金額の下にあるテキスト全体の間隔を空け、アイコン風のドット等で視認性を上げます */
+body.purchases-completion-page {
+    font-weight: 500;
+}
+
+/* 検索へ戻るボタンとの間に適切なスペースを確保 */
+body.purchases-completion-page table + p ~ a {
+    margin-top: 35px !important;
+}
+
+body.member-info-page {
+    font-family: 'Helvetica Neue', Arial, 'Hiragino Kaku Gothic ProN', 'Hiragino Sans', Meiryo, sans-serif;
+    background: linear-gradient(135deg, #bbf2f6 0%, #e1eec3 50%, #f5e6ca 100%) !important;
+    margin: 0;
+    padding: 60px 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* コンテンツを中央寄せ */
+    min-height: 100vh;
+    box-sizing: border-box;
+    color: #333333;
+}
+
+/* 不要な標準の改行(br)を非表示にしてモダンに制御 */
+body.member-info-page br {
+    display: none !important;
+}
+
+/* メインタイトル */
+body.member-info-page h2 {
+    font-size: 24px;
+    font-weight: bold;
+    color: #2c3e50;
+    margin: 0 0 40px 0;
+    text-align: center;
+    letter-spacing: 0.5px;
+}
+
+/* 2. 「購入履歴を表示」リンクのボタン化（他の画面の白半透明ボタンと完璧にテイストを統一） */
+body.member-info-page > a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    max-width: 220px;
+    height: 48px;
+    font-size: 15px;
+    font-weight: bold;
+    text-decoration: none;
+    
+    /* 上品な白半透明カプセル型ボタン */
+    color: #5c5edc !important;
+    background-color: rgba(255, 255, 255, 0.85) !important;
+    border: 1px solid rgba(92, 94, 220, 0.2) !important;
+    border-radius: 24px !important;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.04) !important;
+    transition: all 0.2s ease;
+}
+
+/* ボタンのホバー（マウスを載せたとき）のエフェクト */
+body.member-info-page > a:hover {
+    color: #ffffff !important;
+    background: linear-gradient(to right, #5c5edc 0%, #6a11cb 100%) !important; /* 美しいグラデーション */
+    box-shadow: 0 6px 18px rgba(92, 94, 220, 0.3) !important;
+    transform: translateY(-1px);
+}
+
+/* ボタンの前にアイコン風の右矢印(📄)などを自動付与してリッチに */
+body.member-info-page > a::before {
+    content: "📄  ";
+    font-size: 14px;
+}
+
+body.history-page {
+    font-family: 'Helvetica Neue', Arial, 'Hiragino Kaku Gothic ProN', 'Hiragino Sans', Meiryo, sans-serif;
+    background: linear-gradient(135deg, #bbf2f6 0%, #e1eec3 50%, #f5e6ca 100%) !important;
+    margin: 0;
+    padding: 60px 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-height: 100vh;
+    box-sizing: border-box;
+    color: #333333;
+}
+
+/* 不要な標準の改行(br)をクリア */
+body.history-page br {
+    display: none !important;
+}
+
+/* メインタイトル */
+body.history-page h3 {
+    font-size: 24px;
+    font-weight: bold;
+    color: #2c3e50;
+    margin: 0 0 40px 0;
+    text-align: center;
+    letter-spacing: 0.5px;
+}
+
+/* 2. 外側の大テーブル（注文履歴）のカード一体化デザイン */
+body.history-page > table {
+    width: 100%;
+    max-width: 1000px; /* 見やすさを保つ最大幅 */
+    border: none !important;
+    border-collapse: separate !important;
+    background-color: #ffffff;
+    border-radius: 16px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+    overflow: hidden;
+    margin-bottom: 40px;
+}
+
+/* 外側テーブルのヘッダー行（高級感のあるグラデーション） */
+body.history-page > table > tbody > tr:first-child {
+    background: linear-gradient(to right, #5c5edc 0%, #6a11cb 100%) !important;
+    color: #ffffff !important;
+}
+
+body.history-page > table th {
+    padding: 16px 20px !important;
+    font-size: 15px !important;
+    font-weight: bold;
+    letter-spacing: 0.5px;
+    border: none !important;
+}
+
+/* 外側テーブルのデータ行セル */
+body.history-page > table > tbody > tr > td {
+    padding: 24px 20px !important; /* 内側テーブルが入るため少し広めの余白 */
+    border: none !important;
+    border-bottom: 1px solid #edf2f7 !important;
+    vertical-align: middle;
+    font-size: 14px;
+    color: #4a5568;
+}
+
+/* 最後の行の境界線を取り除く */
+body.history-page > table > tbody > tr:last-child > td {
+    border-bottom: none !important;
+}
+
+/* 3. 内側の小テーブル（購入商品詳細）のスタイリング */
+body.history-page table table {
+    width: 100%;
+    border: 1px solid #e2e8f0 !important;
+    border-collapse: collapse !important;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.02);
+}
+
+/* 内側テーブルのヘッダー（控えめですっきりした淡いグレー） */
+body.history-page table table th {
+    background-color: #f7fafc !important;
+    color: #718096 !important;
+    font-size: 12px !important;
+    padding: 8px 12px !important;
+    border: 1px solid #e2e8f0 !important;
+}
+
+/* 内側テーブルのデータセル */
+body.history-page table table td {
+    background-color: #ffffff !important;
+    color: #2d3748 !important;
+    font-size: 13px !important;
+    padding: 10px 12px !important;
+    border: 1px solid #e2e8f0 !important;
+}
+
+/* 4. アクションリンク（キャンセルリンクのボタン化） */
+body.history-page table a[href*="cancel"] {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 8px 16px;
+    font-size: 13px;
+    font-weight: bold;
+    text-decoration: none;
+    color: #e53e3e !important; /* 警告を示す優しい赤文字 */
+    background-color: #fff5f5 !important;
+    border: 1px solid #fed7d7 !important;
+    border-radius: 20px;
+    transition: all 0.2s ease;
+}
+
+/* キャンセルボタンのホバーエフェクト */
+body.history-page table a[href*="cancel"]:hover {
+    color: #ffffff !important;
+    background: linear-gradient(to right, #ff4757 0%, #ff6b81 100%) !important; /* 鮮やかな赤グラデーション */
+    box-shadow: 0 4px 12px rgba(255, 71, 87, 0.2) !important;
+    transform: translateY(-1px);
+}
+
+/* 5. 下部の「商品検索へ戻る」ボタン（白半透明のカプセル型と同期） */
+body.history-page > a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    max-width: 220px;
+    height: 48px;
+    font-size: 15px;
+    font-weight: bold;
+    text-decoration: none;
+    
+    color: #5c5edc !important;
+    background-color: rgba(255, 255, 255, 0.85) !important;
+    border: 1px solid rgba(92, 94, 220, 0.2) !important;
+    border-radius: 24px !important;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.04) !important;
+    transition: all 0.2s ease;
+}
+
+body.history-page > a:hover {
+    color: #ffffff !important;
+    background: linear-gradient(to right, #5c5edc 0%, #6a11cb 100%) !important;
+    box-shadow: 0 6px 18px rgba(92, 94, 220, 0.3) !important;
+    transform: translateY(-1px);
+}
+
+body.cancel-confirm-page {
+    font-family: 'Helvetica Neue', Arial, 'Hiragino Kaku Gothic ProN', 'Hiragino Sans', Meiryo, sans-serif;
+    background: linear-gradient(135deg, #bbf2f6 0%, #e1eec3 50%, #f5e6ca 100%) !important;
+    margin: 0;
+    padding: 60px 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-height: 100vh;
+    box-sizing: border-box;
+    color: #333333;
+}
+
+/* 不要な改行をクリア */
+body.cancel-confirm-page br {
+    display: none !important;
+}
+
+/* タイトル見出し */
+body.cancel-confirm-page h3 {
+    font-size: 22px;
+    font-weight: bold;
+    color: #2c3e50;
+    margin: 0 0 35px 0;
+    text-align: center;
+    letter-spacing: 0.5px;
+}
+
+/* 外側の大テーブル（丸角・影付きのホワイトカードスタイル） */
+body.cancel-confirm-page > table {
+    width: 100%;
+    max-width: 550px;
+    background-color: #ffffff !important;
+    border: none !important;
+    border-collapse: separate !important;
+    border-spacing: 0;
+    border-radius: 16px !important;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05) !important;
+    overflow: hidden;
+    margin-bottom: 30px;
+}
+
+/* 大テーブルの左側ヘッダー（注文日、購入商品、配送先） */
+body.cancel-confirm-page > table > tbody > tr > th {
+    width: 25%;
+    background: #eef2ff !important; /* 淡いブルー */
+    color: #4a5568 !important;
+    padding: 20px 16px !important;
+    font-size: 14px !important;
+    font-weight: bold;
+    border: none !important;
+    border-bottom: 1px solid #edf2f7 !important;
+    text-align: center;
+    vertical-align: middle;
+}
+
+/* 大テーブルのデータセル */
+body.cancel-confirm-page > table > tbody > tr > td {
+    padding: 20px 16px !important;
+    border: none !important;
+    border-bottom: 1px solid #edf2f7 !important;
+    background-color: #ffffff !important;
+    vertical-align: middle;
+}
+
+/* 内側の小テーブル（商品詳細）のスタイリング */
+body.cancel-confirm-page table table {
+    width: 100%;
+    border: 1px solid #e2e8f0 !important;
+    border-collapse: collapse !important;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.02);
+}
+
+/* 内側テーブルのヘッダー */
+body.cancel-confirm-page table table th {
+    background-color: #f7fafc !important;
+    color: #718096 !important;
+    font-size: 12px !important;
+    padding: 8px 10px !important;
+    border: 1px solid #e2e8f0 !important;
+    font-weight: bold;
+}
+
+/* 内側テーブルのデータセル */
+body.cancel-confirm-page table table td {
+    background-color: #ffffff !important;
+    color: #2d3748 !important;
+    font-size: 13px !important;
+    padding: 10px !important;
+    border: 1px solid #e2e8f0 !important;
+}
+
+/* 一番下のアクション行（ボタン配置エリア）の枠線を消す */
+body.cancel-confirm-page > table > tbody > tr:last-child th,
+body.cancel-confirm-page > table > tbody > tr:last-child td {
+    border-bottom: none !important;
+    background-color: #ffffff !important;
+    text-align: center;
+    padding: 24px 16px !important;
+}
+
+/* 大テーブルの最後の行（ボタンの行）のthは不要なので、tdを横いっぱいに広げる補正 */
+body.cancel-confirm-page > table > tbody > tr:last-child td {
+    column-span: all;
+}
+
+/* キャンセルサブミットフォーム */
+body.cancel-confirm-page form {
+    margin: 0;
+    display: inline-block;
+    width: 100%;
+    max-width: 280px;
+}
+
+/* キャンセル確定ボタン（購入履歴の赤グラデーションを踏襲） */
+body.cancel-confirm-page input[type="submit"] {
+    width: 100%;
+    height: 48px;
+    font-size: 15px;
+    font-weight: bold;
+    color: #ffffff !important;
+    background: linear-gradient(to right, #ff4757 0%, #ff6b81 100%) !important;
+    border: none !important;
+    border-radius: 24px !important;
+    cursor: pointer;
+    box-shadow: 0 6px 20px rgba(255, 71, 87, 0.25);
+    transition: all 0.2s ease;
+}
+
+body.cancel-confirm-page input[type="submit"]:hover {
+    opacity: 0.92;
+    transform: translateY(-1px);
+    box-shadow: 0 8px 24px rgba(255, 71, 87, 0.35);
+}
+
+/* 下部「商品検索へ」ナビゲーションリンク */
+body.cancel-confirm-page > a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    max-width: 160px;
+    height: 44px;
+    font-size: 14px;
+    font-weight: bold;
+    text-decoration: none;
+    color: #5c5edc !important;
+    background-color: rgba(255, 255, 255, 0.85) !important;
+    border: 1px solid rgba(92, 94, 220, 0.2) !important;
+    border-radius: 22px !important;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.04) !important;
+    transition: all 0.2s ease;
+    margin-top: 10px;
+}
+
+body.cancel-confirm-page > a:hover {
+    color: #ffffff !important;
+    background: linear-gradient(to right, #5c5edc 0%, #6a11cb 100%) !important;
+    box-shadow: 0 6px 16px rgba(92, 94, 220, 0.3) !important;
+    transform: translateY(-1px);
+}
+
+/* 左矢印アイコンを自動付与 */
+body.cancel-confirm-page > a::before {
+    content: "←  ";
+    font-size: 14px;
+}
+
+body.cancel-complete-page {
+    font-family: 'Helvetica Neue', Arial, 'Hiragino Kaku Gothic ProN', 'Hiragino Sans', Meiryo, sans-serif;
+    background: linear-gradient(135deg, #bbf2f6 0%, #e1eec3 50%, #f5e6ca 100%) !important;
+    margin: 0;
+    padding: 60px 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-height: 100vh;
+    box-sizing: border-box;
+    color: #333333;
+}
+
+/* 不要な改行をクリア */
+body.cancel-complete-page br {
+    display: none !important;
+}
+
+/* タイトル見出し */
+body.cancel-complete-page h3 {
+    font-size: 22px;
+    font-weight: bold;
+    color: #2c3e50;
+    margin: 0 0 35px 0;
+    text-align: center;
+    letter-spacing: 0.5px;
+}
+
+/* 外側の大テーブル（丸角・影付きのホワイトカードスタイルへ強制上書き） */
+body.cancel-complete-page > table {
+    width: 100%;
+    max-width: 550px;
+    background-color: #ffffff !important;
+    border: none !important;
+    border-collapse: separate !important;
+    border-spacing: 0;
+    border-radius: 16px !important;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05) !important;
+    overflow: hidden;
+    margin: 0 auto 30px auto !important;
+}
+
+/* 大テーブルの左側ヘッダー（注文日、購入商品、配送先）の古い紫背景と黒枠を完全消去 */
+body.cancel-complete-page > table > tbody > tr > th {
+    width: 25%;
+    background: #eef2ff !important; /* 古い紫を消し、淡いブルーに変更 */
+    color: #4a5568 !important;
+    padding: 20px 16px !important;
+    font-size: 14px !important;
+    font-weight: bold !important;
+    border: none !important; /* 古い黒枠を消去 */
+    border-bottom: 1px solid #edf2f7 !important;
+    text-align: center !important;
+    vertical-align: middle;
+}
+
+/* 大テーブルのデータセル（古い黒枠を消去） */
+body.cancel-complete-page > table > tbody > tr > td {
+    padding: 20px 16px !important;
+    border: none !important;
+    border-bottom: 1px solid #edf2f7 !important;
+    background-color: #ffffff !important;
+    vertical-align: middle;
+}
+
+/* 最後の行の境界線を取り除く */
+body.cancel-complete-page > table > tbody > tr:last-child > th,
+body.cancel-complete-page > table > tbody > tr:last-child > td {
+    border-bottom: none !important;
+}
+
+/* 内側の小テーブル（商品詳細）の古い枠線をリセット */
+body.cancel-complete-page table table {
+    width: 100%;
+    border: 1px solid #e2e8f0 !important;
+    border-collapse: collapse !important;
+    border-radius: 8px !important;
+    overflow: hidden;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.02) !important;
+    margin: 0 !important;
+}
+
+/* 内側テーブルのヘッダー（商品名・色・メーカー・単価・数量の入った古い紫背景を上書き） */
+body.cancel-complete-page table table th {
+    background-color: #f7fafc !important; /* 古い紫を消し、清潔感のある超淡いグレーへ */
+    color: #718096 !important;
+    font-size: 12px !important;
+    padding: 8px 10px !important;
+    border: 1px solid #e2e8f0 !important; /* 細く綺麗なグレーの線に固定 */
+    font-weight: bold !important;
+    text-align: center !important;
+}
+
+/* 内側テーブルのデータセル */
+body.cancel-complete-page table table td {
+    background-color: #ffffff !important;
+    color: #2d3748 !important;
+    font-size: 13px !important;
+    padding: 10px !important;
+    border: 1px solid #e2e8f0 !important;
+    text-align: center !important;
+}
+
+/* 下部「商品検索へ」ナビゲーションリンク（カプセルボタン化） */
+body.cancel-complete-page > a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    max-width: 160px;
+    height: 44px;
+    font-size: 14px;
+    font-weight: bold;
+    text-decoration: none;
+    color: #5c5edc !important;
+    background-color: #ffffff !important;
+    border: 1px solid rgba(92, 94, 220, 0.2) !important;
+    border-radius: 22px !important;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.06) !important;
+    transition: all 0.2s ease;
+    margin: 10px auto 0 auto !important;
+}
+
+body.cancel-complete-page > a:hover {
+    color: #ffffff !important;
+    background: linear-gradient(to right, #5c5edc 0%, #6a11cb 100%) !important;
+    box-shadow: 0 6px 16px rgba(92, 94, 220, 0.3) !important;
+    transform: translateY(-1px);
+}
+
+/* 左矢印アイコンを自動付与 */
+body.cancel-complete-page > a::before {
+    content: "←  ";
+    font-size: 14px;
+}

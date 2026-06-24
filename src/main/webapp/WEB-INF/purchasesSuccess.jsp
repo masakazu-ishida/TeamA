@@ -8,7 +8,7 @@
     <title>商品の購入完了</title>
     <link rel='stylesheet' type='text/css' href='${pageContext.request.contextPath}/style.css' />
 </head>
-<body>
+<body class="purchases-completion-page">
     <h3>以下の商品の購入を完了しました。</h3>
     <br />
     
@@ -34,10 +34,10 @@
     </table>
     
     合計 <fmt:formatNumber value="${grandTotal}" /> 円<br /><br />
-    
-    清算方法 <c:out value="${paymentMethod}" /><br /><br />
-    
-    配送先 
+<div class="summary-card">
+   <p><span>清算方法</span><c:out value="${paymentMethod}" /><br /><br />
+    <p>
+    <span>配送先</span>
     <c:choose>
         <c:when test="${destination == 'registered'}">
             ご自宅
@@ -46,8 +46,11 @@
             ご指定先（<c:out value="${address}" />）
         </c:otherwise>
     </c:choose>
+    </p>
     <br /><br />
+    </div>
     
-    <a href='${pageContext.request.contextPath}/main'>商品検索</a>へ<br />
+    <a href='${pageContext.request.contextPath}/main'>商品検索へ</a><br />
 </body>
+
 </html>
