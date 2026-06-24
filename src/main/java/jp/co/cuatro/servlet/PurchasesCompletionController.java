@@ -67,16 +67,15 @@ public class PurchasesCompletionController extends HttpServlet {
 
 			String shippingAddress = "";
 
-			// 住所が空白の場合
-			if (address == "") {
-				request.setAttribute("errorMsg", "購入処理に失敗しました。配送先住所をもう一度ご確認ください。");
-				request.getRequestDispatcher("/WEB-INF/purchases.jsp").forward(request, response);
-			}
-
 			// 配送先判定
 			if ("registered".equals(destination)) {
 				shippingAddress = null;
 			} else {
+				// 住所が空白の場合
+				if (address == "") {
+					request.setAttribute("errorMsg", "購入処理に失敗しました。配送先住所をもう一度ご確認ください。");
+					request.getRequestDispatcher("/WEB-INF/purchases.jsp").forward(request, response);
+				}
 				shippingAddress = address;
 			}
 
