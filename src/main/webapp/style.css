@@ -1221,6 +1221,18 @@ body.purchases-page > a::before {
     font-size: 14px;
 }
 
+body.purchases-page .error-box p {
+    color: #e53e3e !important;       /* 警告を示す鮮やかな赤文字 */
+    font-weight: bold !important;    /* 文字を太字にして目立たせる */
+    background-color: #fff5f5 !important; /* 背景色も確実に適用 */
+    border: 1px solid #fed7d7 !important; /* 枠線も確実に適用 */
+    padding: 12px 20px !important;
+    border-radius: 8px !important;
+    display: inline-block !important;
+    margin: 15px 0 !important;
+    font-size: 14px !important;
+}
+
 body.member-info-page {
     font-family: 'Helvetica Neue', Arial, 'Hiragino Kaku Gothic ProN', 'Hiragino Sans', Meiryo, sans-serif;
     background: linear-gradient(135deg, #bbf2f6 0%, #e1eec3 50%, #f5e6ca 100%) !important;
@@ -1282,6 +1294,190 @@ body.member-info-page > a:hover {
 body.member-info-page > a::before {
     content: "📄  ";
     font-size: 14px;
+}
+
+body.member-info-page {
+    font-family: 'Helvetica Neue', Arial, 'Hiragino Kaku Gothic ProN', 'Hiragino Sans', Meiryo, sans-serif;
+    background: linear-gradient(135deg, #bbf2f6 0%, #e1eec3 50%, #f5e6ca 100%) !important;
+    margin: 0;
+    padding: 60px 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-height: 100vh;
+    box-sizing: border-box;
+    color: #333333;
+}
+
+/* 不要な改行をクリア */
+body.member-info-page br {
+    display: none !important;
+}
+
+/* 画面メイン見出し */
+body.member-info-page h2 {
+    font-size: 24px;
+    font-weight: bold;
+    color: #2c3e50;
+    margin: 0 0 10px 0 !important;
+    text-align: center;
+}
+
+/* サブ見出し（会員情報） */
+body.member-info-page h3 {
+    font-size: 16px;
+    font-weight: bold;
+    color: #718096;
+    margin: 0 0 25px 0 !important;
+    text-align: center;
+}
+
+/* 全体を包み込む白いカード風フォーム */
+body.member-info-page form {
+    background-color: #ffffff !important;
+    padding: 35px 40px !important;
+    border-radius: 20px !important;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05) !important;
+    width: 100%;
+    max-width: 480px;
+    box-sizing: border-box;
+    margin-bottom: 25px;
+}
+
+/* フォーム内のテーブル構造を縦並びのモダンなレイアウトにリセット */
+body.member-info-page table, 
+body.member-info-page tbody, 
+body.member-info-page tr, 
+body.member-info-page th, 
+body.member-info-page td {
+    display: block !important;
+    width: 100% !important;
+    border: none !important;      /* 古い黒枠線を完全消去 */
+    background: none !important;  /* 古い紫背景を完全消去 */
+    padding: 0 !important;
+    margin: 0 !important;
+    box-sizing: border-box;
+    text-align: left !important;
+}
+
+body.member-info-page tr {
+    margin-bottom: 18px !important;
+}
+
+/* 各項目のラベル（会員ID、お名前、パスワード等） */
+body.member-info-page th {
+    font-size: 14px !important;
+    color: #4a5568 !important;
+    margin-bottom: 8px !important;
+    font-weight: bold !important;
+}
+
+/* 会員ID（テキスト表示部分）の装飾 */
+body.member-info-page td {
+    font-size: 15px;
+    color: #1a1a1a;
+}
+body.member-info-page tr:first-child td {
+    padding: 12px 16px !important;
+    background-color: #f7fafc !important; /* 編集不可のID欄を薄いグレーに */
+    border-radius: 10px;
+    color: #718096;
+}
+
+/* 入力欄（お名前・パスワード・ご住所）の一括モダン化 */
+body.member-info-page input.text, 
+body.member-info-page input.password {
+    float: none !important;       /* 古い float: left を無効化 */
+    width: 100% !important;       /* 横幅いっぱいに広げる */
+    height: 46px !important;
+    padding: 10px 16px !important;
+    font-size: 15px !important;
+    background-color: #f0f2ff !important; /* 淡いブルーグレーの背景 */
+    border: 1px solid #e2e8f0 !important;
+    border-radius: 10px !important;
+    box-sizing: border-box;
+    transition: all 0.25s ease;
+    color: #333333;
+}
+
+/* 入力欄にフォーカスが当たったときのアニメーション */
+body.member-info-page input.text:focus, 
+body.member-info-page input.password:focus {
+    outline: none;
+    border-color: #5c5edc !important;
+    background-color: #ffffff !important;
+    box-shadow: 0 0 0 3px rgba(92, 94, 220, 0.15) !important;
+}
+
+/* 「変更」ボタンのデザイン（メインの紫グラデーションボタン） */
+body.member-info-page input[type='submit'] {
+    width: 100% !important;
+    height: 48px !important;
+    font-size: 16px !important;
+    font-weight: bold !important;
+    color: #ffffff !important;
+    background: linear-gradient(to right, #5c5edc 0%, #6a11cb 100%) !important;
+    border: none !important;
+    border-radius: 24px !important;
+    cursor: pointer;
+    box-shadow: 0 6px 20px rgba(92, 94, 220, 0.2) !important;
+    transition: all 0.2s ease;
+    margin-top: 10px !important;
+    text-align: center !important;
+}
+
+body.member-info-page input[type='submit']:hover {
+    opacity: 0.92;
+    transform: translateY(-1px);
+    box-shadow: 0 8px 24px rgba(92, 94, 220, 0.3) !important;
+}
+
+/* 下部ナビゲーションリンク（「退会する」「購入履歴を表示」）の共通カプセル化 */
+body.member-info-page > a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    max-width: 220px;
+    height: 44px;
+    font-size: 14px;
+    font-weight: bold;
+    text-decoration: none;
+    color: #5c5edc !important;
+    background-color: #ffffff !important;
+    border: 1px solid rgba(92, 94, 220, 0.15) !important;
+    border-radius: 22px !important;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.04) !important;
+    transition: all 0.2s ease;
+    margin: 0 auto 14px auto !important;
+}
+
+body.member-info-page > a:hover {
+    color: #ffffff !important;
+    background: linear-gradient(to right, #5c5edc 0%, #6a11cb 100%) !important;
+    box-shadow: 0 6px 16px rgba(92, 94, 220, 0.25) !important;
+    transform: translateY(-1px);
+}
+
+/* 「退会する」ボタンだけ警告色（赤）に変更して区別する */
+body.member-info-page > a[href*="delete"], 
+body.member-info-page > a:not([href*="history"]) { 
+    color: #e53e3e !important;
+    border: 1px solid rgba(229, 62, 62, 0.15) !important;
+}
+body.member-info-page > a:not([href*="history"]):hover {
+    background: linear-gradient(to right, #ff4757 0%, #ff6b81 100%) !important;
+    box-shadow: 0 6px 16px rgba(255, 71, 87, 0.25) !important;
+}
+
+/* ボタンのアイコン装飾 */
+body.member-info-page > a[href*="history"]::before {
+    content: "📄  ";
+    font-size: 13px;
+}
+body.member-info-page > a:not([href*="history"])::before {
+    content: "⚠️  ";
+    font-size: 13px;
 }
 
 body.history-page {

@@ -13,7 +13,7 @@
 	<h1>以下の商品を購入しますか？</h1><br/>
 	
 	<c:if test="${not empty errorMsg}">
-		<div>
+		<div class="error-box">
 			<p>
 				<c:out value="${errorMsg}" />
 			</p>
