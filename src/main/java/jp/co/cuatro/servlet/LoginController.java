@@ -2,6 +2,7 @@ package jp.co.cuatro.servlet;
 
 import java.io.IOException;
 
+import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
@@ -65,10 +66,14 @@ public class LoginController extends HttpServlet {
 				} else if (path.equals("/main")) { // メイン画面からログインを押されたとき
 					response.sendRedirect(request.getContextPath() + "/main");
 
-				} else if (path.equals("/cartAdd")) { // 商品詳細画面からカートに追加しようとしたときに未ログインで遷移してきたとき
+				} else if (path.equals("/cartAdd")) { // 商品詳細画面からカートに追加しようとしたときにログインで遷移してきたとき
 
-					String redirectUrl = request.getContextPath() + "/cartAdd?itemId=" + itemId + "&amount=" + amount;
-					response.sendRedirect(redirectUrl);
+					request.setAttribute("itemId", itemId);
+					request.setAttribute("amount", amount);
+
+					// カート追加サーブレットへ処理を戻す（今度はログイン済みなので最初のif文に入ります）
+					RequestDispatcher rd = request.getRequestDispatcher("/cartAdd");
+					rd.forward(request, response);
 
 				} else if (path.equals("/cartDisplay")) { // メイン画面からカートを見るを押されたとき
 

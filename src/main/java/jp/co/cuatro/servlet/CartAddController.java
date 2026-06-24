@@ -79,7 +79,7 @@ public class CartAddController extends HttpServlet {
 				request.setAttribute("src", "/cartAdd");
 				request.setAttribute("itemId", itemId);
 				request.setAttribute("amount", amount);
-				RequestDispatcher rd = request.getRequestDispatcher("/login");
+				RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/login.jsp");
 				rd.forward(request, response);
 			}
 		} catch (Exception e) {
