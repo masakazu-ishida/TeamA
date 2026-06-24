@@ -43,7 +43,7 @@
 	<br />
 	<a href='${pageContext.request.contextPath}/history'>購入履歴を表示</a>
 	<br />
-	<a href='${pageContext.request.contextPath}/main'>商品検索へ</a>
+	<a href="${pageContext.request.contextPath}/main" class="search-btn">商品検索へ</a>
 </body>
 
 </html>

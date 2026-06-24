@@ -1480,6 +1480,29 @@ body.member-info-page > a:not([href*="history"])::before {
     font-size: 13px;
 }
 
+body.member-info-page > a.search-btn {
+    color: #5c5edc !important; /* 購入履歴と同じ青紫色 */
+    background-color: #ffffff !important;
+    border: 1px solid rgba(92, 94, 220, 0.15) !important;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.04) !important;
+    transform: none !important; /* 拡大をリセット */
+}
+
+/* 2. カーソルを置いたとき（ホバー時）の挙動を完全に統一（文字を白色に） */
+body.member-info-page > a.search-btn:hover {
+    color: #ffffff !important; /* ←ここを追加することで文字が白くなります */
+    background: linear-gradient(to right, #5c5edc 0%, #6a11cb 100%) !important; /* 同じ紫グラデーション */
+    box-shadow: 0 6px 16px rgba(92, 94, 220, 0.25) !important;
+    transform: translateY(-1px) scale(1) !important; /* 浮き上がり方も統一 */
+    opacity: 1 !important;
+}
+
+/* ①の商品検索ボタンのアイコン設定 */
+body.member-info-page > a.search-btn::before {
+    content: "🔍  ";
+    font-size: 13px;
+}
+
 body.history-page {
     font-family: 'Helvetica Neue', Arial, 'Hiragino Kaku Gothic ProN', 'Hiragino Sans', Meiryo, sans-serif;
     background: linear-gradient(135deg, #bbf2f6 0%, #e1eec3 50%, #f5e6ca 100%) !important;
