@@ -2238,3 +2238,61 @@ body.cart-page input[type="button"][value="購入する"] {
     transition: all 0.2s ease !important; /* 変化を少しクイックにして分かりやすく */
 }
 
+body.result-page {
+    font-size: 30px;          /* 全体の文字サイズを大きめに設定 */
+    color: #222222;           /* 文字の色を真っ黒に近い濃い色に */
+    font-weight: 500;         /* 文字全体の太さをやや太めに */
+    line-height: 1.6;         /* 行間を広げて見やすく */
+}
+
+/* ページ上部の見出し（「キーワード...の検索結果」） */
+body.result-page h3 {
+    font-size: 20px;          /* 見出しをさらに大きく */
+    color: #111111;           /* より濃く黒い色に */
+    font-weight: bold;        /* 太字に */
+    margin-bottom: 15px;
+}
+
+/* テーブル内の文字（ヘッダー・データ共通） */
+body.result-page table th,
+body.result-page table td {
+    font-size: 50px;          /* テーブル内の文字サイズ */
+    padding: 12px 15px;       /* セルの中に余白を作って文字を見やすく */
+    color: #111111;           /* テーブル内の文字を濃く */
+}
+
+/* テーブルのヘッダー部分（商品名、商品の色など） */
+body.result-page table th {
+    font-weight: bold;        /* ヘッダーをしっかり太字に */
+    background-color: #dcdcf0; /* 背景色も文字が見やすいよう少し調整（お好みで） */
+}
+
+/* 商品名のリンク文字 */
+body.result-page table td a {
+    color: #0022aa;           /* リンクの色を少し濃いめの青に */
+    font-weight: bold;        /* リンクを太字にして目立たせる */
+    text-decoration: underline; /* 下線を引いてリンクと分かりやすく */
+}
+
+/* 商品名のリンクをホバー（カーソルを合わせた）したとき */
+body.result-page table td a:hover {
+    color: #001166;           /* ホバー時はさらに濃い青に */
+}
+
+/* 「オススメ！」の文字 */
+body.result-page table td span {
+    color: #dd0000;           /* 赤色をパキッとした濃い赤に */
+    font-weight: bold;        /* 太字に */
+    margin-left: 8px;
+}
+
+body.result-page table th,
+body.result-page table td {
+    font-size: 20px !important;  /* 確実に反映させるために !important を付与 */
+    padding: 16px 20px !important; /* 文字が大きくなるので、余白も少し広げます */
+}
+
+/* 商品名のリンク文字も合わせて大きくする場合 */
+body.result-page table td a {
+    font-size: 20px !important;
+}
